@@ -1,0 +1,14 @@
+.Layout {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 8.6% 91.4%;
+}
+
+
+header {
+    background-color: #f0f0f0;
+}
+
+main {
+    height: 100%;
+}
