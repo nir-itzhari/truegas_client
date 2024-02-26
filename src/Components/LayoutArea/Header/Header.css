@@ -1,0 +1,59 @@
+.Header {
+    height: 100%;
+}
+
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+    background-color: black;
+
+}
+
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+    background-color: black !important;
+}
+
+.css-1r7kz78-MuiModal-root-MuiDrawer-root .MuiDrawer-paper {
+    box-sizing: border-box;
+    width: 240px;
+    background-color: #5b5b5b;
+    color: white;
+}
+
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+    height: 8.6%;
+}
+.css-hyum1k-MuiToolbar-root {
+    justify-content: space-between !important;
+}
+
+.css-h4y409-MuiList-root {
+    display: flex;
+    flex-direction: column;
+height: 50%;
+}
+
+.css-1kkpk3h-MuiButtonBase-root-MuiButton-root:hover {
+    background-color: #ff8f00cc !important;
+}
+
+a {
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    ul a {
+        margin: 20px 0 0 0 !important;
+        justify-content: space-evenly;
+    }
+}
+
+a:hover {
+    color: wheat;
+    transition-duration: 500ms;
+}
+
+a:active {
+    color: royalblue
+}
