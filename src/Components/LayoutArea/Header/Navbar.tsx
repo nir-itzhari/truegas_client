@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as styled from './Navbar.styled'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,9 +10,16 @@ import List from '@mui/material/List';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { AiOutlineMenuUnfold } from "react-icons/ai";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { VscFlame } from "react-icons/vsc";
 import './Header.css'
+import { Button } from '@mui/material';
+import { useEffect, useState } from 'react';
+import UserModel from '../../../Models/UserModel';
+import store from '../../../Redux/Store';
+import authService from '../../../Services/AuthServices';
+import notify from '../../../Services/NotifyService';
+import AuthMenu from '../../AuthArea/Auth/AuthMenu/AuthMenu';
 
 interface Props {
     window?: () => Window;
@@ -19,15 +27,26 @@ interface Props {
 
 const drawerWidth = 240;
 
-export default function DrawerAppBar(props: Props) {
-    const location = useLocation()
-    const condition = ['/signin', '/signup', '/forgot-password', '/logout'].includes(location.pathname)
-    const pages = !condition ? ['home', 'assignments', 'clients'] : [''];
-    const homePage = !condition ? 'דף הבית' : ''
-    const homePageTitle = !condition ? 'home' : '#'
+interface RoutePaths {
+    [key: string]: string;
+}
 
+const routePaths: RoutePaths = {
+    home: '/',
+    assignments: '/assignments',
+    clients: '/clients',
+    forms: '/forms',
+};
+
+export default function DrawerAppBar(props: Props) {
+    const location = useLocation();
+    const condition = ['/signin', '/signup', '/forgot-password', '/logout'].includes(location.pathname);
+    const pages = !condition ? ['home', 'assignments', 'clients', 'forms'] : [''];
+    const homePageTitle = !condition ? 'home' : '#'
+    const homePage = !condition ? 'דף הבית' : '';
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const navigate = useNavigate();
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -35,18 +54,18 @@ export default function DrawerAppBar(props: Props) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-
             <Typography variant="h6" sx={{ my: 2 }}>
                 TrueGas
             </Typography>
             <Divider />
             <List>
                 {pages.map((page, index) => (
-                    <Link style={{ fontSize: '1.2rem' }} key={index} to={page}>{page === 'assignments' ? 'משימות' : homePage && page === 'clients' ? 'לקוחות' : homePage}</Link>
+                    <Link style={{ fontSize: '1.2rem' }} key={index} to={routePaths[page]}>{page === 'assignments' ? 'משימות' : page === 'clients' ? 'לקוחות' : page === 'forms' ? 'טפסים' : homePage}</Link>
                 ))}
             </List>
         </Box>
     );
+
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -64,19 +83,20 @@ export default function DrawerAppBar(props: Props) {
                     >
                         <AiOutlineMenuUnfold />
                     </IconButton>
-                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                        <VscFlame fontSize={25} style={{ margin: '0 5px 6px 0' }} />
-                        <Link to={homePageTitle} style={{ fontSize: '1.2rem' }}> TrueGas </Link>
-                    </div>
+                    <styled.homePageTitle>
+                        <styled.flameIcon />
+                        <Link to={homePageTitle}> TrueGas </Link>
+                    </styled.homePageTitle>
 
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {pages.map((page, index) => (
-                            <Link style={{ fontSize: '1.2rem' }} key={index} to={page}>{page === 'assignments' ? 'משימות' : homePage && page === 'clients' ? 'לקוחות' : homePage}</Link>
+                            <Link style={{ fontSize: '1.2rem' }} key={index} to={routePaths[page]}>{page === 'assignments' ? 'משימות' : page === 'clients' ? 'לקוחות' : page === 'forms' ? 'טפסים' : homePage}</Link>
                         ))}
+                        <AuthMenu />
                     </Box>
                 </Toolbar>
             </AppBar>
-            <nav>
+            <styled.drawerWrapper>
                 <Drawer
                     container={container}
                     variant="temporary"
@@ -92,7 +112,7 @@ export default function DrawerAppBar(props: Props) {
                 >
                     {drawer}
                 </Drawer>
-            </nav>
+            </styled.drawerWrapper>
         </Box>
     )
 }

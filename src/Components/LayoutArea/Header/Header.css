@@ -18,9 +18,51 @@
     color: white;
 }
 
-.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
-    height: 8.6%;
+
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    border: 1px solid transparent;
+    padding: 6px 25px;
+    margin: 0 20px;
 }
+
+/* Change border style on hover */
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root .css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+    border-color: #1976d2;
+    /* Change border color on hover */
+    animation: borderAnimation 2s infinite;
+    /* Apply the keyframe animation on hover */
+}
+
+/* Define keyframes for border color animation */
+@keyframes borderAnimation {
+    0% {
+        border-color: transparent;
+        /* Start with transparent border */
+    }
+
+    50% {
+        border-color: #1976d2;
+        /* Change border color to #1976d2 at 50% */
+    }
+
+    100% {
+        border-color: transparent;
+        /* Return to transparent border at 100% */
+    }
+}
+
+
+/* Media query for screen width greater than or equal to 600px */
+@media (min-width: 600px) {
+
+    /* Styles to apply when screen width is 600px or more */
+    .css-130f8nx {
+        display: flex !important;
+        flex-direction: row-reverse !important;
+        align-items: center !important;
+    }
+}
+
 .css-hyum1k-MuiToolbar-root {
     justify-content: space-between !important;
 }
@@ -28,12 +70,14 @@
 .css-h4y409-MuiList-root {
     display: flex;
     flex-direction: column;
-height: 50%;
+    height: 50%;
 }
 
 .css-1kkpk3h-MuiButtonBase-root-MuiButton-root:hover {
     background-color: #ff8f00cc !important;
 }
+
+
 
 a {
     text-decoration: none;

@@ -40,8 +40,8 @@ export const HomeContainer = styled.div`
   position: relative;
 `;
 
-export const BackgroundImage = styled.img`
-  width: 100%;
+export const BackgroundImage = styled.img<{$screenWidth: number}>`
+  width: ${props => props.$screenWidth}px;
   height: auto;
 `;
 
@@ -51,7 +51,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 99%;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity to your preference */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,3 +63,10 @@ export const HomeText = styled.div`
   font-weight: 700;
   color: white;
 `;
+
+export const textHeader = styled.div`
+  font-size: 50px;
+`
+
+export const textHeadLine = styled.div`
+`

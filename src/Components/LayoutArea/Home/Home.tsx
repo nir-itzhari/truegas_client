@@ -1,20 +1,29 @@
 import * as styled from "./home.styled";
 import imgSource from '../../../assets/2000_5d7e1564cdb7b.jpg';
 import { ScrollTop } from 'primereact/scrolltop';
+import { NavLink, useNavigate } from "react-router-dom";
+import notify from "../../../Services/NotifyService";
+import authService from "../../../Services/AuthServices";
 
 function Home(): JSX.Element {
+    const $screenWidth = window.innerWidth;
+    console.log("Screen width: ", $screenWidth);
+
+
+
+
     return (
         <>
             <styled.HomeContainer>
-                <styled.BackgroundImage src={imgSource} alt="Background" />
+                <styled.BackgroundImage $screenWidth={$screenWidth} src={imgSource} alt="Background" />
                 <styled.Overlay>
                     <styled.HomeText>
-                        <div style={{ fontSize: '50px' }}>
+                        <styled.textHeader>
                             TrueGas
-                        </div>
-                        <div>
+                        </styled.textHeader>
+                        <styled.textHeadLine>
                             המומחים שלך להתקנות גז ושירותים מקצועיים
-                        </div>
+                        </styled.textHeadLine>
                     </styled.HomeText>
                 </styled.Overlay>
                 <ScrollTop />

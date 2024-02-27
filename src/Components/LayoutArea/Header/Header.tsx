@@ -1,11 +1,11 @@
 import './Header.css'
-import DrawerAppBar from './Navbar';
+import Drawer from './Navbar';
 
 function Header() {
 
     return (
         <div>
-            <DrawerAppBar />
+            <Drawer />
         </div>
 
     );
