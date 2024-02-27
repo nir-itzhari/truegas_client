@@ -7,7 +7,7 @@ class AssignmentModel {
     public user_id: string;
     public imageFile: FileList;
     public imageName: string;
-    public isDozne?: boolean;
+    public isDone?: boolean;
 }
 
 export default AssignmentModel;
