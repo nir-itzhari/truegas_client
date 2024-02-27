@@ -1,11 +1,10 @@
 import "./Routing.css";
-import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, redirect, Route } from "react-router-dom";
 import Home from "../Home/Home";
 import Layout from "../Layout/Layout";
-import AssignmentsList from "../../TableList/TableWrapperList/AssignmentListWrapper";
+import AssignmentsList from "../../AssignmetnsArea/AssignmentList/AssignmentTableWrapperList/AssignmentListWrapper";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import clientService from "../../../Services/ClientService";
-import { AddAssignmentPopupForm } from "../../AssignmetnsArea/AddAssignmentForm/AddAssignment";
 import assignmentService from "../../../Services/AssignmentServices";
 import searchInputService from "../../../Services/SearchInputServices";
 import { AddClientFrom } from "../../ClientArea/AddClientForm/AddClientForm";
@@ -15,7 +14,9 @@ import SignUp from "../../AuthArea/Auth/SignUp/SignUp";
 import ForgotPassword from "../../AuthArea/Auth/ForgotPassword/ForgotPassword";
 import Logout from "../../AuthArea/Auth/Logout/Logout";
 import { ClientList } from "../../ClientArea/ClientList/ClientListWrapper/ClientListWrapper";
-
+import { AddAssignment } from "../../AssignmetnsArea/AddAssignmentForm/AddAssignment";
+import { useEffect } from "react";
+import authService from "../../../Services/AuthServices";
 
 
 const router = createBrowserRouter(
@@ -83,7 +84,7 @@ const router = createBrowserRouter(
                         return null;
                     }
                 }}
-                element={<AddAssignmentPopupForm />}
+                element={<AddAssignment />}
                 errorElement={<PageNotFound />} />
 
             <Route
