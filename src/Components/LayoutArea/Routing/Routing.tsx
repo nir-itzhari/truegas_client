@@ -17,6 +17,7 @@ import { ClientList } from "../../ClientArea/ClientList/ClientListWrapper/Client
 import { AddAssignment } from "../../AssignmetnsArea/AddAssignmentForm/AddAssignment";
 import { useEffect } from "react";
 import authService from "../../../Services/AuthServices";
+import store from "../../../Redux/Store";
 
 
 const router = createBrowserRouter(
@@ -28,7 +29,8 @@ const router = createBrowserRouter(
                 path="/assignments"
                 loader={async () => {
                     try {
-                        const result = await assignmentService.fetchAssignments();
+                        const user_id = store.getState().authState.user._id
+                        const result = await assignmentService.fetchAssignmentsByUserId(user_id);
                         return result;
                     } catch (error: any) {
                         console.log(error.message);
