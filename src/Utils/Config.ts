@@ -4,7 +4,7 @@ class Config {
 class DevelopmentConfig extends Config {
     public isDevelopment = true;
     public usersUrl = "http://192.168.1.23:3001/api/users/";
-    public assignmentsUrl = "http://192.168.1.23:3001/api/assignments";
+    public assignmentsUrl = "http://192.168.1.23:3001/api/assignments/";
     public assignmentsImagesUrl = "http://192.168.1.23:3001/api/images/";
 
     public baseUrl = "http://192.168.1.23:3001/api/";
@@ -18,7 +18,7 @@ class DevelopmentConfig extends Config {
 
 class ProductionConfig extends Config {
     public usersUrl = "http://192.168.1.23:3001/api/users/";
-    public assignmentsUrl = "http://192.168.1.23:3001/api/assignments";
+    public assignmentsUrl = "http://192.168.1.23:3001/api/assignments/";
     public assignmentsImagesUrl = "http://192.168.1.23:3001/api/images/";
 
     public baseUrl = "http://192.168.1.23:3001/api/";
