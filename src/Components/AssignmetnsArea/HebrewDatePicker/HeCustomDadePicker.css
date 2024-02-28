@@ -1,0 +1,25 @@
+.p-datepicker table td {
+    padding: 0.2rem;
+}
+
+.p-datepicker:not(.p-datepicker-inline) {
+    direction: rtl;
+}
+
+
+.p-datepicker .p-datepicker-header :nth-child(1) {
+    /* transform: rotate(30deg); */
+
+}
+
+.p-datepicker-prev, .p-datepicker-next {
+
+    transform: rotate(180deg);
+}
+
+
+.p-datepicker .p-datepicker-header :nth-child(3) {
+    transform: rotate(180deg);
+
+
+}
