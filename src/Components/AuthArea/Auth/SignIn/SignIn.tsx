@@ -109,8 +109,8 @@ const SignInSide = () => {
                                     id="email"
                                     label="אימייל"
                                     name="email"
+                                    aria-label='email'
                                     {...register('email')}
-                                    autoComplete="email"
                                     autoFocus
                                 />
                                 <Styled.inputWrapper
@@ -121,8 +121,8 @@ const SignInSide = () => {
                                     label="סיסמה"
                                     type="password"
                                     id="password"
+                                    aria-label='password'
                                     {...register('password')}
-                                    autoComplete="current-password"
                                 />
                                 <Tooltip title="כניסה" placement="bottom">
                                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
@@ -144,7 +144,7 @@ const SignInSide = () => {
                                 <Box mt={5}>
                                     <Typography variant="body2" color="text.secondary" align="center">
                                         {'Copyright © '}
-                                        <Link color="inherit" href="https://mui.com/">
+                                        <Link color="inherit" href="#">
                                             TrueGas
                                         </Link>{' '}
                                         {new Date().getFullYear()}

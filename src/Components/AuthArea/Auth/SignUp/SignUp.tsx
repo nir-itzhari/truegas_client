@@ -1,20 +1,14 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { FormEvent } from 'react';
+import { useForm } from 'react-hook-form';
 import * as styled from './../SignIn/SignIn.styled'
 import UserModel from '../../../../Models/UserModel';
 import { Tooltip } from '@mui/material';
@@ -25,7 +19,7 @@ function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit">
+            <Link color="inherit" href={'#'}>
                 TrueGas
             </Link>{' '}
             {new Date().getFullYear()}
@@ -34,7 +28,6 @@ function Copyright(props: any) {
     );
 }
 
-interface DataProps { firstName: string, lastName: string, email: string, password: string }
 export default function SignUp() {
     const { register, handleSubmit } = useForm<UserModel>()
     const navigate = useNavigate()
@@ -72,6 +65,7 @@ export default function SignUp() {
                                     fullWidth
                                     id="firstName"
                                     label="שם פרטי"
+                                    aria-label='first name'
                                     {...register('firstName')}
                                     autoFocus
                                 />
@@ -83,8 +77,8 @@ export default function SignUp() {
                                     id="lastName"
                                     label="שם משפחה"
                                     name="lastName"
+                                    aria-label='last name'
                                     {...register('lastName')}
-                                    autoComplete="family-name"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -94,8 +88,8 @@ export default function SignUp() {
                                     id="email"
                                     label="אימייל"
                                     name="email"
+                                    aria-label='email'
                                     {...register('email')}
-                                    autoComplete="email"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -106,15 +100,15 @@ export default function SignUp() {
                                     label="סיסמה"
                                     type="password"
                                     id="password"
+                                    aria-label='password'
                                     {...register('password')}
-                                    autoComplete="new-password"
                                 />
                             </Grid>
                         </Grid>
                         <Tooltip title="שליחה" placement="bottom">
-                        <Button type='submit' fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                            שליחה
-                        </Button>
+                            <Button type='submit' fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                                שליחה
+                            </Button>
                         </Tooltip>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
