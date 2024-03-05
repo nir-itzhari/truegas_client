@@ -33,7 +33,14 @@ class AuthService {
 
     public logout(): void {
         store.dispatch(logoutAction());
-        localStorage.removeItem("token");
+    }
+
+    public async resetPassword(token: string, newPassword: string): Promise<string> {
+        const response = await axios.post(config.resetPasswordUrl, { token: token, newPassword: newPassword })
+        console.log(response.data)
+
+        return response.data.message
+
     }
 
     public async isLoggedIn(): Promise<boolean> {
