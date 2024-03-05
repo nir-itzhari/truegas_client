@@ -39,6 +39,56 @@ html, body, #root {
   background-color: whitesmoke;
 }
 
+div#NagishLiTrigger {
+  bottom: 15px !important;
+  left: 15px !important;
+}
+
+#NagishLiWidget.nagishli-widget-show {
+  visibility: visible !important;
+  transform: translate(0, 0%) !important;
+}
+
+span.nagishli-trigger-icon {
+  background-color: #ff881b;
+  transition: 200ms ease-in-out;
+}
+
+span.nagishli-trigger-icon:hover {
+  background-color: #8d4f15;
+}
+
+.nagishli-header-text:hover {
+  font-size: 25px;
+  position: relative;
+  margin-right: 10px;
+  top: -15px;
+  animation: textAnimation 1s infinite;
+}
+
+@keyframes textAnimation {
+  0% {
+      font-size: 25px; 
+  }
+  50% {
+      font-size: 20px;
+  }
+  100% {
+      font-size: 25px;
+  }
+}
+
+div#NagishLiCopyrights {
+  display: none;
+}
+
+div i#NagishLiVoiceCommands {
+  display: none;
+}
+
+#NagishLiWidget {
+  transform: translate(0, 100%) !important;
+}
 
 /* Media queries for responsiveness */
 @media only screen and (max-width: 768px) {
