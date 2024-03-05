@@ -64,6 +64,11 @@ export const Input = styled.input`
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 8px; /* Reduced border-radius */
+  background-color: #ccc;
+
+  #file-upload-button {
+    border-radius: 25px;
+  }
 `;
 export const TextAreaTitle = styled(TextField)`
   width: calc(100% - 20px); /* Adjusted width to accommodate padding */

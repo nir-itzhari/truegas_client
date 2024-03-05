@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import * as styled from './addAssignment.styled';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ClientModel } from '../../../Models/ClientModel';
 import AssignmentModel from '../../../Models/AssignmentModel';
-import { IoMdSend } from 'react-icons/io';
-import HDatePicker from '../HebrewDatePicker/HebrewDatePicker';
-import assignmentService from '../../../Services/AssignmentServices';
 import CustomizedCheckbox from './isDoneCheckbox';
-import { DatePicker } from '@mui/x-date-pickers';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import HeCustomDatePicker from '../HebrewDatePicker/HeCustomDadePicker';
-import { FileUpload, FileUploadSelectEvent } from 'primereact/fileupload';
 import { Button } from 'primereact/button';
 import store from '../../../Redux/Store';
-import notify from '../../../Services/NotifyService';
 import UserModel from '../../../Models/UserModel';
 import { Nullable } from 'primereact/ts-helpers';
+import assignmentService from '../../../Services/AssignmentServices';
 
 
 
@@ -30,7 +25,6 @@ export const AddAssignment = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const [client, setClient] = useState<string>('בחר לקוח')
     const [chosenDate, setChosenDate] = useState<Nullable<Date>>()
-    // const [imagesFiles, setImagesFiles] = useState<FileUploadSelectEvent>()
     const [user, setUser] = useState<UserModel>(null);
 
     const navigate = useNavigate()
