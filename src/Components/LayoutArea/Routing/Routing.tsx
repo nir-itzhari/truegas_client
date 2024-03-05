@@ -1,10 +1,9 @@
 import "./Routing.css";
-import { createBrowserRouter, createRoutesFromElements, redirect, Route } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 import Home from "../Home/Home";
 import Layout from "../Layout/Layout";
 import AssignmentsList from "../../AssignmetnsArea/AssignmentList/AssignmentTableWrapperList/AssignmentListWrapper";
 import PageNotFound from "../PageNotFound/PageNotFound";
-import clientService from "../../../Services/ClientService";
 import assignmentService from "../../../Services/AssignmentServices";
 import searchInputService from "../../../Services/SearchInputServices";
 import { AddClientFrom } from "../../ClientArea/AddClientForm/AddClientForm";
@@ -15,9 +14,8 @@ import ForgotPassword from "../../AuthArea/Auth/ForgotPassword/ForgotPassword";
 import Logout from "../../AuthArea/Auth/Logout/Logout";
 import { ClientList } from "../../ClientArea/ClientList/ClientListWrapper/ClientListWrapper";
 import { AddAssignment } from "../../AssignmetnsArea/AddAssignmentForm/AddAssignment";
-import { useEffect } from "react";
-import authService from "../../../Services/AuthServices";
 import store from "../../../Redux/Store";
+import { ResetPassword } from "../../AuthArea/Auth/ResetPassword/ResetPassword";
 
 
 const router = createBrowserRouter(
@@ -25,6 +23,43 @@ const router = createBrowserRouter(
         <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
+            
+            <Route
+                path="/signin"
+                errorElement={<PageNotFound />}
+                element={<SignInSide />} />
+
+            <Route
+                path="/signup"
+                errorElement={<PageNotFound />}
+                element={<SignUp />} />
+
+
+            <Route
+                path="/logout"
+                errorElement={<PageNotFound />}
+                element={<Logout />} />
+
+            <Route
+                path="/forgot-password"
+                errorElement={<PageNotFound />}
+                element={<ForgotPassword />} />
+
+
+            <Route
+                path="/reset-password"
+                // loader={async () => {
+                //     const params = useParams()
+                //     const { token } = params
+                //     if (token) {
+                //         return (<PageNotFound />)
+                //     }
+                //     return token
+                // }}
+                errorElement={<PageNotFound />}
+                element={<ResetPassword />} />
+
+            
             <Route
                 path="/assignments"
                 loader={async () => {
@@ -55,25 +90,7 @@ const router = createBrowserRouter(
                 errorElement={<PageNotFound />}
                 element={<ClientList />} />
 
-            <Route
-                path="/signin"
-                errorElement={<PageNotFound />}
-                element={<SignInSide />} />
-
-            <Route
-                path="/signup"
-                errorElement={<PageNotFound />}
-                element={<SignUp />} />
-
-            <Route
-                path="/forgot-password"
-                errorElement={<PageNotFound />}
-                element={<ForgotPassword />} />
-
-            <Route
-                path="/logout"
-                errorElement={<PageNotFound />}
-                element={<Logout />} />
+           
 
             <Route
                 path="/addAssignment"
