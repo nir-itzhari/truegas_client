@@ -12,6 +12,7 @@ class DevelopmentConfig extends Config {
     public clientsSearchUrl = "http://192.168.1.23:3001/api/clients/search/";
     public registerUrl = "http://192.168.1.23:3001/api/auth/signup";
     public loginUrl = "http://192.168.1.23:3001/api/auth/signin";
+    public resetPasswordUrl = "http://192.168.1.23:3001/api/auth/reset-password/";
     // public assignmentsImageUrl = "http://192.168.14.4:3000/assets/images/";
     // public socketUrl = "http://localhost:3000";
 }
@@ -26,6 +27,7 @@ class ProductionConfig extends Config {
     public clientsSearchUrl = "http://192.168.1.23:3001/api/clients/search/";
     public registerUrl = "http://192.168.1.23:3001/api/auth/signup";
     public loginUrl = "http://192.168.1.23:3001/api/auth/signin";
+    public resetPasswordUrl = "http://192.168.1.23:3001/api/auth/reset-password/";
     // public assignmentsImageUrl = "http://192.168.14.4:3000/assets/images/";
     // public socketUrl = "http://localhost:3000";
 }
