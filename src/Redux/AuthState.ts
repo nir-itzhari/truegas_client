@@ -49,6 +49,7 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
         case AuthActionType.Logout:
             newState.token = null;
             newState.user = null;
+            localStorage.removeItem("token");
             break;
     }
 
