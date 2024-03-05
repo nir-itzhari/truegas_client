@@ -11,17 +11,6 @@ import notify from "../../../Services/NotifyService";
 
 
 function Layout(): JSX.Element {
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        const user = store.getState().authState.user
-        if (!user) {
-            notify.error("משתמש לא מחובר");
-            navigate("/signin", { replace: true });
-        }
-    }, [])
-
-
     return (
         <div className="Layout">
             <header>
