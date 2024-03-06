@@ -1,5 +1,5 @@
 import * as styled from './AssignmentListWrapper.styled'
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useLoaderData, useLocation } from 'react-router-dom';
 import { CircularProgress, Pagination, Stack } from '@mui/material';
 import { GrDocumentMissing } from "react-icons/gr";
@@ -56,7 +56,7 @@ export default function AssignmentList(): JSX.Element {
   };
 
 
- 
+
   const handleClick = (event: React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page);
   };
@@ -67,34 +67,38 @@ export default function AssignmentList(): JSX.Element {
   const slicedItems = assignmentList.slice(startIndex, endIndex);
 
   return (
-    <styled.mainTableWrapper>
-      <styled.topSectionWrapper>
-        <AddAssignmentButton />
-      </styled.topSectionWrapper>
-      {isLoading &&
-        <styled.spinnerProgress>
-          <CircularProgress />
-        </styled.spinnerProgress>}
-      {assignmentList && (
-        <>
-          <AssignmentTable assignmentRows={slicedItems}/>
-          <styled.paginationWrapper>
-            <Stack spacing={2}>
-              <Pagination count={totalPages} page={currentPage} onChange={handleClick} variant="outlined" />
-            </Stack>
-          </styled.paginationWrapper>
+    <Fragment>
+      <styled.mainTableWrapper>
+        <styled.topSectionWrapper>
+          <AddAssignmentButton />
+        </styled.topSectionWrapper>
+        {isLoading &&
+          <Fragment>
+            <styled.spinnerProgress>
+              <CircularProgress />
+            </styled.spinnerProgress>
+          </Fragment>}
+        {assignmentList && (
+          <Fragment>
+            <AssignmentTable assignmentRows={slicedItems} />
+            <styled.paginationWrapper>
+              <Stack spacing={2}>
+                <Pagination count={totalPages} page={currentPage} onChange={handleClick} variant="outlined" />
+              </Stack>
+            </styled.paginationWrapper>
 
-          <styled.noResult results={slicedItems.length === 0 ? 'false' : 'true'}>
-            <div>
-              <span>לא נמצאו נתונים...</span>
-            </div>
-            <div>
-              <GrDocumentMissing />
-            </div>
-          </styled.noResult>
-        </>
-      )}
+            <styled.noResult results={slicedItems.length === 0 ? 'false' : 'true'}>
+              <div>
+                <span>לא נמצאו נתונים...</span>
+              </div>
+              <div>
+                <GrDocumentMissing />
+              </div>
+            </styled.noResult>
+          </Fragment>
+        )}
 
-    </styled.mainTableWrapper>
+      </styled.mainTableWrapper>
+    </Fragment>
   )
 }
