@@ -1,5 +1,4 @@
-// import styled from "styled-components";
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 
 export const rowWrapper = styled.div`
@@ -23,15 +22,23 @@ export const rowContent = styled.div`
     cursor: pointer;
 `;
 
-export const rowContentOpen = styled(rowContent) <{ $selected: boolean }>`
+export const rowContentOpen = styled.div<{ $selected: boolean }>`
     overflow: hidden; /* Ensure the content doesn't overflow */
-    height: ${props => props.$selected ? '100px' : '0'}; /* Initially set height to 0 when not selected */
+    display:flex;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 13px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    text-align: right;
+    // height: ${props => props.$selected ? 'auto' : '0'}; /* Initially set height to 0 when not selected */
+    max-height: ${props => props.$selected ? '50px' : '0'}; /* Set a maximum height when selected */
     opacity: ${props => props.$selected ? 1 : 0}; /* Initially set opacity to 0 when not selected */
-    transition: height 0.3s ease, opacity 0.3s ease; /* Add a transition for smooth height and opacity changes */
+    transition: max-height 0.3s ease, opacity 0.3s ease;
 `;
 
 export const row = styled.div`
-    background-color: whithtsmoke;
+    // background-color: whitesmoke;
 `
 
 

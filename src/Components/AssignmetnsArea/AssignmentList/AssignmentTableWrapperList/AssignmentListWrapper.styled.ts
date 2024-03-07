@@ -1,4 +1,3 @@
-import { Table, TableRow } from "@mui/material";
 import styled from "styled-components";
 
 export const topSectionWrapper = styled.div`

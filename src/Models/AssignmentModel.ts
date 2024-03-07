@@ -1,3 +1,5 @@
+import { ClientModel } from "./ClientModel";
+
 class AssignmentModel {
     public _id: string;
     public date: Date;
@@ -8,6 +10,7 @@ class AssignmentModel {
     public imageFile: FileList;
     public imageName: string;
     public isDone?: boolean;
+    public client: ClientModel[]
 }
 
 export default AssignmentModel;

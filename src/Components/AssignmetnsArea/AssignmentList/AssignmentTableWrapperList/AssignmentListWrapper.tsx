@@ -1,6 +1,6 @@
 import * as styled from './AssignmentListWrapper.styled'
 import { Fragment, useEffect, useState } from 'react';
-import { useLoaderData, useLocation } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { CircularProgress, Pagination, Stack } from '@mui/material';
 import { GrDocumentMissing } from "react-icons/gr";
 import AssignmentModel from '../../../../Models/AssignmentModel';
@@ -15,7 +15,6 @@ const itemsPerPage = 10;
 
 export default function AssignmentList(): JSX.Element {
   const data = useLoaderData() as AssignmentModel[];
-  const location = useLocation();
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [currentPage, setCurrentPage] = useState(1);
   const [assignmentList, setAssignmentList] = useState<AssignmentModel[]>([]);
@@ -38,7 +37,7 @@ export default function AssignmentList(): JSX.Element {
 
 
     return () => unsubscribeMe();
-  }, [isLoading, location.pathname]);
+  }, [data]);
 
 
   const sortAssignmentList = (dataList: AssignmentModel[]): AssignmentModel[] => {
