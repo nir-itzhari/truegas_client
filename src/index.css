@@ -36,7 +36,7 @@ code {
 
 html, body, #root {
   height: 100%;
-  background-color: whitesmoke;
+  background-color: rgb(240, 242, 245);
 }
 
 div#NagishLiTrigger {
