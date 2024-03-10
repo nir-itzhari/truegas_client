@@ -11,24 +11,25 @@ interface Props {
 
 export const SearchFilter = ({ searchResults }: Props) => {
     const { register, handleSubmit, watch } = useForm<SearchInputModel>({ mode: 'onChange' });
-    
+
     const fullName = watch('fullName');
     const city = watch('city');
     const street = watch('street');
 
-
     const handleInputChange = async () => {
         try {
+            let filteredClients;
             const searchFields = { fullName: fullName, city: city, street: street };
             const clients = await searchInputService.getClientsBySearch(searchFields)
-            const filteredClients = clients.filter(client => {
-                return (
-                    client.fullName.includes(searchFields.fullName) ||
-                    client.city.includes(searchFields.city) ||
-                    client.street.includes(searchFields.street)
-                );
-            });
-            
+            if (clients) {
+                filteredClients = clients.filter(client => {
+                    return (
+                        (!searchFields.fullName || client.fullName.startsWith(searchFields.fullName)) &&
+                        (!searchFields.city || client.city.startsWith(searchFields.city)) &&
+                        (!searchFields.street || client.street.startsWith(searchFields.street))
+                    );
+                });
+            }
             searchResults(filteredClients);
         } catch (error: any) {
             console.log(error.message)

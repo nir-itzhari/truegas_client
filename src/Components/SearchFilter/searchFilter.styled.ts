@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import styled from "styled-components";
 
 
-export const searchWrapper = styled.div`
+export const searchWrapper = styled.form`
 display: flex;
 flex-direction: row;
 `
