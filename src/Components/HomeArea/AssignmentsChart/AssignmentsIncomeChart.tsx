@@ -4,23 +4,8 @@ import { Card } from 'primereact/card';
 import config from '../../../Utils/Config';
 import store from '../../../Redux/Store';
 import axios from 'axios';
+import { useMobile } from '../../hooks/useMobileHook';
 
-const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490, 1234, 3245, 4434, 4566, 7676];
-const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300, 5665, 6656, 3242, 1553, 8868];
-const xLabels = [
-    'ינואר',
-    'פברואר',
-    'מרץ',
-    'אפריל',
-    'מאי',
-    'יוני',
-    'יולי',
-    'אוגוסט',
-    'ספטמבר',
-    'אוקטובר',
-    'נובמבר',
-    'דצמבר'
-];
 
 interface Income {
     month: string,
@@ -30,6 +15,7 @@ interface Income {
 export const AssignmentsIncomeChart = () => {
     const [assignmentsIncome, setAssignmentsIncome] = React.useState<number[]>()
     const [datesIncome, setDatesIncome] = React.useState<string[]>()
+    const isMobile = useMobile()
 
     const fetch = async () => {
         const user_id = store.getState().authState.user._id
@@ -38,6 +24,7 @@ export const AssignmentsIncomeChart = () => {
         setDatesIncome(income.data.map(i => i.month))
 
     }
+    console.log(datesIncome, assignmentsIncome)
     React.useEffect(() => {
         fetch()
     }, [])
@@ -48,8 +35,8 @@ export const AssignmentsIncomeChart = () => {
                 <div style={{ direction: 'ltr', display: 'inline-grid', justifyContent: 'center' }}>
                     <Card style={{ borderRadius: '12px' }}>
                         <LineChart
-                            width={500}
-                            height={300}
+                            width={isMobile ? 320 : 800}
+                            height={isMobile ? 200 : 300}
                             series={[
                                 { data: assignmentsIncome, label: 'הכנסות בש"ח' }
                             ]}
