@@ -37,7 +37,6 @@ export const AddAssignment = () => {
             data.client_id = client;
             data.user_id = user._id
             data.date = dayjs(chosenDate).format('DD-MM-YYYY')
-            // data.imageFile = imagesFiles
             const addedAssignment = await assignmentService.addNewAssignment(data);
             navigate('/assignments')
             console.log("Added assignment:", addedAssignment);
@@ -74,18 +73,16 @@ export const AddAssignment = () => {
                 </div>
                 <styled.Form onSubmit={handleSubmit(onSubmit)}>
                     <styled.FormGroup>
-                        <div style={{ direction: 'rtl', textAlign: 'center', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
-                            <div>
-                                <span style={{ fontSize: '1.1rem', fontWeight: 700 }}>בחר תאריך:</span>
-                            </div>
-                            <div>
+                        <styled.DateWrapper>
+                                <styled.DateLabel>בחר תאריך:</styled.DateLabel>
                                 <HeCustomDatePicker setChosenDate={setDate} />
-                            </div>
-                        </div>
+                        </styled.DateWrapper>
                     </styled.FormGroup>
+                    
                     <styled.FormGroup>
                         <styled.TextAreaTitle dir={'rtl'} fullWidth={true} id="standard-basic" label="סוג עבודה" variant="standard" {...register('title')} required />
                     </styled.FormGroup>
+
                     <styled.FormGroupDescription>
                         <styled.TextArea
                             fullWidth={true}
@@ -96,14 +93,14 @@ export const AddAssignment = () => {
                             {...register('description')}
                         />
                     </styled.FormGroupDescription>
+
                     <styled.FormGroup>
                         <Select
                             fullWidth={true}
                             labelId="demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
                             value={client}
-                            onChange={handleClientChange}
-                        >
+                            onChange={handleClientChange}>
                             <MenuItem value="בחר לקוח" disabled={true}>
                                 <em>בחר לקוח</em>
                             </MenuItem>
@@ -113,21 +110,14 @@ export const AddAssignment = () => {
                         </Select>
                     </styled.FormGroup>
                     <styled.FormGroupCheckBox>
-                        <div>
-                            <CustomizedCheckbox />
-                        </div>
+                        <CustomizedCheckbox />
                     </styled.FormGroupCheckBox>
-                    <styled.FormGroupFile style={{ textAlign: 'center' }}>
-                        {/* <styled.Label>תמונות:</styled.Label> */}
-                        {/* <FileUpload onSelect={(value) => setImagesFiles(value)} mode="basic" accept="image/*" maxFileSize={5000000} chooseLabel='העלאת תמונה' /> */}
-
+                    <styled.FormGroupFile>
                         <styled.Input type="file" name="image" {...register('imageFile')} required />
                     </styled.FormGroupFile>
-                    <div style={{ width: '100%', textAlign: 'center' }}>
-                        {/* <styled.SubmitButton dir='ltr' type="submit" variant="contained" endIcon={<IoMdSend />}>הוסף</styled.SubmitButton> */}
-                        <Button label="Submit" icon="pi pi-check" loading={loading} />
-
-                    </div>
+                    <styled.SubmitButtonWrapper>
+                        <Button dir='rtl' label="שלח" icon="pi pi-check" loading={loading} />
+                    </styled.SubmitButtonWrapper>
                 </styled.Form>
             </styled.FormContainer>
         </styled.FormWrapper>

@@ -39,6 +39,20 @@ export const FormGroup = styled.div`
   margin-bottom: 20px;
 `;
 
+export const DateWrapper = styled.div`
+  direction: rtl;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justifyContent: center;
+  alignItems: center;
+  gap: 10px;
+`
+export const DateLabel = styled.span`
+  font-size: 1.1rem; 
+  font-weight: 700;
+`
+
 export const FormGroupDescription = styled.div`
   margin-bottom: 20px;
   grid-column: span 2;
@@ -161,7 +175,7 @@ export const Option = styled.option`
 `;
 
 export const FormGroupFile = styled.div`
-
+text-align: center;
 .p-button { 
 gap: 5px;
 }
@@ -171,6 +185,10 @@ gap: 5px;
 }
 
 ` 
+export const SubmitButtonWrapper = styled.div`
+  width: 100%;
+  text-align: center;
+`
 
 export const SubmitButton = styled(Button)`
   width: 80%;
