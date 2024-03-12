@@ -10,6 +10,7 @@ class AssignmentModel {
     public imageFile: FileList;
     public imageName: string;
     public isDone?: boolean;
+    public price: number;
     public client: ClientModel[]
 }
 
