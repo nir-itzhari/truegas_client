@@ -40,7 +40,7 @@ export const HomeContainer = styled.div`
   position: relative;
 `;
 
-export const BackgroundImage = styled.img<{$screenWidth: number}>`
+export const BackgroundImage = styled.img<{ $screenWidth: number }>`
   width: ${props => props.$screenWidth}px;
   height: auto;
 `;
@@ -57,15 +57,7 @@ export const Overlay = styled.div`
   align-items: center;
 `;
 
-export const HomeText = styled.div`
-  text-align:center;
-  font-size: 30px;
-  font-weight: 700;
-`;
-
-export const textHeader = styled.div`
-  font-size: 50px;
-`
-
-export const textHeadLine = styled.div`
+export const ChartWrapper = styled.div`
+  text-align: center;
+  margin: 0 0 5px 0;
 `

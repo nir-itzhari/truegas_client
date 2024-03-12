@@ -1,24 +1,18 @@
-import { Divider } from "primereact/divider";
 import { AssignmentsIncomeChart } from "../../HomeArea/AssignmentsChart/AssignmentsIncomeChart";
 import * as styled from "./home.styled";
 import { ScrollTop } from 'primereact/scrolltop';
+import { FC } from "react";
+import ImageTitle from "../../HomeArea/ImageTitle/ImageTitle";
 
-const Home = (): JSX.Element => {
+const Home: FC = (): JSX.Element => {
 
     return (
         <>
             <styled.HomeContainer>
-                <styled.HomeText>
-                    <styled.textHeader>
-                        TrueGas
-                    </styled.textHeader>
-                </styled.HomeText>
-                <div style={{ textAlign: 'center' }}>
+                <ImageTitle />
+                <styled.ChartWrapper>
                     <AssignmentsIncomeChart />
-                </div>
-                <Divider align="center" type="solid">
-                    <span>משימות לביצוע</span>
-                </Divider>
+                </styled.ChartWrapper>
                 <ScrollTop />
             </styled.HomeContainer>
         </>
