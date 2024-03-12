@@ -16,14 +16,18 @@ import { ClientList } from "../../ClientArea/ClientList/ClientListWrapper/Client
 import { AddAssignment } from "../../AssignmetnsArea/AddAssignmentForm/AddAssignment";
 import store from "../../../Redux/Store";
 import { ResetPassword } from "../../AuthArea/Auth/ResetPassword/ResetPassword";
+import { PrivateRoute } from "./PrivateRoute";
 
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            
+            <Route path="/home" element={
+                <PrivateRoute>
+                    <Home />
+                </PrivateRoute>} />
+
             <Route
                 path="/signin"
                 errorElement={<PageNotFound />}
@@ -59,7 +63,7 @@ const router = createBrowserRouter(
                 errorElement={<PageNotFound />}
                 element={<ResetPassword />} />
 
-            
+
             <Route
                 path="/assignments"
                 loader={async () => {
@@ -73,7 +77,10 @@ const router = createBrowserRouter(
                     }
                 }}
                 errorElement={<PageNotFound />}
-                element={<AssignmentsList />} />
+                element={
+                    <PrivateRoute>
+                        <AssignmentsList />
+                    </PrivateRoute>} />
 
             <Route
                 path="/clients"
@@ -86,11 +93,12 @@ const router = createBrowserRouter(
                 //         return null;
                 //     }
                 // }}
+                element={
+                    <PrivateRoute>
+                        <ClientList />
+                    </PrivateRoute>}
+                errorElement={<PageNotFound />} />
 
-                errorElement={<PageNotFound />}
-                element={<ClientList />} />
-
-           
 
             <Route
                 path="/addAssignment"
@@ -103,17 +111,26 @@ const router = createBrowserRouter(
                         return null;
                     }
                 }}
-                element={<AddAssignment />}
+                element={
+                    <PrivateRoute>
+                        <AddAssignment />
+                    </PrivateRoute>}
                 errorElement={<PageNotFound />} />
 
             <Route
                 path="/addClient"
-                element={<AddClientFrom />}
+                element={
+                    <PrivateRoute>
+                        <AddClientFrom />
+                    </PrivateRoute>}
                 errorElement={<PageNotFound />} />
 
             <Route
                 path="/update-client/:clientId"
-                element={<UpdateClientFrom />}
+                element={
+                    <PrivateRoute>
+                        <UpdateClientFrom />
+                    </PrivateRoute>}
                 errorElement={<PageNotFound />} />
 
             <Route path="*" element={<PageNotFound />} />
