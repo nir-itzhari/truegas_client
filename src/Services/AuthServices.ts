@@ -43,10 +43,9 @@ class AuthService {
 
     }
 
-    public async isLoggedIn(): Promise<boolean> {
-        const tokenFromStore = store.getState().authState.token
+    public isLoggedIn(): boolean {
         const tokenFromStorage = localStorage.getItem("token");
-        if (tokenFromStore === null && tokenFromStorage === null) {
+        if (!tokenFromStorage) {
             return false;
         }
         return true;
