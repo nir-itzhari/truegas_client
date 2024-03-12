@@ -32,7 +32,7 @@ export const rowContentOpen = styled.div<{ $selected: boolean }>`
     justify-content: space-between;
     text-align: right;
     // height: ${props => props.$selected ? 'auto' : '0'}; /* Initially set height to 0 when not selected */
-    max-height: ${props => props.$selected ? '50px' : '0'}; /* Set a maximum height when selected */
+    max-height: ${props => props.$selected ? '100px' : '0'}; /* Set a maximum height when selected */
     opacity: ${props => props.$selected ? 1 : 0}; /* Initially set opacity to 0 when not selected */
     transition: max-height 0.3s ease, opacity 0.3s ease;
 `;
@@ -46,23 +46,27 @@ export const buttonWrapper = styled.div`
 
 `
 
+export const actionButtons = styled.div`
+    display: flex;
+    gap: 15;
+`
 
 export const editButton = styled.div`
-cursor: pointer;
-display: inline-block;
+    cursor: pointer;
+    display: inline-block;
 `
 
 
 export const deleteButton = styled.div`
-cursor: pointer;
-display: inline-block;
+    cursor: pointer;
+    display: inline-block;
 `
 
 export const arrowDownWrapper = styled.div`
-position: absolute;
-left: 0;
-top: 50%;
-transform: translate(50%, -50%);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
 
 * {
     font-size: 20px;

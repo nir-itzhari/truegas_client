@@ -3,13 +3,13 @@ import { useLoaderData } from 'react-router-dom';
 import AssignmentModel from '../../../../Models/AssignmentModel';
 import store from '../../../../Redux/Store';
 import assignmentService from '../../../../Services/AssignmentServices';
-import CollapsibleTable from './CollapseTable';
 import { AssignmentAmountCard } from '../AssignmentAmountCard/AssignmentAmountCard';
-import TablePagination from './Pagination';
+import TablePagination from '../AssignmentTable/Pagination';
 import { AddAssignmentButton } from '../../AddAssignmentButton/AddAssignmentButton';
 import { useMobile } from '../../../hooks/useMobileHook';
 import { Divider } from "primereact/divider";
 import { ScrollTop } from 'primereact/scrolltop';
+import AssignmentsTable from '../AssignmentTable/AssignmentsTable';
 
 
 export default function AssignmentList(): JSX.Element {
@@ -64,7 +64,7 @@ export default function AssignmentList(): JSX.Element {
               <AssignmentAmountCard />
             </div>
             <div>
-              <CollapsibleTable assignmentList={assignmentList} />
+              <AssignmentsTable assignmentList={assignmentList} />
               <TablePagination total={assignmentList && assignmentList.length} />
             </div>
             <div>
