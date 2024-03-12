@@ -2,9 +2,8 @@ import "./Routing.css";
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 import Home from "../Home/Home";
 import Layout from "../Layout/Layout";
-import AssignmentsList from "../../AssignmetnsArea/AssignmentList/AssignmentTableWrapperList/AssignmentListWrapper";
+import AssignmentsList from "../../AssignmetnsArea/AssignmentList/AssignmentList/AssignmentList";
 import PageNotFound from "../PageNotFound/PageNotFound";
-import assignmentService from "../../../Services/AssignmentServices";
 import searchInputService from "../../../Services/SearchInputServices";
 import { AddClientFrom } from "../../ClientArea/AddClientForm/AddClientForm";
 import { UpdateClientFrom } from "../../ClientArea/UpdateClientForm/UpdateClientForm";
@@ -14,7 +13,6 @@ import ForgotPassword from "../../AuthArea/Auth/ForgotPassword/ForgotPassword";
 import Logout from "../../AuthArea/Auth/Logout/Logout";
 import { ClientList } from "../../ClientArea/ClientList/ClientListWrapper/ClientListWrapper";
 import { AddAssignment } from "../../AssignmetnsArea/AddAssignmentForm/AddAssignment";
-import store from "../../../Redux/Store";
 import { ResetPassword } from "../../AuthArea/Auth/ResetPassword/ResetPassword";
 import { PrivateRoute } from "./PrivateRoute";
 
@@ -66,33 +64,14 @@ const router = createBrowserRouter(
 
             <Route
                 path="/assignments"
-                loader={async () => {
-                    try {
-                        const user_id = store.getState().authState.user._id
-                        const result = await assignmentService.fetchAssignmentsByUserId(user_id);
-                        return result;
-                    } catch (error: any) {
-                        console.log(error.message);
-                        return null;
-                    }
-                }}
-                errorElement={<PageNotFound />}
                 element={
                     <PrivateRoute>
                         <AssignmentsList />
-                    </PrivateRoute>} />
+                    </PrivateRoute>}
+                errorElement={<PageNotFound />} />
 
             <Route
                 path="/clients"
-                // loader={async () => {
-                //     try {
-                //         const result = await clientService.fetchClients();
-                //         return result;
-                //     } catch (error: any) {
-
-                //         return null;
-                //     }
-                // }}
                 element={
                     <PrivateRoute>
                         <ClientList />
