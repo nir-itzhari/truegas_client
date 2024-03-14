@@ -8,6 +8,7 @@ export const backContainer = styled.div`
 
 export const backToHome = styled(Link)`
     color: black;
+    font-weight: 600;
     text-decoration: underline;
 
 

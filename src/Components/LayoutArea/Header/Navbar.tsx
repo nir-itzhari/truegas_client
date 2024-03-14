@@ -11,15 +11,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { VscFlame } from "react-icons/vsc";
-import './Header.css'
-import { Button } from '@mui/material';
-import { useEffect, useState } from 'react';
-import UserModel from '../../../Models/UserModel';
-import store from '../../../Redux/Store';
-import authService from '../../../Services/AuthServices';
-import notify from '../../../Services/NotifyService';
 import AuthMenu from '../../AuthArea/Auth/AuthMenu/AuthMenu';
+import './Header.css'
 
 interface Props {
     window?: () => Window;
@@ -41,12 +34,11 @@ const routePaths: RoutePaths = {
 export default function DrawerAppBar(props: Props) {
     const location = useLocation();
     const condition = ['/signin', '/signup', '/forgot-password', '/logout'].includes(location.pathname);
-    const pages = !condition ? ['home', 'assignments', 'clients', 'forms'] : [''];
+    const pages = !condition ? ['dashboard', 'assignments', 'clients', 'forms'] : [''];
     const homePageTitle = !condition ? 'home' : '#'
-    const homePage = !condition ? 'דף הבית' : '';
+    const homePage = !condition ? 'Dashboard' : '';
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const navigate = useNavigate();
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
