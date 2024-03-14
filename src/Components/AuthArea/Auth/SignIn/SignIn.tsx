@@ -60,7 +60,7 @@ const SignInSide = () => {
         try {
             await authService.login(credentials)
             notify.success('התחברת בהצלחה')
-            navigate('/home', { replace: true });
+            navigate('/dashboard', { replace: true });
         } catch (error) {
             notify.error(error)
         }
