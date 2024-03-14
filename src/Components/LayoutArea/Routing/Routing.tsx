@@ -20,8 +20,11 @@ import { PrivateRoute } from "./PrivateRoute";
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={
+            <Route path="/" element={
+                <PrivateRoute>
+                    <Home />
+                </PrivateRoute>} />
+            <Route path="/dashboard" element={
                 <PrivateRoute>
                     <Home />
                 </PrivateRoute>} />
