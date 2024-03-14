@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { Card } from 'primereact/card';
 
-export const CardWrapper = styled(Card)`
-    width: 24%;
-    margin-bottom: 5px;
+export const CardWrapper = styled(Card) <({ $isMobile: boolean }) >`
+    direction: ltr;
+    width: ${(props) => props.$isMobile ? '100%' : '24%'};
+    margin: 5px 0;
     border-radius: 12px;
 `;
 
