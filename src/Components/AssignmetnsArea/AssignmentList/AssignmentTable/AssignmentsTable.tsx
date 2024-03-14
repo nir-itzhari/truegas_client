@@ -9,6 +9,7 @@ import TableBody from '@mui/material/TableBody';
 import AssignmentModel from '../../../../Models/AssignmentModel';
 import AssignmentsTableRow from '../AssignmentTableRow/AssignmentsTableRow';
 import { CircularProgress } from '@mui/material';
+import { useMobile } from '../../../hooks/useMobileHook';
 
 interface Props {
     assignmentList: AssignmentModel[]
@@ -17,8 +18,13 @@ interface Props {
 
 const AssignmentsTable: React.FC<Props> = (args) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const collapseThCells = ['תאריך', 'סוג עבודה', 'פירוט', 'בוצע', 'תמונות', 'מחיר', 'פעולות'];
     const [assignments, setAssignments] = useState<AssignmentModel[]>()
+    const isMobile = useMobile()
+
+
+    const collapseThCells = ['תאריך', 'סוג עבודה', 'פירוט', 'בוצע', 'תמונות', 'מחיר', 'פעולות'];
+    const collapseThCellsMobile = ['תאריך', 'סוג עבודה', 'פרטים'];
+
 
     const sortAssignmentList = (dataList: AssignmentModel[]): AssignmentModel[] => {
         return dataList.slice().sort((a: AssignmentModel, b: AssignmentModel) => {
@@ -38,8 +44,7 @@ const AssignmentsTable: React.FC<Props> = (args) => {
         if (args.assignmentList) {
             setAssignments(sortAssignmentList(args.assignmentList))
             setIsLoading(false)
-        }
-        console.log(args.assignmentList)
+        }   
     }, [args.assignmentList]);
 
     return (
@@ -48,7 +53,10 @@ const AssignmentsTable: React.FC<Props> = (args) => {
                 <TableHead>
                     <TableRow>
                         <TableCell />
-                        {collapseThCells.map((c, i) => <TableCell key={i} style={{ fontWeight: '600' }} align='right'>{c}</TableCell>)}
+                        {!isMobile ?
+                            collapseThCells.map((c, i) => <TableCell key={i} style={{ fontWeight: '600' }} align='right'>{c}</TableCell>)
+                            :
+                            collapseThCellsMobile.map((c, i) => <TableCell key={i} style={{ fontWeight: '600' }} align='right'>{c}</TableCell>)}
                     </TableRow>
                 </TableHead>
                 <TableBody>

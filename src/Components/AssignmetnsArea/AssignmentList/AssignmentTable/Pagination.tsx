@@ -1,27 +1,26 @@
-
-import React, { useState } from "react";
+import React from "react";
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 
 interface Props {
     total: number;
-    // page: number;
-    // handleClick: (page: number) => void
+    first: number;
+    rows: number;
+    onPageChange: (event: PaginatorPageChangeEvent) => void;
 }
 
 
-export default function TablePagination({ total }: Props) {
-    const [first, setFirst] = useState<number>(0);
-    const [rows, setRows] = useState<number>(10);
 
-    const onPageChange = (event: PaginatorPageChangeEvent) => {
-        setFirst(event.first);
-        setRows(event.rows);
-        // handleClick(first)
+
+const TablePagination: React.FC<Props> = ({ total, first, rows, onPageChange }: Props) => {
+    const onPageChangeInternal = (event: PaginatorPageChangeEvent) => {
+        onPageChange(event);
     };
 
     return (
         <div className="card">
-            <Paginator first={first} rows={rows} totalRecords={total} rowsPerPageOptions={[10, 20, 30]} onPageChange={onPageChange} />
+            <Paginator dir="ltr" first={first} rows={rows} totalRecords={total} rowsPerPageOptions={[10, 20, 30]} onPageChange={onPageChangeInternal} />
         </div>
     );
 }
+
+export default TablePagination;

@@ -1,69 +1,36 @@
 import styled from "styled-components";
 
-export const topSectionWrapper = styled.div`
-width: 90%;
-// margin: 0 auto;
+export const AssignmentListWrapper = styled.div`
 display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
+justify-content: center;
 `
 
-export const loaderContainer = styled.div`
-text-align: center;
-width: 100%;
-margin: 10% 0;
+export const AssignmentWidthWrapper = styled.div<({ $isMobile: boolean }) >`
+width: ${(props) => props.$isMobile ? '100%' : '80%'};
+margin-top: 15px;
 `
 
-export const spinnerProgress = styled.div`
-display: inline-block;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+export const AddAssignmentButtonWrapper = styled.div<({ $isMobile: boolean }) >`
+position: ${props => props.$isMobile ? 'fixed' : 'absolute'};
+left: ${props => props.$isMobile ? '33%' : 0};
+top: ${props => props.$isMobile ? '88%' : '10%'};
+width: 130px;
+z-index: 2;
 `
-export const noResult = styled.div<({results: string})>`
-display: ${(props) => props.results === 'true' ? 'none' : 'inline-flex'};
-direction: rtl;
-flex-direction: row;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+export const AssignmentAmountCardWrapper = styled.div<({ $isMobile: boolean }) >`
+display: flex;
+flex-direction: ${(props) => props.$isMobile ? 'column' : 'row'};
+justify-content:  ${(props) => props.$isMobile ? 'center' : 'space-between'};
 `
 
 export const mainTableWrapper = styled.div`
-width: 100%;
-height: 100%;
+width: 100 %;
+height: 100 %;
 `
 
 export const paginationWrapper = styled.div`
 position: absolute;
-top: 96%;
-left: 50%;
-transform: translate(-50%, -50%);
+top: 96 %;
+left: 50 %;
+transform: translate(-50 %, -50 %);
 `
-// export const errorData = styled.div`
-// text-align: center;
-// width: 100%;
-// margin: 5% 0;
-// `
-
-// export const tableWrapper = styled(Table)`
-// max-width: 650;
-// `
-
-
-// export const thWrapper = styled(TableRow)`
-// background-color: orange;
-
-// `
-
-// export const trWrapper = styled(TableRow)`
-// background-color: #cccccc2b;
-
-// &:hover {
-//     background-color: #0000002b;
-//     cursor: pointer;
-// }
-// `

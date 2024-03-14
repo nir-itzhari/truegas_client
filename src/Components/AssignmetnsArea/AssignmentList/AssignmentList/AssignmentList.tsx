@@ -10,72 +10,68 @@ import { useMobile } from '../../../hooks/useMobileHook';
 import { Divider } from "primereact/divider";
 import { ScrollTop } from 'primereact/scrolltop';
 import AssignmentsTable from '../AssignmentTable/AssignmentsTable';
-
+import * as styled from './AssignmentList.styled';
+import { PaginatorPageChangeEvent } from 'primereact/paginator';
 
 export default function AssignmentList(): JSX.Element {
-  const data = useLoaderData() as AssignmentModel[];
-  const [assignmentList, setAssignmentList] = useState<AssignmentModel[]>();
-  const isMobile = useMobile()
+  const [assignmentList, setAssignmentList] = useState<AssignmentModel[]>([]);
+  const [totalAssignments, setTotalAssignments] = useState<number>(0);
+  const [first, setFirst] = useState<number>(0);
+  const [rows, setRows] = useState<number>(10);
+  const [end, setEnd] = useState<number>(10);
 
+  const isMobile = useMobile();
 
   const fetchAssignments = async () => {
-
     try {
-      const user_id = store.getState().authState.user._id
-      const result = await assignmentService.fetchAssignmentsByUserId(user_id);
-      return setAssignmentList(result);
+      const user_id = store.getState().authState.user._id;
+      const result = await assignmentService.fetchAssignmentsByUserId(user_id, first, end);
+      setAssignmentList(result.assignments);
+      setTotalAssignments(result.totalAssignments);
     } catch (error: any) {
       console.log(error.message);
     }
-  }
-
-
+  };
 
   useEffect(() => {
-    fetchAssignments()
+    fetchAssignments();
 
-    const userId = store.getState().authState.user._id
-    const unsubscribeMe = store.subscribe(() => {
-      assignmentService.fetchAssignmentsByUserId(userId)
-        .then(assignments => {
-          setAssignmentList([...assignments]);
-        })
-        .catch(err => console.log(err.message));
-    });
+  }, [first, end]);
 
-
-
-    return () => unsubscribeMe();
-  }, [data]);
-
+  const onPageChange = (event: PaginatorPageChangeEvent) => {
+    setFirst(event.first);
+    setRows(event.rows);
+    const calculatedEnd = (event.page + 1) * event.rows;
+    setEnd(calculatedEnd);
+  };
 
   return (
     <Fragment>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div style={{ width: '80%' }}>
-          <div style={{ position: 'absolute', left: '0', top: '10%', width: '130px' }}>
+      <styled.AssignmentListWrapper>
+        <styled.AssignmentWidthWrapper $isMobile={isMobile}>
+          <styled.AddAssignmentButtonWrapper $isMobile={isMobile}>
             <AddAssignmentButton />
-          </div>
-          <div>
-            <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: isMobile ? 'center' : 'space-between' }}>
+          </styled.AddAssignmentButtonWrapper>
+          <Fragment>
+            <styled.AssignmentAmountCardWrapper $isMobile={isMobile}>
               <AssignmentAmountCard />
               <AssignmentAmountCard />
               <AssignmentAmountCard />
               <AssignmentAmountCard />
-            </div>
+            </styled.AssignmentAmountCardWrapper>
             <div>
               <AssignmentsTable assignmentList={assignmentList} />
-              <TablePagination total={assignmentList && assignmentList.length} />
+              <TablePagination total={totalAssignments} onPageChange={onPageChange} first={first} rows={rows} />
             </div>
             <div>
               <Divider align="center" type="solid">
                 <span>משימות לביצוע</span>
               </Divider>
             </div>
-          </div>
-        </div>
+          </Fragment>
+        </styled.AssignmentWidthWrapper>
         <ScrollTop />
-      </div>
+      </styled.AssignmentListWrapper>
     </Fragment>
-  )
+  );
 }
