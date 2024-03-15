@@ -4,6 +4,7 @@ import AssignmentModel from "../Models/AssignmentModel";
 import { deleteAssignmentAction } from './../Redux/AssignmentState';
 import axios from "axios";
 import store from "../Redux/Store";
+import { AmountCardModel } from "../Models/AmountCardModel";
 
 class AssignmentService {
 
@@ -17,14 +18,15 @@ class AssignmentService {
         return store.getState().assignmentsState.assignments;
     }
 
-    public async fetchAssignmentsByUserId(user_id: string): Promise<AssignmentModel[]> {
-
-        if (store.getState().assignmentsState.assignments.length === 0) {
-            const response = await axios.get<AssignmentModel[]>(config.assignmentsUrl + user_id);
-            const assignments = response.data;
-            store.dispatch(fetchAssignmentsAction(assignments));
-        }
-        return store.getState().assignmentsState.assignments;
+    public async fetchAssignmentsByUserId(user_id: string, first: number, rows: number): Promise<{ assignments: AssignmentModel[], totalAssignments: number }> {
+        let totalAssignments: number
+        // if (store.getState().assignmentsState.assignments.length === 0) {
+        const response = await axios.get<{ assignments: AssignmentModel[], totalAssignments: number }>(config.assignmentsUrl + user_id + '/' + first + '/' + rows);
+        const { assignments } = response.data;
+        totalAssignments = response.data.totalAssignments
+        store.dispatch(fetchAssignmentsAction(assignments));
+        // }
+        return { assignments: assignments, totalAssignments };
     }
 
 
@@ -75,6 +77,12 @@ class AssignmentService {
     public async deleteOneAssignment(assignmentId: string): Promise<void> {
         await axios.delete(config.assignmentsUrl + assignmentId);
         store.dispatch(deleteAssignmentAction(assignmentId));
+    }
+
+    public async getCardAmount(userId: string): Promise<AmountCardModel> {
+        const result = await axios.get<AmountCardModel>(config.assignmentsAmountCardUrl + userId);
+        const amountCard = result.data
+        return amountCard
     }
 }
 const assignmentService = new AssignmentService();
