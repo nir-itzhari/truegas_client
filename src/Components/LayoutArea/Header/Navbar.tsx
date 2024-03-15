@@ -35,7 +35,7 @@ export default function DrawerAppBar(props: Props) {
     const location = useLocation();
     const condition = ['/signin', '/signup', '/forgot-password', '/logout'].includes(location.pathname);
     const pages = !condition ? ['dashboard', 'assignments', 'clients', 'forms'] : [''];
-    const homePageTitle = !condition ? 'home' : '#'
+    const homePageTitle = !condition ? 'dashboard' : '#'
     const homePage = !condition ? 'Dashboard' : '';
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -54,6 +54,7 @@ export default function DrawerAppBar(props: Props) {
                 {pages.map((page, index) => (
                     <Link style={{ fontSize: '1.2rem' }} key={index} to={routePaths[page]}>{page === 'assignments' ? 'משימות' : page === 'clients' ? 'לקוחות' : page === 'forms' ? 'טפסים' : homePage}</Link>
                 ))}
+                <AuthMenu />
             </List>
         </Box>
     );
