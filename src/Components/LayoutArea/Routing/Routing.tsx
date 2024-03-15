@@ -73,17 +73,9 @@ const router = createBrowserRouter(
                     </PrivateRoute>}
                 errorElement={<PageNotFound />} />
 
-            <Route
-                path="/clients"
-                element={
-                    <PrivateRoute>
-                        <ClientList />
-                    </PrivateRoute>}
-                errorElement={<PageNotFound />} />
-
 
             <Route
-                path="/addAssignment"
+                path="/assignments/addAssignment"
                 loader={async () => {
                     try {
                         const result = await searchInputService.getClientsBySearch({ fullName: 'הכל' });
@@ -96,6 +88,15 @@ const router = createBrowserRouter(
                 element={
                     <PrivateRoute>
                         <AddAssignment />
+                    </PrivateRoute>}
+                errorElement={<PageNotFound />} />
+
+
+            <Route
+                path="/clients"
+                element={
+                    <PrivateRoute>
+                        <ClientList />
                     </PrivateRoute>}
                 errorElement={<PageNotFound />} />
 

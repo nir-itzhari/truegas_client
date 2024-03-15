@@ -13,6 +13,8 @@ import store from '../../../Redux/Store';
 import UserModel from '../../../Models/UserModel';
 import { Nullable } from 'primereact/ts-helpers';
 import assignmentService from '../../../Services/AssignmentServices';
+import { IoMdArrowRoundForward } from "react-icons/io";
+import { useMobile } from '../../hooks/useMobileHook';
 
 
 
@@ -26,8 +28,9 @@ export const AddAssignment = () => {
     const [client, setClient] = useState<string>('בחר לקוח')
     const [chosenDate, setChosenDate] = useState<Nullable<Date>>()
     const [user, setUser] = useState<UserModel>(null);
-
     const navigate = useNavigate()
+    const isMobile = useMobile()
+
 
     const setDate = (date: Nullable<Date>) => setChosenDate(date)
 
@@ -66,7 +69,10 @@ export const AddAssignment = () => {
 
     return (
         <styled.FormWrapper>
-            <div></div>
+            <styled.backButtonWrapper onClick={() => navigate('..', { relative: 'path' })}>
+                <IoMdArrowRoundForward fontSize={isMobile ? 30 : 40} />
+                <styled.backButtonText>חזור</styled.backButtonText>
+            </styled.backButtonWrapper>
             <styled.FormContainer>
                 <div>
                     <styled.FormTitle>הוספת משימה</styled.FormTitle>
@@ -74,11 +80,11 @@ export const AddAssignment = () => {
                 <styled.Form onSubmit={handleSubmit(onSubmit)}>
                     <styled.FormGroup>
                         <styled.DateWrapper>
-                                <styled.DateLabel>בחר תאריך:</styled.DateLabel>
-                                <HeCustomDatePicker setChosenDate={setDate} />
+                            <styled.DateLabel>בחר תאריך:</styled.DateLabel>
+                            <HeCustomDatePicker setChosenDate={setDate} />
                         </styled.DateWrapper>
                     </styled.FormGroup>
-                    
+
                     <styled.FormGroup>
                         <styled.TextAreaTitle dir={'rtl'} fullWidth={true} id="standard-basic" label="סוג עבודה" variant="standard" {...register('title')} required />
                     </styled.FormGroup>

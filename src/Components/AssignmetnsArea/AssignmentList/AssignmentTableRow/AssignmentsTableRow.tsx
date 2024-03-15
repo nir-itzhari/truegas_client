@@ -20,8 +20,8 @@ import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import assignmentService from '../../../../Services/AssignmentServices';
 import { useMobile } from '../../../hooks/useMobileHook';
-import AssignmentPopupMobile from '../AssignmnetPopupMobile/AssignmentPopupMobile';
-import { AssignmentImagesPopup } from './../AssignmnetPopupMobile/AssignmentImagesPopup';
+import AssignmentPopupMobile from '../AssignmnetPopup/AssignmentPopupMobile';
+import { AssignmentImagesPopup } from '../AssignmnetPopup/AssignmentImagesPopup';
 interface Props {
   row: AssignmentModel;
   isLoading: boolean;

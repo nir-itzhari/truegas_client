@@ -8,7 +8,7 @@ export const AddAssignmentButton = () => {
     const navigate = useNavigate()
     const handleAddClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
-        navigate('/addAssignment')
+        navigate('/assignments/addAssignment')
     }
 
 

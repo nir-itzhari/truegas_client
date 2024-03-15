@@ -1,12 +1,29 @@
 import { Button, TextField } from "@mui/material";
 import styled from "styled-components";
 
+
 export const FormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  position: relative;
 `;
+
+export const backButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  cursor: pointer;
+`
+
+export const backButtonText = styled.span`
+  font-size: 15px;
+  font-weight: 600;
+`
+
 
 export const FormContainer = styled.div`
   direction: rtl;
@@ -184,7 +201,7 @@ gap: 5px;
   margin-right: 0;
 }
 
-` 
+`
 export const SubmitButtonWrapper = styled.div`
   width: 100%;
   text-align: center;
