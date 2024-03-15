@@ -41,10 +41,10 @@ function AuthMenu(): JSX.Element {
             {user === null ?
                 <>
                     <span>
+                         שלום אורח |
                         <MaterialToolTip title="Sign in">
-                            <NavLink className="login" to="/signin">Login</NavLink>
+                            <NavLink className="login" to="/signin">התחבר</NavLink>
                         </MaterialToolTip>
-                        | שלום אורח 
                     </span>
                 </>
                 :
