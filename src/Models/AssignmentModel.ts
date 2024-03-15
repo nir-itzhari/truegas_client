@@ -12,6 +12,7 @@ class AssignmentModel {
     public isDone?: boolean;
     public price: number;
     public client: ClientModel[]
+    public images: [] = []
 }
 
 export default AssignmentModel;
