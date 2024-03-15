@@ -16,7 +16,7 @@ interface Props {
 export const AssignmentImagesPopup: FC<Props> = ({ images }) => {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const isMobile = useMobile()
+    const isMobile = useMobile();
 
     const handleOpen = () => {
         setOpen(true);
@@ -33,12 +33,14 @@ export const AssignmentImagesPopup: FC<Props> = ({ images }) => {
 
     const handleImageError = () => {
         setLoading(false);
-        // Handle image loading error here
     };
 
     const itemTemplate = (item: any) => {
-        setLoading(false)
         return <img src={config.assignmentsImagesUrl + item.name} alt={'image'} style={{ width: '100%', display: 'block' }} />;
+    };
+
+    const onItemChange = (e: any) => {
+        setLoading(true);
     };
 
     return (
@@ -47,25 +49,15 @@ export const AssignmentImagesPopup: FC<Props> = ({ images }) => {
             <Modal
                 open={open}
                 onClose={handleClose}
+                keepMounted={true}
             >
                 <StyledModalBox $isMobile={isMobile}>
                     <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <h2>תמונות</h2>
-                        {loading && <CircularProgress />} {/* Show loading spinner while loading images */}
-                        <p>
-                            {/* {images.map((img, i) => (
-                                <img
-                                    key={i}
-                                    src={config.assignmentsImagesUrl + img.name}
-                                    alt="assignment image"
-                                    width={100}
-                                    onLoad={handleImageLoad}
-                                    onError={handleImageError}
-                                />
-                            ))} */}
+                        {images.length === 0 && <CircularProgress />} {/* Show loading spinner if images array is empty */}
+                        <div>
                             <Galleria value={images} style={{ maxWidth: '300px' }} showThumbnails={false} showIndicators item={itemTemplate} />
-
-                        </p>
+                        </div>
                         <Button onClick={handleClose}>סגור</Button>
                     </Card>
                 </StyledModalBox>
