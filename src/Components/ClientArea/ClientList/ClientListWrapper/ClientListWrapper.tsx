@@ -70,7 +70,7 @@ export const ClientList = (): JSX.Element => {
   const slicedItems = clientList.slice(startIndex, endIndex);
 
   return (
-    <styled.mainTableWrapper>
+    <styled.mainTableWrapper dir="ltr">
       <styled.topSectionWrapper>
         <AddClientButton />
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
