@@ -48,7 +48,7 @@ export const buttonWrapper = styled.div`
 
 export const actionButtons = styled.div`
     display: flex;
-    gap: 15;
+    gap: 15px;
 `
 
 export const editButton = styled.div`
