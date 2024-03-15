@@ -7,8 +7,9 @@ export const addButtonWrapper = styled.div`
     flex-direction: row;
     gap: 10px;
     margin: 10px;
+    color: white;
     align-items: center;
-    background-color: #8888888c;
+    background-color: #ef8e3c;
     border-radius: 15px;
     cursor: pointer;
 `
