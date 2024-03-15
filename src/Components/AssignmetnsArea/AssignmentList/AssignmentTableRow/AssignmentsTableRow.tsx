@@ -19,6 +19,9 @@ import { FiEdit } from 'react-icons/fi';
 import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import assignmentService from '../../../../Services/AssignmentServices';
+import { useMobile } from '../../../hooks/useMobileHook';
+import AssignmentPopupMobile from '../AssignmnetPopupMobile/AssignmentPopupMobile';
+import { AssignmentImagesPopup } from './../AssignmnetPopupMobile/AssignmentImagesPopup';
 interface Props {
   row: AssignmentModel;
   isLoading: boolean;
@@ -27,8 +30,12 @@ interface Props {
 const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
 
   const collapseThCells = ['שם', 'עיר', 'רחוב', 'מספר בניין', 'קומה', 'מספר דירה'];
+  const collapseThCellsMobile = ['שם', 'עיר', 'רחוב', 'מספר בניין', 'מספר דירה'];
+  const [showImages, setShowImages] = React.useState(false);
+
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+  const isMobile = useMobile()
 
   const handleDelete = async (e: React.MouseEvent<HTMLDivElement>, _id: string) => {
     e.stopPropagation();
@@ -40,9 +47,8 @@ const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
       console.log(error.message)
     }
   };
-
   useEffect(() => {
-    console.log(row)
+
   }, [isLoading, row])
   return (
     <React.Fragment>
@@ -61,32 +67,50 @@ const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
               {row.date ? dayjs(row.date).format('DD/MM/YYYY') : ""}
             </TableCell>
             <TableCell align="right">{row.title}</TableCell>
-            <TableCell align="right">{row.description}</TableCell>
-            <TableCell align="right">{row.isDone && <IoCheckmarkDoneCircle style={{ fontSize: '30px', color: 'green' }} />}</TableCell>
-            <TableCell align="right"><IoIosImages fontSize={30} /></TableCell>
-            <TableCell align="right">{row.price.toFixed(2)}₪</TableCell>
-            <TableCell align="right">
-              <styled.actionButtons>
-                <styled.buttonWrapper>
-                  <styled.editButton onClick={(e) => { e.stopPropagation(); navigate('/update-client/' + row._id) }}><FiEdit /></styled.editButton>
-                </styled.buttonWrapper>
-                <styled.buttonWrapper>
-                  <styled.deleteButton onClick={(e) => handleDelete(e, row._id)}><MdDeleteForever /></styled.deleteButton>
-                </styled.buttonWrapper>
-              </styled.actionButtons>
-            </TableCell>
+            {!isMobile ?
+              <>
+                <TableCell align="right">{row.description}</TableCell>
+                <TableCell align="right">{row.isDone ?
+                  <IoCheckmarkDoneCircle style={{ fontSize: '30px', color: 'green' }} />
+                  :
+                  <IoCheckmarkDoneCircle style={{ fontSize: '30px', color: 'red' }} />
+                }</TableCell>
+                <TableCell align="right"><AssignmentImagesPopup images={row.images} /></TableCell>
+                <TableCell align="right">{row.price.toFixed(2)}₪</TableCell>
+                <TableCell align="right">
+                  <styled.actionButtons>
+                    <styled.buttonWrapper>
+                      <styled.editButton onClick={(e) => { e.stopPropagation(); navigate('/update-client/' + row._id) }}><FiEdit /></styled.editButton>
+                    </styled.buttonWrapper>
+                    <styled.buttonWrapper>
+                      <styled.deleteButton onClick={(e) => handleDelete(e, row._id)}><MdDeleteForever /></styled.deleteButton>
+                    </styled.buttonWrapper>
+                  </styled.actionButtons>
+                </TableCell>
+              </>
+              :
+              <>
+                <TableCell align="right" style={{ padding: 0 }}>
+                  <AssignmentPopupMobile assignment={row} />
+                </TableCell>
+              </>
+            }
           </TableRow>
           <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-              <Collapse style={{ width: '80%', margin: '0 auto' }} in={open} timeout="auto" unmountOnExit>
-                <Box sx={{ margin: 1 }}>
+              <Collapse style={{ width: isMobile ? '100%' : '80%', margin: '0 auto' }} in={open} timeout="auto" unmountOnExit>
+                <Box sx={{ margin: isMobile ? 0 : 1 }}>
                   <Typography style={{ textDecoration: 'underline' }} align='right' fontWeight={600} variant="h6" gutterBottom component="div">
                     לקוח
                   </Typography>
                   <Table size="small" aria-label="purchases">
                     <TableHead>
                       <TableRow>
-                        {collapseThCells.map((c, i) => <TableCell key={i} style={{ fontWeight: '600' }} align='right'>{c}</TableCell>)}
+                        {!isMobile ?
+                          collapseThCells.map((c, i) => <TableCell key={i} style={{ fontWeight: '600' }} align='right'>{c}</TableCell>)
+                          :
+                          collapseThCellsMobile.map((c, i) => <TableCell key={i} style={{ fontWeight: '600' }} align='right'>{c}</TableCell>)
+                        }
                       </TableRow>
                     </TableHead>
                     <TableBody dir='rtl'>
@@ -96,7 +120,7 @@ const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
                           <TableCell align='right' component="th" scope="row">{historyRow.city}</TableCell>
                           <TableCell align='right'>{historyRow.street}</TableCell>
                           <TableCell align='right'>{historyRow.buildingNumber}</TableCell>
-                          <TableCell align='right'>{historyRow.floor}</TableCell>
+                          {!isMobile && <TableCell align='right'>{historyRow.floor}</TableCell>}
                           <TableCell align='right'>{historyRow.apartmentNumber}</TableCell>
                         </TableRow>
                       ))}
