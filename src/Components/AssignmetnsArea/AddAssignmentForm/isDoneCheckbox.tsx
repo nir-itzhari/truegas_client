@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import Checkbox, { CheckboxProps } from '@mui/material/Checkbox';
 import { useState } from 'react';
+import { Nullable } from 'primereact/ts-helpers';
 
 const BpIcon = styled('span')(({ theme }) => ({
     borderRadius: 3,
@@ -47,9 +48,11 @@ const BpCheckedIcon = styled(BpIcon)({
     },
 });
 
-// Inspired by blueprintjs
+interface Props {
+    setIsDone: (isDone: Nullable<boolean>) => void
+}
 
-export default function CustomizedCheckbox() {
+export default function CustomizedCheckbox(parentProps: Props) {
     const [notDoneChecked, setNotDoneChecked] = useState<boolean>(true);
     const [doneChecked, setDoneChecked] = useState<boolean>(false);
 
@@ -69,9 +72,11 @@ export default function CustomizedCheckbox() {
                     if (props.name === 'notDone') {
                         setNotDoneChecked(e.target.checked);
                         setDoneChecked(false);
+                        parentProps.setIsDone(e.target.checked)
                     } else if (props.name === 'done') {
                         setDoneChecked(e.target.checked);
                         setNotDoneChecked(false);
+                        parentProps.setIsDone(e.target.checked)
                     }
                 }}
                 inputProps={{ 'aria-label': 'Checkbox demo' }}
