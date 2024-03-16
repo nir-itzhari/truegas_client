@@ -48,7 +48,7 @@ export const ClientTableRow = ({ row }: Props): JSX.Element => {
                     )
                 ))}
                 <styled.buttonWrapper>
-                    <styled.editButton onClick={(e) => { e.stopPropagation(); navigate('/update-client/' + row._id) }}><FiEdit /></styled.editButton>
+                    <styled.editButton onClick={(e) => { e.stopPropagation(); navigate('/clients/update-client/' + row._id) }}><FiEdit /></styled.editButton>
                 </styled.buttonWrapper>
                 <styled.buttonWrapper>
                     <styled.deleteButton onClick={(e) => handleDelete(e, row._id)}><MdDeleteForever /></styled.deleteButton>

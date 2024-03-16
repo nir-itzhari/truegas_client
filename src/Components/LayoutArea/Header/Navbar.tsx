@@ -10,7 +10,7 @@ import List from '@mui/material/List';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { AiOutlineMenuUnfold } from "react-icons/ai";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import AuthMenu from '../../AuthArea/Auth/AuthMenu/AuthMenu';
 import './Header.css'
 

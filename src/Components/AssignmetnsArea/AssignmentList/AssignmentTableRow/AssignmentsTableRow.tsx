@@ -12,7 +12,6 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import dayjs from 'dayjs';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
-import { IoIosImages } from 'react-icons/io';
 import AssignmentModel from '../../../../Models/AssignmentModel';
 import * as styled from './AssignmentTableRow.styled'
 import { FiEdit } from 'react-icons/fi';
@@ -22,6 +21,10 @@ import assignmentService from '../../../../Services/AssignmentServices';
 import { useMobile } from '../../../hooks/useMobileHook';
 import AssignmentPopupMobile from '../AssignmnetPopup/AssignmentPopupMobile';
 import { AssignmentImagesPopup } from '../AssignmnetPopup/AssignmentImagesPopup';
+import { TbCurrencyShekel } from "react-icons/tb";
+
+
+
 interface Props {
   row: AssignmentModel;
   isLoading: boolean;
@@ -76,7 +79,7 @@ const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
                   <IoCheckmarkDoneCircle style={{ fontSize: '30px', color: 'red' }} />
                 }</TableCell>
                 <TableCell align="right"><AssignmentImagesPopup images={row.images} /></TableCell>
-                <TableCell align="right">{row.price.toFixed(2)}₪</TableCell>
+                <TableCell align="right"><div style={{ display: 'flex', alignItems: 'center' }}><TbCurrencyShekel />{row.price.toFixed(2)}</div></TableCell>
                 <TableCell align="right">
                   <styled.actionButtons>
                     <styled.buttonWrapper>

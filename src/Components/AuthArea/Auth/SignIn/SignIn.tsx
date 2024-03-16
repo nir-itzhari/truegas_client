@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,12 +11,12 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { TextField, Tooltip } from '@mui/material';
+import { Tooltip } from '@mui/material';
 import * as Styled from './SignIn.styled'
 import notify from '../../../../Services/NotifyService';
 import authService from '../../../../Services/AuthServices';
 import CredentialsModel from '../../../../Models/CredentialsModel';
-// Lazy load the background image using Intersection Observer
+
 const backgroundImageUrl = 'https://source.unsplash.com/random?wallpapers';
 
 const BackgroundImage = styled.div`

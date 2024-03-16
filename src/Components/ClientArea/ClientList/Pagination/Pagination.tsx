@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 
 interface Props {

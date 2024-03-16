@@ -1,4 +1,3 @@
-
 import { ClientModel } from './../Models/ClientModel';
 
 export class ClientsState {
