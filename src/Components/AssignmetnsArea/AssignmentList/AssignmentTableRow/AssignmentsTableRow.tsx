@@ -22,6 +22,7 @@ import { useMobile } from '../../../hooks/useMobileHook';
 import AssignmentPopupMobile from '../AssignmnetPopup/AssignmentPopupMobile';
 import { AssignmentImagesPopup } from '../AssignmnetPopup/AssignmentImagesPopup';
 import { TbCurrencyShekel } from "react-icons/tb";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 
 
@@ -76,7 +77,7 @@ const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
                 <TableCell align="right">{row.isDone ?
                   <IoCheckmarkDoneCircle style={{ fontSize: '30px', color: 'green' }} />
                   :
-                  <IoCheckmarkDoneCircle style={{ fontSize: '30px', color: 'red' }} />
+                  <AiOutlineCloseCircle style={{ fontSize: '30px', color: 'red' }} />
                 }</TableCell>
                 <TableCell align="right"><AssignmentImagesPopup images={row.images} /></TableCell>
                 <TableCell align="right"><div style={{ display: 'flex', alignItems: 'center' }}><TbCurrencyShekel />{row.price.toFixed(2)}</div></TableCell>
