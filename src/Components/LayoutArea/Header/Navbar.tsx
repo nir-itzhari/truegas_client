@@ -25,7 +25,7 @@ interface RoutePaths {
 }
 
 const routePaths: RoutePaths = {
-    home: '/',
+    home: '/dashboard',
     assignments: '/assignments',
     clients: '/clients',
     forms: '/forms',
