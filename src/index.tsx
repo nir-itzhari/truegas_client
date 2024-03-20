@@ -9,6 +9,17 @@ import interceptorsService from './Services/InterceptorsService';
 
 interceptorsService.createInterceptors();
 
+const originalError = console.error;
+
+console.error = function(...args: any[]) {
+    const errorMessage = args[0];
+    if (errorMessage === "MUI: ") {
+        originalError.apply(console, args);
+    }
+};
+
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
