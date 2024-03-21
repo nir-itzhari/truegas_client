@@ -142,21 +142,29 @@ const ClientsTableRow: React.FC<Props> = ({ row, isLoading }) => {
                         <TableRow key={historyRow._id}>
                           <TableCell align='right'>{dayjs(historyRow.date).format('DD/MM/YYYY')}</TableCell>
                           <TableCell align='right'>{historyRow.title}</TableCell>
-                          <TableCell align='right' style={{ textAlign: 'right' }}><AssignmentPopupMobile assignment={historyRow} /></TableCell>
-                          {!isMobile &&
+                          {isMobile ? (
+                            <TableCell align='right' style={{ textAlign: 'right' }}>
+                              <AssignmentPopupMobile assignment={historyRow} />
+                            </TableCell>
+                          ) : (
                             <>
                               <TableCell align='right'>{historyRow.description}</TableCell>
-                              <TableCell align="right">{historyRow.isDone ?
-                                <IoCheckmarkDoneCircleOutline style={{ fontSize: '30px', color: 'green' }} />
-                                :
-                                <AiOutlineCloseCircle style={{ fontSize: '30px', color: 'red' }} />
-                              }
+                              <TableCell align="right">
+                                {historyRow.isDone ? (
+                                  <IoCheckmarkDoneCircleOutline style={{ fontSize: '30px', color: 'green' }} />
+                                ) : (
+                                  <AiOutlineCloseCircle style={{ fontSize: '30px', color: 'red' }} />
+                                )}
                               </TableCell>
                               <TableCell align='right'>{historyRow.price.toFixed(2)}₪</TableCell>
-                              <TableCell align="right"><AssignmentImagesPopup images={historyRow.images} /></TableCell>
-                            </>}
+                              <TableCell align="right">
+                                <AssignmentImagesPopup images={historyRow.images} />
+                              </TableCell>
+                            </>
+                          )}
                         </TableRow>
                       ))}
+
                     </TableBody>
                   </Table>
                 </Box>
