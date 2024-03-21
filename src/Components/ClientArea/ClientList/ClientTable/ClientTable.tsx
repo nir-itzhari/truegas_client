@@ -1,22 +1,28 @@
-import { ClientModel } from "../../../../Models/ClientModel";
-import { ClientTableRow } from "../ClientTableRow/ClientTableRow";
-import * as styled from "./ClientTable.styled";
-import { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import TableContainer from '@mui/material/TableContainer';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableBody from '@mui/material/TableBody';
+import ClientsTableRow from '../ClientTableRow/ClientsTableRow';
+import { CircularProgress } from '@mui/material';
+import { useMobile } from '../../../hooks/useMobileHook';
+import { ClientModel } from '../../../../Models/ClientModel';
 
 interface Props {
-    clientRows: ClientModel[];
+    clientList: ClientModel[]
 }
 
-export const ClientTable = ({ clientRows }: Props): JSX.Element => {
-    const [clientsRows, setClientsRows] = useState<ClientModel[]>([]);
 
-    useEffect(() => {
-        if (clientRows) {
-            setClientsRows(clientRows);
-        }
-    }, [clientRows]);
+const ClientTable: React.FC<Props> = (args) => {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [clients, setClients] = useState<ClientModel[]>()
+    const isMobile = useMobile()
 
-    const tableTh = [
+
+    const collapseThCells = [
         "שם",
         "עיר",
         "רחוב",
@@ -24,35 +30,54 @@ export const ClientTable = ({ clientRows }: Props): JSX.Element => {
         "מספר דירה",
         "קומה",
         "טלפון",
-        "ערוך",
-        "מחק",
+        "פעולות",
+    ];
+    const collapseThCellsMobile = [
+        "שם",
+        "עיר",
+        "פרטים",
     ];
 
 
-
+    useEffect(() => {
+        if (args.clientList) {
+            setClients(args.clientList)
+            setIsLoading(false)
+        }
+    }, [args.clientList]);
 
     return (
-        <styled.tableWrapper>
-            <styled.tableContentWrapper>
-                <styled.thWrapper>
-                    <styled.thContentWrapper>
-                        {tableTh.map((t, index) => (
-                            <styled.th key={index}>{t}</styled.th>
-                        ))}
-                    </styled.thContentWrapper>
-                </styled.thWrapper>
-                <styled.rowWrapper>
-                    {clientsRows.map((row, rowIndex) => (
-                        <Fragment key={row._id}>
-                            <styled.rowContentWrapper>
-                                <ClientTableRow row={row} />
-                            </styled.rowContentWrapper>
-                            <styled.rowBorder></styled.rowBorder>
-                        </Fragment>
-                    ))}
-                </styled.rowWrapper>
-            </styled.tableContentWrapper>
-            {/* <styled.overlay show={show}></styled.overlay> */}
-        </styled.tableWrapper>
+        <TableContainer component={Paper} dir='rtl' style={{ marginTop: '15px', borderTopLeftRadius: '12px', borderTopRightRadius: '12px' }}>
+            <Table aria-label="collapsible table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell align='center'>
+                            {/* <ExportCSVButton data={args.assignmentList} /> */}
+                        </TableCell>
+                        {!isMobile ?
+                            collapseThCells.map((c, i) => <TableCell key={i} style={{ fontWeight: '600' }} align='right'>{c}</TableCell>)
+                            :
+                            collapseThCellsMobile.map((c, i) => <TableCell key={i} style={{ fontWeight: '600' }} align='right'>{c}</TableCell>)}
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {isLoading ?
+                        <>
+                            <TableRow key={'loading'} style={{ height: '50px' }}>
+                                <TableCell colSpan={10} style={{ textAlign: 'center' }}>
+                                    <CircularProgress />
+                                </TableCell>
+                            </TableRow>
+                        </>
+                        :
+                        clients.map((row) => (
+                            <ClientsTableRow key={row._id} row={row} isLoading={isLoading} />
+                        ))
+                    }
+                </TableBody>
+            </Table>
+        </TableContainer>
     );
-};
+}
+
+export default ClientTable;
