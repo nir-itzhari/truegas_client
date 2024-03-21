@@ -2,6 +2,7 @@ import React from 'react';
 import ExcelJS from 'exceljs'
 import AssignmentModel from '../../../../../Models/AssignmentModel';
 import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
 
 
 interface Props {
@@ -60,7 +61,7 @@ export const ExportButton: React.FC<Props> = ({
         ]
         assignments?.map(a => ({ ...a, date: dayjs(a.date).format('DD/MM/YYYY') }))
         assignments?.map(a => {
-            sheet.addRow({
+            return sheet.addRow({
                 price: a.price !== 0 && !isNaN(a.price) ? a.price.toFixed(2) : 0,
                 description: a.description,
                 title: a.title,
@@ -135,7 +136,7 @@ export const ExportButton: React.FC<Props> = ({
         })
     };
 
-    return <a onClick={() => { exportToXLSX(); setDisplay(false) }} style={{ margin: 0 , color: 'black', display: 'inline-flex', gap: 2}}>
+    return <Link to='/assignments' onClick={() => { exportToXLSX(); setDisplay(false) }} style={{ margin: 0, color: 'black', display: 'inline-flex', gap: 2 }}>
         <span>
             ייצוא לקובץ
         </span>
@@ -147,5 +148,5 @@ export const ExportButton: React.FC<Props> = ({
                 Excel
             </span>
         </span>
-    </a>;
+    </Link>;
 };
