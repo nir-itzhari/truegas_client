@@ -36,8 +36,6 @@ const ClientsTableRow: React.FC<Props> = ({ row, isLoading }) => {
   const collapseThCells = ['תאריך', 'סוג עבודה', 'פירוט', 'בוצע', 'מחיר', 'תמונות'];
   const collapseThCellsMobile = ['תאריך', 'סוג עבודה', 'פרטים'];
 
-  const [showImages, setShowImages] = React.useState(false);
-
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const isMobile = useMobile()
