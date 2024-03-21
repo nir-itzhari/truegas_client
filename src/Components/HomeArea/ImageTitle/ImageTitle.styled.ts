@@ -6,6 +6,8 @@ export const HomeText = styled.div`
   text-align:center;
   font-size: 30px;
   font-weight: 700;
+  z-index: 1;
+  position: relative;
 `;
 
 export const textHeader = styled.div`
