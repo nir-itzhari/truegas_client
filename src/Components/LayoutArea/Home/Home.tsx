@@ -9,12 +9,14 @@ const Home: FC = (): JSX.Element => {
     return (
         <>
             <styled.HomeContainer>
-                <ImageTitle />
-                <styled.ChartWrapper>
-                    <AssignmentsIncomeChart />
-                </styled.ChartWrapper>
-                <ScrollTop />
-            </styled.HomeContainer>
+                <styled.sectionOne />
+                    <ImageTitle />
+                    <styled.ChartWrapper>
+                        <AssignmentsIncomeChart />
+                    </styled.ChartWrapper>
+                
+            <ScrollTop />
+        </styled.HomeContainer >
         </>
     );
 }

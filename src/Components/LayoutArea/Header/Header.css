@@ -88,7 +88,7 @@ a {
 
 @media screen and (max-width: 768px) {
     ul a {
-        margin: 20px 0 0 0 !important;
+        margin: 20px 0 0 0;
         justify-content: space-evenly;
     }
 }

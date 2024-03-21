@@ -9,8 +9,10 @@ import styled from "styled-components";
 
 
 export const homeText = styled.div`
+    position: relative;
     font-size: 50px;
     font-weight: 700;
+    z-index: 1;
 `
 
 
@@ -45,6 +47,17 @@ export const BackgroundImage = styled.img<{ $screenWidth: number }>`
   height: auto;
 `;
 
+export const sectionOne = styled.div`
+position: absolute;
+top: 0;
+left: 0;
+height: 75%;
+width: 100%;
+z-index: 0;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, rgb(238, 239, 175) 0%, rgb(195, 227, 250) 100%);
+  clip-path: ellipse(150% 87% at 93% 13%);
+`
+
 export const Overlay = styled.div`
   position: absolute;
   top: 0;
@@ -60,4 +73,6 @@ export const Overlay = styled.div`
 export const ChartWrapper = styled.div`
   text-align: center;
   margin: 0 0 5px 0;
+  z-index: 2;
+  position: relative;
 `
