@@ -9,10 +9,10 @@ class AssignmentModel {
     public user_id: string;
     public imageFile: FileList;
     public imageName: string;
-    public isDone?: boolean;
+    public isDone: boolean;
     public price: number;
     public client: ClientModel[]
-    public images: [] = []
+    public images?: [] = []
 }
 
 export default AssignmentModel;

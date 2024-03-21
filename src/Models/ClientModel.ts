@@ -12,5 +12,5 @@ export class ClientModel {
     public phoneNumber: string;
     public phoneNumberTwo?: string;
     public assignment_id: string[];
-    public assignment: AssignmentModel[];
+    public assignments: AssignmentModel[];
 }

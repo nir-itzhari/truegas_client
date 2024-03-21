@@ -2,6 +2,7 @@ import AssignmentModel from './../Models/AssignmentModel';
 
 export class AssignmentsState {
     public assignments: AssignmentModel[] = [];
+    public totalAssignments: number = 0
 
 }
 
@@ -10,6 +11,7 @@ export enum AssignmentActionType {
     AddAssignment = "AddAssignment",
     UpdateAssignment = "UpdateAssignment",
     DeleteAssignment = "DeleteAssignment",
+    UpdateTotalAssignments = "UpdateTotalAssignments",
 }
 
 export interface AssignmentAction {
@@ -31,29 +33,35 @@ export const deleteAssignmentAction = (assignmentId: string): AssignmentAction =
     return { type: AssignmentActionType.DeleteAssignment, payload: assignmentId };
 }
 
+export const updateTotalAssignmentsAction = (totalAssignments: number): AssignmentAction => {
+    return { type: AssignmentActionType.UpdateTotalAssignments, payload: totalAssignments };
+}
+
 
 export const assignmentsReducer = (currentState = new AssignmentsState(), action: AssignmentAction): AssignmentsState => {
-    const newState = { ...currentState };
-
     switch (action.type) {
+        case AssignmentActionType.UpdateTotalAssignments:
+            return { ...currentState, totalAssignments: action.payload };
         case AssignmentActionType.FetchAssignments:
-            newState.assignments = action.payload;
-            break;
+            return { ...currentState, assignments: action.payload };
         case AssignmentActionType.AddAssignment:
-            newState.assignments.push(action.payload);
-            break;
+            return { ...currentState, assignments: [...currentState.assignments, action.payload] };
         case AssignmentActionType.UpdateAssignment:
-            const indexToUpdate = newState.assignments.findIndex(a => a._id === action.payload._id);
-            if (indexToUpdate >= 0) {
-                newState.assignments[indexToUpdate] = action.payload;
-            }
-            break;
+            return {
+                ...currentState,
+                assignments: currentState.assignments.map(assignment => {
+                    if (assignment._id === action.payload._id) {
+                        return action.payload;
+                    }
+                    return assignment;
+                })
+            };
         case AssignmentActionType.DeleteAssignment:
-            const indexToDelete = newState.assignments.findIndex(a => a._id === action.payload);
-            if (indexToDelete >= 0) {
-                newState.assignments.splice(indexToDelete, 1);
-            }
+            return {
+                ...currentState,
+                assignments: currentState.assignments.filter(assignment => assignment._id !== action.payload)
+            };
+        default:
+            return currentState;
     }
-
-    return newState;
-}
+};
