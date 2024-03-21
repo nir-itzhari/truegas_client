@@ -11,7 +11,6 @@ import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import dayjs from 'dayjs';
-import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 import AssignmentModel from '../../../../Models/AssignmentModel';
 import * as styled from './AssignmentTableRow.styled'
 import { FiEdit } from 'react-icons/fi';
@@ -23,6 +22,7 @@ import AssignmentPopupMobile from '../AssignmnetPopup/AssignmentPopupMobile';
 import { AssignmentImagesPopup } from '../AssignmnetPopup/AssignmentImagesPopup';
 import { TbCurrencyShekel } from "react-icons/tb";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 
 
 
@@ -33,8 +33,8 @@ interface Props {
 
 const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
 
-  const collapseThCells = ['שם', 'עיר', 'רחוב', 'מספר בניין', 'קומה', 'מספר דירה'];
-  const collapseThCellsMobile = ['שם', 'עיר', 'רחוב', 'מספר בניין', 'מספר דירה'];
+  const collapseThCells = ['שם', 'עיר', 'רחוב', 'מספר בית', 'קומה', 'מספר דירה'];
+  const collapseThCellsMobile = ['שם', 'עיר', 'רחוב', 'מספר בית', 'מספר דירה'];
   const [showImages, setShowImages] = React.useState(false);
 
   const [open, setOpen] = React.useState(false);
@@ -75,7 +75,7 @@ const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
               <>
                 <TableCell align="right">{row.description}</TableCell>
                 <TableCell align="right">{row.isDone ?
-                  <IoCheckmarkDoneCircle style={{ fontSize: '30px', color: 'green' }} />
+                  <IoCheckmarkDoneCircleOutline style={{ fontSize: '30px', color: 'green' }} />
                   :
                   <AiOutlineCloseCircle style={{ fontSize: '30px', color: 'red' }} />
                 }</TableCell>
