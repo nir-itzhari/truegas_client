@@ -1,0 +1,24 @@
+.css-1anqmj6-MuiPopper-root-MuiPickersPopper-root {
+    div[style*="letter-spacing"][style*="position: absolute"] {
+        display: none !important;
+    }
+}
+
+p.MuiTypography-root.MuiTypography-body1.MuiMultiInputDateRangeField-separator.css-8wfwvd-MuiTypography-root-MuiMultiInputDateRangeField-separator {
+    /* margin-left: 0 !important; */
+    margin: 0 2px !important;
+}
+
+.base-Popper-root.MuiPickersPopper-root.css-1anqmj6-MuiPopper-root-MuiPickersPopper-root {
+    direction: rtl !important;
+}
+
+@media only screen and (min-width: 769px) {
+    svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit.css-1vooibu-MuiSvgIcon-root {
+        transform: rotate(180deg);
+    }
+}
+
+.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root {
+    margin: 0;
+}

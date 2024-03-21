@@ -1,0 +1,7 @@
+.MuiDayCalendar-root.css-14iq4xa-MuiDayCalendar-root {
+    direction: rtl !important;
+}
+
+.MuiPickersArrowSwitcher-root.css-9reuh9-MuiPickersArrowSwitcher-root {
+    transform: rotate(180deg);
+}
