@@ -1,5 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { FC, Fragment, useEffect, useState } from 'react';
 import AssignmentModel from '../../../../Models/AssignmentModel';
 import store from '../../../../Redux/Store';
 import assignmentService from '../../../../Services/AssignmentServices';
@@ -11,21 +10,18 @@ import { Divider } from "primereact/divider";
 import { ScrollTop } from 'primereact/scrolltop';
 import AssignmentsTable from '../AssignmentTable/AssignmentsTable';
 import * as styled from './AssignmentList.styled';
-import { PaginatorPageChangeEvent } from 'primereact/paginator';
+import FilterBar from '../../FilterBar/FilterBar';
 
-export default function AssignmentList(): JSX.Element {
+const AssignmentList: FC = (): JSX.Element => {
   const [assignmentList, setAssignmentList] = useState<AssignmentModel[]>([]);
   const [totalAssignments, setTotalAssignments] = useState<number>(0);
-  const [first, setFirst] = useState<number>(0);
-  const [rows, setRows] = useState<number>(10);
-  const [end, setEnd] = useState<number>(10);
 
   const isMobile = useMobile();
 
   const fetchAssignments = async () => {
     try {
       const user_id = store.getState().authState.user._id;
-      const result = await assignmentService.fetchAssignmentsByUserId(user_id, first, end);
+      const result = await assignmentService.fetchAssignmentsByUserId(user_id);
       setAssignmentList(result.assignments);
       setTotalAssignments(result.totalAssignments);
     } catch (error: any) {
@@ -36,14 +32,18 @@ export default function AssignmentList(): JSX.Element {
   useEffect(() => {
     fetchAssignments();
 
-  }, [first, end]);
+    const unSubscribeMe = store.subscribe(() => {
+      const assignments = store.getState().assignmentsState.assignments;
+      const totalAssignments = store.getState().assignmentsState.totalAssignments;
+      setAssignmentList(assignments);
+      setTotalAssignments(totalAssignments);
+    });
 
-  const onPageChange = (event: PaginatorPageChangeEvent) => {
-    setFirst(event.first);
-    setRows(event.rows);
-    const calculatedEnd = (event.page + 1) * event.rows;
-    setEnd(calculatedEnd);
-  };
+    return () => unSubscribeMe();
+  }, [assignmentList]);
+
+
+
 
   return (
     <Fragment>
@@ -59,9 +59,10 @@ export default function AssignmentList(): JSX.Element {
               <AssignmentAmountCard />
               <AssignmentAmountCard />
             </styled.AssignmentAmountCardWrapper>
-            <div>
+            <div style={{ marginTop: 10 }}>
+              <FilterBar />
               <AssignmentsTable assignmentList={assignmentList} />
-              <TablePagination total={totalAssignments} onPageChange={onPageChange} first={first} rows={rows} />
+              <TablePagination total={totalAssignments} />
             </div>
             <div>
               <Divider align="center" type="solid">
@@ -75,3 +76,5 @@ export default function AssignmentList(): JSX.Element {
     </Fragment>
   );
 }
+
+export default AssignmentList
