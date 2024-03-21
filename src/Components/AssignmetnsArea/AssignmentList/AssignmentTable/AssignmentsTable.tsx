@@ -10,6 +10,7 @@ import AssignmentModel from '../../../../Models/AssignmentModel';
 import AssignmentsTableRow from '../AssignmentTableRow/AssignmentsTableRow';
 import { CircularProgress } from '@mui/material';
 import { useMobile } from '../../../hooks/useMobileHook';
+import ExportCSVButton from '../ExportToXLSX/ExportToXLSXButton';
 
 interface Props {
     assignmentList: AssignmentModel[]
@@ -44,7 +45,7 @@ const AssignmentsTable: React.FC<Props> = (args) => {
         if (args.assignmentList) {
             setAssignments(sortAssignmentList(args.assignmentList))
             setIsLoading(false)
-        }   
+        }
     }, [args.assignmentList]);
 
     return (
@@ -52,7 +53,9 @@ const AssignmentsTable: React.FC<Props> = (args) => {
             <Table aria-label="collapsible table">
                 <TableHead>
                     <TableRow>
-                        <TableCell />
+                        <TableCell align='center'>
+                                <ExportCSVButton data={args.assignmentList} />
+                        </TableCell>
                         {!isMobile ?
                             collapseThCells.map((c, i) => <TableCell key={i} style={{ fontWeight: '600' }} align='right'>{c}</TableCell>)
                             :
