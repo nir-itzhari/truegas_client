@@ -35,7 +35,6 @@ const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
 
   const collapseThCells = ['שם', 'עיר', 'רחוב', 'מספר בית', 'קומה', 'מספר דירה'];
   const collapseThCellsMobile = ['שם', 'עיר', 'רחוב', 'מספר בית', 'מספר דירה'];
-  const [showImages, setShowImages] = React.useState(false);
 
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();

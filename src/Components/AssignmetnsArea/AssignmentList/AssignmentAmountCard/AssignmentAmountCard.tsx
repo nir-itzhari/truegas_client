@@ -1,4 +1,3 @@
-import { Card } from 'primereact/card';
 import { useEffect, useState } from 'react';
 import { MdAssignment } from "react-icons/md";
 import * as styled from './AssignmentAmountCard.styled'
