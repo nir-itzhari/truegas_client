@@ -1,5 +1,5 @@
 import config from "../Utils/Config";
-import { addAssignmentAction, fetchAssignmentsAction, updateAssignmentAction } from "../Redux/AssignmentState";
+import { addAssignmentAction, fetchAssignmentsAction, updateAssignmentAction, updateTotalAssignmentsAction } from "../Redux/AssignmentState";
 import AssignmentModel from "../Models/AssignmentModel";
 import { deleteAssignmentAction } from './../Redux/AssignmentState';
 import axios from "axios";
@@ -18,13 +18,16 @@ class AssignmentService {
         return store.getState().assignmentsState.assignments;
     }
 
-    public async fetchAssignmentsByUserId(user_id: string, first: number, rows: number): Promise<{ assignments: AssignmentModel[], totalAssignments: number }> {
-        let totalAssignments: number
+    public async fetchAssignmentsByUserId(user_id: string): Promise<{ assignments: AssignmentModel[], totalAssignments: number }> {
         // if (store.getState().assignmentsState.assignments.length === 0) {
+        const first = store.getState().searchInputState.first
+        const rows = store.getState().searchInputState.rows
         const response = await axios.get<{ assignments: AssignmentModel[], totalAssignments: number }>(config.assignmentsUrl + user_id + '/' + first + '/' + rows);
         const { assignments } = response.data;
-        totalAssignments = response.data.totalAssignments
+        const { totalAssignments } = response.data
         store.dispatch(fetchAssignmentsAction(assignments));
+        store.dispatch(updateTotalAssignmentsAction(totalAssignments));
+
         // }
         return { assignments: assignments, totalAssignments };
     }
