@@ -20,7 +20,7 @@ export const SearchFilter = ({ searchResults }: Props) => {
         try {
             let filteredClients;
             const searchFields = { fullName: fullName, city: city, street: street };
-            const clients = await searchInputService.getClientsBySearch(searchFields)
+            const clients = await searchInputService.getClientsBySearch()
             if (clients) {
                 filteredClients = clients.filter(client => {
                     return (

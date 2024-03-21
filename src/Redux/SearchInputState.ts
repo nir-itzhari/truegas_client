@@ -5,17 +5,21 @@ export class SearchInputState {
     public fullName: string = null
     public city: string = null
     public street: string = null
+    public rows: number = 10
+    public first: number = 0
 }
 
 export enum SearchInputActionType {
     InputFullName = "InputFullName",
     InputCity = "InputCity",
     InputStreet = "InputStreet",
+    InputFirst = "InputFirst",
+    InputRows = "InputRows",
 }
 
 export interface SearchInputAction {
     type: SearchInputActionType;
-    payload?: string;
+    payload?: any;
 }
 
 export const updateInputFullName = (fullName: string): SearchInputAction => {
@@ -29,24 +33,32 @@ export const updateInputStreet = (street: string): SearchInputAction => {
     return { type: SearchInputActionType.InputStreet, payload: street };
 }
 
+export const updateInputFirst = (first: number): SearchInputAction => {
+    return { type: SearchInputActionType.InputFirst, payload: first };
+}
+export const updateInputRows = (rows: number): SearchInputAction => {
+    return { type: SearchInputActionType.InputRows, payload: rows };
+}
+
 
 export const searchInputReducer = (currentState = new SearchInputState(), action: SearchInputAction): SearchInputState => {
     const newState = { ...currentState };
 
     switch (action.type) {
         case SearchInputActionType.InputFullName:
-            // Assuming searchInput is an object, you need to ensure it's initialized
-            // before trying to access its properties.
             newState.fullName = action.payload
             break;
         case SearchInputActionType.InputCity:
-            // Similarly, you need to ensure that searchInput is initialized properly
-            // before accessing its properties.
             newState.city = action.payload;
             break;
         case SearchInputActionType.InputStreet:
-            // Same issue here, ensure searchInput is initialized properly.
             newState.street = action.payload;
+            break;
+        case SearchInputActionType.InputFirst:
+            newState.first = action.payload;
+            break;
+        case SearchInputActionType.InputRows:
+            newState.rows = action.payload;
             break;
     }
 
