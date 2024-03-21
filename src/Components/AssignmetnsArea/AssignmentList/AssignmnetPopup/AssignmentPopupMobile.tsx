@@ -5,8 +5,9 @@ import { StyledModalBox } from './AssignmentPopupMobile.style';
 import { AssignmentImagesPopup } from './AssignmentImagesPopup';
 import AssignmentModel from '../../../../Models/AssignmentModel';
 import { Card } from '@mui/material';
-import { IoCheckmarkDoneCircle } from 'react-icons/io5';
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { useMobile } from '../../../hooks/useMobileHook';
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 interface Props {
     assignment: AssignmentModel;
@@ -30,7 +31,7 @@ const AssignmentPopupMobile: FC<Props> = ({ assignment }) => {
                 open={open}
                 onClose={handleClose}>
                 <StyledModalBox $isMobile={isMobile}>
-                    <Card style={{ padding: 10 }}>
+                    <Card style={{ padding: 10, width: '100%' }}>
 
                         <>
                             <div style={{ textAlign: 'center' }}>
@@ -42,9 +43,9 @@ const AssignmentPopupMobile: FC<Props> = ({ assignment }) => {
                                 </p>
                                 <p style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                                     <span style={{ fontSize: '20px', fontWeight: 600, marginLeft: '5px' }}>בוצע:</span> {assignment.isDone ?
-                                        <IoCheckmarkDoneCircle style={{ fontSize: '25px', color: 'green' }} />
+                                        <IoCheckmarkDoneCircleOutline style={{ fontSize: '25px', color: 'green' }} />
                                         :
-                                        <IoCheckmarkDoneCircle style={{ fontSize: '25px', color: 'red' }} />}
+                                        <AiOutlineCloseCircle style={{ fontSize: '25px', color: 'red' }} />}
                                 </p>
                                 <p>
                                     <span style={{ fontSize: '20px', fontWeight: 600 }}>מחיר:</span> {assignment.price.toFixed(2)}₪

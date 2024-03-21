@@ -12,7 +12,7 @@ export const StyledModalBox = styled.div<({ $isMobile: boolean }) >`
   flex-direction: column;
   align-items: center;
   position: relative;
-  width: ${props => props.$isMobile ? '100%' : '80%'};
+  width: 100%;
 `;
 
 
