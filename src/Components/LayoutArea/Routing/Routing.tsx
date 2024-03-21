@@ -11,10 +11,10 @@ import SignInSide from "../../AuthArea/Auth/SignIn/SignIn";
 import SignUp from "../../AuthArea/Auth/SignUp/SignUp";
 import ForgotPassword from "../../AuthArea/Auth/ForgotPassword/ForgotPassword";
 import Logout from "../../AuthArea/Auth/Logout/Logout";
-import { ClientList } from "../../ClientArea/ClientList/ClientListWrapper/ClientListWrapper";
 import { AddAssignment } from "../../AssignmetnsArea/AddAssignmentForm/AddAssignment";
 import { ResetPassword } from "../../AuthArea/Auth/ResetPassword/ResetPassword";
 import { PrivateRoute } from "./PrivateRoute";
+import ClientListPage from "../../ClientArea/ClientList/ClientListPage/ClientListPage";
 
 
 const router = createBrowserRouter(
@@ -78,7 +78,7 @@ const router = createBrowserRouter(
                 path="/assignments/addAssignment"
                 loader={async () => {
                     try {
-                        const result = await searchInputService.getClientsBySearch({ fullName: 'הכל' });
+                        const result = await searchInputService.getClientsBySearch();
                         return result;
                     } catch (error: any) {
                         console.log(error.message);
@@ -96,7 +96,8 @@ const router = createBrowserRouter(
                 path="/clients"
                 element={
                     <PrivateRoute>
-                        <ClientList />
+                        {/* <ClientList /> */}
+                        <ClientListPage />
                     </PrivateRoute>}
                 errorElement={<PageNotFound />} />
 
