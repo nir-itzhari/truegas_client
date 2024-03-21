@@ -6,15 +6,15 @@ import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ClientModel } from '../../../Models/ClientModel';
 import AssignmentModel from '../../../Models/AssignmentModel';
 import CustomizedCheckbox from './isDoneCheckbox';
-import dayjs from 'dayjs';
-import HeCustomDatePicker from '../HebrewDatePicker/HeCustomDadePicker';
+import { Dayjs } from 'dayjs';
 import { Button } from 'primereact/button';
 import store from '../../../Redux/Store';
 import UserModel from '../../../Models/UserModel';
 import { Nullable } from 'primereact/ts-helpers';
-import assignmentService from '../../../Services/AssignmentServices';
 import { IoMdArrowRoundForward } from "react-icons/io";
 import { useMobile } from '../../hooks/useMobileHook';
+import { InputNumber } from "primereact/inputnumber";
+import HeDatePicker from '../../SharedArea/HeDatePicker';
 
 
 
@@ -26,23 +26,29 @@ export const AddAssignment = () => {
     const [clients] = useState<ClientModel[]>(data);
     const [loading, setLoading] = useState<boolean>(false)
     const [client, setClient] = useState<string>('בחר לקוח')
-    const [chosenDate, setChosenDate] = useState<Nullable<Date>>()
+    const [chosenDate, setChosenDate] = useState<Nullable<Dayjs>>()
+    const [chosenIsDone, setChosenIsDone] = useState<Nullable<boolean>>()
+    const [price, setPrice] = useState<Nullable<number>>(0)
+
     const [user, setUser] = useState<UserModel>(null);
     const navigate = useNavigate()
     const isMobile = useMobile()
 
-
-    const setDate = (date: Nullable<Date>) => setChosenDate(date)
+    const setIsDone = (isDone: Nullable<boolean>) => setChosenIsDone(isDone)
+    const setDate = (date: Nullable<Dayjs>) => setChosenDate(date)
 
     const onSubmit: SubmitHandler<FieldValues> = async (data: any) => {
         try {
             setLoading(!loading)
             data.client_id = client;
             data.user_id = user._id
-            data.date = dayjs(chosenDate).format('DD-MM-YYYY')
-            const addedAssignment = await assignmentService.addNewAssignment(data);
-            navigate('/assignments')
-            console.log("Added assignment:", addedAssignment);
+            data.date = chosenDate ?? new Date()
+            data.isDone = chosenIsDone
+            data.price = price
+            // const addedAssignment = await assignmentService.addNewAssignment(data);
+
+            navigate("..", { relative: 'path' })
+            console.log("Added assignment:", data);
         } catch (error) {
             setLoading(!loading)
             console.error("Error adding assignment:", error);
@@ -67,6 +73,7 @@ export const AddAssignment = () => {
     }, []);
 
 
+
     return (
         <styled.FormWrapper>
             <styled.backButtonWrapper onClick={() => navigate('..', { relative: 'path' })}>
@@ -80,8 +87,9 @@ export const AddAssignment = () => {
                 <styled.Form onSubmit={handleSubmit(onSubmit)}>
                     <styled.FormGroup>
                         <styled.DateWrapper>
-                            <styled.DateLabel>בחר תאריך:</styled.DateLabel>
-                            <HeCustomDatePicker setChosenDate={setDate} />
+                            {/* <styled.DateLabel>בחר תאריך:</styled.DateLabel>
+                            <HeCustomDatePicker setChosenDate={setDate} /> */}
+                            <HeDatePicker setChosenDate={setDate} />
                         </styled.DateWrapper>
                     </styled.FormGroup>
 
@@ -116,11 +124,29 @@ export const AddAssignment = () => {
                         </Select>
                     </styled.FormGroup>
                     <styled.FormGroupCheckBox>
-                        <CustomizedCheckbox />
+                        <CustomizedCheckbox setIsDone={setIsDone} />
                     </styled.FormGroupCheckBox>
                     <styled.FormGroupFile>
                         <styled.Input type="file" name="image" {...register('imageFile')} required />
                     </styled.FormGroupFile>
+
+                    <styled.FormGroup>
+                        <InputNumber value={price} onValueChange={(e) => setPrice(e.value)} minFractionDigits={2} maxFractionDigits={5} />
+
+                        {/* <styled.TextAreaTitle
+                            type='number'
+                            dir={'rtl'}
+                            fullWidth={true}
+                            id="standard-basic"
+                            label="מחיר"
+                            variant="standard"
+                            {...register('price')} inputMode="numeric"
+                            min="0"
+                            step="0.01"
+                            required /> */}
+                    </styled.FormGroup>
+
+
                     <styled.SubmitButtonWrapper>
                         <Button dir='rtl' label="שלח" icon="pi pi-check" loading={loading} />
                     </styled.SubmitButtonWrapper>
