@@ -2,6 +2,8 @@ version: '3.8'
 
 services:
   client:
+    image: niritz/truegas-client
+    hostname: truegasdocker-client
     build:
       context: .
       dockerfile: Dockerfile
