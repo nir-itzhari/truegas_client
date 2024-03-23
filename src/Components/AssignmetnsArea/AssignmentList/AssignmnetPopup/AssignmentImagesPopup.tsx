@@ -6,6 +6,7 @@ import config from '../../../../Utils/Config';
 import { useMobile } from '../../../hooks/useMobileHook';
 import { IoIosImages } from 'react-icons/io';
 import * as styled from './AssignmentPopupMobile.style'
+import Badge from '@mui/material/Badge';
 
 interface Props {
     images: ImagesModel[]
@@ -30,7 +31,9 @@ export const AssignmentImagesPopup: FC<Props> = ({ images }) => {
 
     return (
         <>
-            <IoIosImages onClick={handleOpen} fontSize={30} cursor='pointer' />
+            <Badge color="warning" badgeContent={images.length} max={3}>
+                <IoIosImages onClick={handleOpen} fontSize={30} cursor='pointer' />
+            </Badge>
             <Modal
                 open={open}
                 onClose={handleClose}

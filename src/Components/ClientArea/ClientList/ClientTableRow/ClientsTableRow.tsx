@@ -16,13 +16,13 @@ import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import assignmentService from '../../../../Services/AssignmentServices';
 import { useMobile } from '../../../hooks/useMobileHook';
-import { AssignmentImagesPopup } from '../AssignmnetPopup/AssignmentImagesPopup';
+import { AssignmentImagesPopup } from '../../../AssignmetnsArea/AssignmentList/AssignmnetPopup/AssignmentImagesPopup';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { ClientModel } from '../../../../Models/ClientModel';
 import dayjs from 'dayjs';
-import AssignmentPopupMobile from '../AssignmnetPopup/AssignmentPopupMobile';
 import { GrDocumentMissing } from "react-icons/gr";
+import AssignmentPopupMobile from '../../../AssignmetnsArea/AssignmentList/AssignmnetPopup/AssignmentPopupMobile';
 
 
 
