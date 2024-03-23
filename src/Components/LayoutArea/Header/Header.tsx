@@ -4,7 +4,7 @@ import Drawer from './Navbar';
 function Header() {
 
     return (
-        <div>
+        <div style={{ height: '100%' }}>
             <Drawer />
         </div>
 
