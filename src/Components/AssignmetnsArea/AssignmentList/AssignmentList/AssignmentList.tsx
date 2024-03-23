@@ -46,13 +46,10 @@ const AssignmentList: FC = (): JSX.Element => {
 
 
   return (
-    <Fragment>
+    <>
       <styled.AssignmentListWrapper>
         <styled.AssignmentWidthWrapper $isMobile={isMobile}>
-          <styled.AddAssignmentButtonWrapper $isMobile={isMobile}>
-            <AddAssignmentButton />
-          </styled.AddAssignmentButtonWrapper>
-          <Fragment>
+          <>
             <styled.AssignmentAmountCardWrapper $isMobile={isMobile}>
               <AssignmentAmountCard />
               <AssignmentAmountCard />
@@ -69,11 +66,11 @@ const AssignmentList: FC = (): JSX.Element => {
                 <span>משימות לביצוע</span>
               </Divider>
             </div>
-          </Fragment>
+          </>
         </styled.AssignmentWidthWrapper>
         <ScrollTop />
       </styled.AssignmentListWrapper>
-    </Fragment>
+    </>
   );
 }
 
