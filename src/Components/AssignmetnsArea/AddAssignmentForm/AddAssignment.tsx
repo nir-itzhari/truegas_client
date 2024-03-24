@@ -15,14 +15,17 @@ import { IoMdArrowRoundForward } from "react-icons/io";
 import { useMobile } from '../../hooks/useMobileHook';
 import { InputNumber } from "primereact/inputnumber";
 import HeDatePicker from '../../SharedArea/HeDatePicker';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validateForms from '../../../Utils/formsValidations';
 
 
 
 
-
-export const AddAssignment = () => {
+export const AddAssignment = (): JSX.Element => {
     const data = useLoaderData() as ClientModel[]
-    const { register, handleSubmit } = useForm<AssignmentModel>();
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm<AssignmentModel>({
+        resolver: yupResolver(validateForms.addAssignmentFormSchema), mode: "onChange"
+    });
     const [clients] = useState<ClientModel[]>(data);
     const [loading, setLoading] = useState<boolean>(false)
     const [client, setClient] = useState<string>('בחר לקוח')
@@ -40,7 +43,7 @@ export const AddAssignment = () => {
     const onSubmit: SubmitHandler<FieldValues> = async (data: any) => {
         try {
             setLoading(!loading)
-            data.client_id = client;
+            // data.client_id = client;  // CHECK IF SELECT CHOSEN WITH Register Function FROM HOOK FORM !
             data.user_id = user._id
             data.date = chosenDate ?? new Date()
             data.isDone = chosenIsDone
@@ -94,11 +97,14 @@ export const AddAssignment = () => {
                     </styled.FormGroup>
 
                     <styled.FormGroup>
-                        <styled.TextAreaTitle dir={'rtl'} fullWidth={true} id="standard-basic" label="סוג עבודה" variant="standard" {...register('title')} required />
+                        <styled.TextAreaTitle error={errors.title?.message ? true : false} dir={'rtl'} fullWidth={true} id="standard-basic" label="סוג עבודה" variant="standard" {...register('title')} required />
+
+                        <span className="ErrorMessage">{errors.title?.message}</span>
                     </styled.FormGroup>
 
                     <styled.FormGroupDescription>
                         <styled.TextArea
+                            error={errors.description?.message ? true : false}
                             fullWidth={true}
                             id="outlined-multiline-static"
                             label="פירוט"
@@ -106,6 +112,8 @@ export const AddAssignment = () => {
                             rows={4}
                             {...register('description')}
                         />
+
+                        <span className="ErrorMessage">{errors.description?.message}</span>
                     </styled.FormGroupDescription>
 
                     <styled.FormGroup>
@@ -114,6 +122,7 @@ export const AddAssignment = () => {
                             labelId="demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
                             value={client}
+                            {...register('client_id')}
                             onChange={handleClientChange}>
                             <MenuItem value="בחר לקוח" disabled={true}>
                                 <em>בחר לקוח</em>
@@ -127,11 +136,11 @@ export const AddAssignment = () => {
                         <CustomizedCheckbox setIsDone={setIsDone} />
                     </styled.FormGroupCheckBox>
                     <styled.FormGroupFile>
-                        <styled.Input type="file" name="image" {...register('imageFile')} required />
+                        <styled.Input type="file" name="imageFile" {...register('imageFile')} required />
                     </styled.FormGroupFile>
 
                     <styled.FormGroup>
-                        <InputNumber value={price} onValueChange={(e) => setPrice(e.value)} minFractionDigits={2} maxFractionDigits={5} />
+                        <input type='number' {...register('price')} required />
 
                         {/* <styled.TextAreaTitle
                             type='number'

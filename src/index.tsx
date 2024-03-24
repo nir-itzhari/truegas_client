@@ -13,7 +13,7 @@ const originalError = console.error;
 
 console.error = function(...args: any[]) {
     const errorMessage = args[0];
-    if (errorMessage === "MUI: ") {
+    if (errorMessage === "MUI: Missing license key") {
         originalError.apply(console, args);
     }
 };
