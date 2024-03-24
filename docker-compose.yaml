@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   client:
+    container_name: client
     image: niritz/truegas-client
     hostname: truegasdocker-client
     build:
