@@ -12,10 +12,11 @@ margin-top: 15px;
 
 export const AddAssignmentButtonWrapper = styled.div<({ $isMobile: boolean }) >`
 position: ${props => props.$isMobile ? 'fixed' : 'absolute'};
-left: ${props => props.$isMobile ? '33%' : 0};
-top: ${props => props.$isMobile ? '88%' : '10%'};
+left: ${props => props.$isMobile ? '50%' : '70px'};
+bottom: ${props => props.$isMobile ? '4px' : ''};
 width: 130px;
 z-index: 2;
+transform: translate(-50%);
 `
 export const AssignmentAmountCardWrapper = styled.div<({ $isMobile: boolean }) >`
 display: flex;

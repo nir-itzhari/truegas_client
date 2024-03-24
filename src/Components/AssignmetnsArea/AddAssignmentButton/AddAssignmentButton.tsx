@@ -17,7 +17,7 @@ export const AddAssignmentButton = () => {
                 {<MdAssignmentAdd />}
             </styled.addButton>
             <styled.addText>
-                {'הוספת משימה'}
+                הוספת משימה חדשה
             </styled.addText>
         </styled.addButtonWrapper>
     )

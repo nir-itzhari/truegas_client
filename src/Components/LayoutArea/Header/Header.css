@@ -2,13 +2,28 @@
     height: 100%;
 }
 
-.css-hip9hq-MuiPaper-root-MuiAppBar-root {
-    background-color: black;
+.css-k008qs {
+    height: 100% !important;
+}
 
+.css-hyum1k-MuiToolbar-root {
+    height: 100% !important;
 }
 
 .css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+    position: inherit !important;
     background-color: black !important;
+}
+
+@media (max-width: 767px) {
+    .css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+        position: fixed !important;
+    }
+}
+
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+    background-color: black;
+
 }
 
 .css-1r7kz78-MuiModal-root-MuiDrawer-root .MuiDrawer-paper {
