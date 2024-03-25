@@ -10,6 +10,3 @@ services:
     ports:
       - "3000:3000"
     command: npm start
-
-volumes:
-  truegas-client:
