@@ -12,7 +12,7 @@ RUN rm -rf node_modules
 
 RUN npm cache clean --force
 
-RUN npm config set registry https://registry.npmjs.org/
+RUN npm config set registry 'https://registry.npmjs.org/'
 
 RUN npm install
 
