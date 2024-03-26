@@ -1,5 +1,5 @@
 # Inherit current image from an alpine image containing node (for latest versions use node:alpine):
-FROM node:14-alpine
+FROM node:alpine
 
 # Create an empty directory inside the container for project files and set it as the container's Current Directory:
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY package*.json /app
 RUN npm i
 
 # Copy project local files (first dot) into container's WORKDIR (last dot):
-COPY . /app
+COPY . .
 
 # Build the React app for production
 RUN npm run build
