@@ -1,24 +1,17 @@
-# Use an official Node.js runtime as the base image
-FROM  node:18-alpine3.19
+# Inherit current image from an alpine image containing node (for latest versions use node:alpine):
+FROM node:18-alpine3.15
 
-# Set the working directory in the container
+# Create an empty directory inside the container for project files and set it as the container's Current Directory:
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files
-COPY package*.json ./
+# Copy local package.json & package-lock.json into container's WORKDIR (last dot):
+COPY package*.json /app
 
+# Install npm dependencies & devDependencies:
+RUN npm i
 
-RUN rm -rf node_modules
-
-RUN npm cache clean --force
-
-RUN npm config set registry 'https://registry.npmjs.org/'
-
-RUN npm install
-
-
-# Copy the app source code
-COPY . .
+# Copy project local files (first dot) into container's WORKDIR (last dot):
+COPY . /app
 
 # Build the React app for production
 RUN npm run build
@@ -27,4 +20,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Start the React app when the container starts
-CMD [ "npm", "start" ]
+CMD ["npm", "start"]
