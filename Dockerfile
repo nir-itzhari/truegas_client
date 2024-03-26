@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy local package.json & package-lock.json into container's WORKDIR (last dot):
 COPY package*.json /app
+COPY yarn.lock /app
 
 # Install npm dependencies & devDependencies:
 RUN npm i
