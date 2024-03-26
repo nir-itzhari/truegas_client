@@ -1,26 +1,23 @@
-FROM node:18-alpine
+# Inherit current image from an alpine image containing node (for latest versions use node:alpine):
+FROM node:alpine
 
-# Install dependencies only when needed
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
+# Create an empty directory inside the container for project files and set it as the container's Current Directory:
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
-COPY package*.json yarn.lock
+# Copy local package.json & package-lock.json into container's WORKDIR (last dot):
+COPY package*.json /app
 
-# Rebuild the source code only when needed
-WORKDIR /app
+# Install npm dependencies & devDependencies:
+# RUN npm i
 
+# Copy project local files (first dot) into container's WORKDIR (last dot):
 COPY . .
 
-RUN yarn build
+# Build the React app for production
+RUN npm run build
 
-# Production image, copy all the files and run next
-WORKDIR /app
-
-RUN addgroup --system --gid 1001 nodejs
-
-
+# Expose the port that your React app will run on
 EXPOSE 3000
 
+# Start the React app when the container starts
 CMD ["npm", "start"]
