@@ -1,11 +1,15 @@
+version: '3.8'
 
 services:
   client:
     container_name: client
     image: niritz/truegas-client
-    hostname: truegasdocker-client
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/app
     ports:
       - "3000:3000"
+    environment:
+      - NODE_ENV=development
