@@ -14,7 +14,7 @@ RUN npm i
 COPY . .
 
 # Build the React app for production
-RUN npm run build
+RUN yarn build
 
 # Expose the port that your React app will run on
 EXPOSE 3000
