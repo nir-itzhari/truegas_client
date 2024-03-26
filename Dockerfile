@@ -1,23 +1,28 @@
-# Inherit current image from an alpine image containing node (for latest versions use node:alpine):
-FROM node:alpine
+# Use the official Node.js 18 image based on Alpine Linux
+FROM node:18-alpine
 
-# Create an empty directory inside the container for project files and set it as the container's Current Directory:
+# Update and upgrade packages
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache bash
+
+# Set the working directory
 WORKDIR /app
 
-# Copy local package.json & package-lock.json into container's WORKDIR (last dot):
-COPY package*.json /app
+# Copy package.json and yarn.lock to the working directory
+COPY package*.json  ./
 
-# Install npm dependencies & devDependencies:
-# RUN npm i
+# Install dependencies
+RUN yarn install --frozen-lockfile
 
-# Copy project local files (first dot) into container's WORKDIR (last dot):
+# Copy the rest of the application
 COPY . .
 
-# Build the React app for production
-RUN npm run build
+# Build the application
+RUN yarn build
 
-# Expose the port that your React app will run on
+# Expose port 3000
 EXPOSE 3000
 
-# Start the React app when the container starts
+# Run the application
 CMD ["npm", "start"]
