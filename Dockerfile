@@ -7,8 +7,15 @@ WORKDIR /app
 # Copy the package.json and package-lock.json files
 COPY package*.json ./
 
-# Install the app dependencies
-RUN npm install --production
+
+RUN rm -rf node_modules
+
+RUN npm cache clean --force
+
+RUN npm config set registry https://registry.npmjs.org/
+
+RUN npm install
+
 
 # Copy the app source code
 COPY . .
