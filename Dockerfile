@@ -1,7 +1,8 @@
 # Use the official Node.js 18 image based on Alpine Linux
-FROM node:alpine
+FROM node:18-alpine3.15
 
-# Update and upgrade packages
+
+# # Update and upgrade packages
 # RUN apk update && \
 #     apk upgrade && \
 #     apk add --no-cache bash
@@ -10,12 +11,10 @@ FROM node:alpine
 WORKDIR /app
 
 
-COPY package*.json  ./
-
-RUN npm install -g typescript
+COPY package*.json  /app
 
 # Install dependencies
-RUN npm i
+RUN npm install
 
 # Copy the rest of the application
 COPY . /app
