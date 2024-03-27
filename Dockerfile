@@ -15,10 +15,10 @@ COPY package*.json  ./
 RUN npm install -g typescript
 
 # Install dependencies
-RUN npm install
+RUN npm i
 
 # Copy the rest of the application
-COPY . .
+COPY . /app
 
 
 # Expose port 3000
