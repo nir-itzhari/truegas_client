@@ -9,17 +9,15 @@ RUN apk update && \
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and yarn.lock to the working directory
+
 COPY package*.json  ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+RUN npm install
 
 # Copy the rest of the application
 COPY . .
 
-# Build the application
-RUN yarn build
 
 # Expose port 3000
 EXPOSE 3000
