@@ -4,6 +4,9 @@ services:
   client:
     container_name: client
     image: niritz/truegas-client
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/app
     ports:
