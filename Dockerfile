@@ -1,5 +1,5 @@
 # Use the official Node.js 18 image based on Alpine Linux
-FROM node:18-alpine3.15
+FROM node:alpine
 
 
 # Update and upgrade packages
