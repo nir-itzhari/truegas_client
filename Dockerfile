@@ -15,8 +15,6 @@ COPY package*.json  /app
 # Install dependencies
 RUN npm install
 
-RUN chgrp -R 0 /app && chmod -R g=u /app
-
 # Copy the rest of the application
 COPY . /app
 
