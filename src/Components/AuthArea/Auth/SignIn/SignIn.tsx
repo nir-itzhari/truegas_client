@@ -9,13 +9,15 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { Resolver, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { Tooltip } from '@mui/material';
 import * as Styled from './SignIn.styled'
 import notify from '../../../../Services/NotifyService';
 import authService from '../../../../Services/AuthServices';
 import CredentialsModel from '../../../../Models/CredentialsModel';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validateForms from '../../../../Utils/formsValidations';
 
 const backgroundImageUrl = 'https://source.unsplash.com/random?wallpapers';
 
@@ -27,7 +29,10 @@ const BackgroundImage = styled.div`
 `;
 
 const SignInSide = () => {
-    const { register, handleSubmit } = useForm<CredentialsModel>();
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm<CredentialsModel>({
+        resolver: yupResolver(validateForms.validateSigninSchema) as Resolver<CredentialsModel>,
+        mode: "onChange"
+    });
     const navigate = useNavigate();
     const backgroundImageRef = useRef<HTMLDivElement>(null);
 
@@ -113,6 +118,7 @@ const SignInSide = () => {
                                     {...register('email')}
                                     autoFocus
                                 />
+                                <span style={{ color: 'red', fontSize: 13, fontWeight: 500 }}>{errors.email?.message}</span>
                                 <Styled.inputWrapper
                                     margin="normal"
                                     required
@@ -124,6 +130,7 @@ const SignInSide = () => {
                                     aria-label='password'
                                     {...register('password')}
                                 />
+                                <span style={{ color: 'red', fontSize: 13, fontWeight: 500 }}>{errors.password?.message}</span>
                                 <Tooltip title="כניסה" placement="bottom">
                                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                                         כניסה

@@ -3,21 +3,21 @@ import * as Yup from "yup"
 
 class ValidateForms {
 
-    public validateSignupSchema = object({
+    public validateSigninSchema = object({
 
         email:
             string()
-                .required("Email is required")
-                .email("Please enter valid email")
+                .required("*שדה חובה")
+                .email("*נא להקליד אימייל חוקי")
                 .max(255)
                 .trim(),
 
         password: string()
-            .required("Password is required")
-            .matches(/^\S*$/, "White spaces are not allowed")
-            .matches(/\d+/, "Password must contain minimum one number")
-            .min(8, "Password should be minimum 8 characters")
-            .max(15, "Password should be maximum 30 characters")
+            .required("*שדה חובה")
+            .matches(/^\S*$/, "*רווחים אסורים")
+            .matches(/\d+/, "*סיסמה חייבת להכיל מספר")
+            .min(5, "*סיסמה חייבת להכיל מינימום 5 תווים")
+            .max(15, "*אורך סיסמה מקסימום 30 תווים")
             .trim()
     })
 
