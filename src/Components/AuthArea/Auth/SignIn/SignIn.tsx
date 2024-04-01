@@ -106,7 +106,7 @@ const SignInSide = () => {
                             <Typography component="h1" variant="h5">
                                 כניסה
                             </Typography>
-                            <Box component="form" noValidate onSubmit={handleSubmit(submit)} sx={{ mt: 1 }}>
+                            <Box component="form" noValidate onSubmit={handleSubmit(submit)} sx={{ mt: 1, width: '80%' }}>
                                 <Styled.inputWrapper
                                     margin="normal"
                                     required
@@ -118,7 +118,9 @@ const SignInSide = () => {
                                     {...register('email')}
                                     autoFocus
                                 />
-                                <span style={{ color: 'red', fontSize: 13, fontWeight: 500 }}>{errors.email?.message}</span>
+                                <Box sx={{ height: 20 }}> {/* Reserve space for error message */}
+                                    <span style={{ color: 'red', fontSize: 13, fontWeight: 500 }}>{errors.email?.message}</span>
+                                </Box>
                                 <Styled.inputWrapper
                                     margin="normal"
                                     required
@@ -130,7 +132,9 @@ const SignInSide = () => {
                                     aria-label='password'
                                     {...register('password')}
                                 />
-                                <span style={{ color: 'red', fontSize: 13, fontWeight: 500 }}>{errors.password?.message}</span>
+                                <Box sx={{ height: 20 }}> {/* Reserve space for error message */}
+                                    <span style={{ color: 'red', fontSize: 13, fontWeight: 500 }}>{errors.password?.message}</span>
+                                </Box>
                                 <Tooltip title="כניסה" placement="bottom">
                                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                                         כניסה
