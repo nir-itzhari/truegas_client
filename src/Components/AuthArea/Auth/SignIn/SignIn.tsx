@@ -73,7 +73,7 @@ const SignInSide = () => {
 
     return (
         <Styled.formGroupWrapper>
-            <Box component="main" sx={{ height: '91vh' }}>
+            <Box component="main" sx={{ height: '100%' }}>
                 <CssBaseline />
                 <Grid container>
                     <Grid

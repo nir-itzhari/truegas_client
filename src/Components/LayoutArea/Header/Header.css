@@ -12,11 +12,18 @@
 
 .css-11b3ww9-MuiPaper-root-MuiAppBar-root {
     background-color: black !important;
+    position: unset !important;
 }
 
 @media (max-width: 767px) {
     .css-11b3ww9-MuiPaper-root-MuiAppBar-root {
         position: fixed !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .css-hyum1k-MuiToolbar-root {
+        min-height: 48px !important;
     }
 }
 

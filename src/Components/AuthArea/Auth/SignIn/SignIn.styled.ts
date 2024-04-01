@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 
 export const formGroupWrapper = styled.div`
+    height: 100%;
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
     border-radius: 25px !important;
 }
