@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IoMdClose } from 'react-icons/io';
 import { Galleria } from 'primereact/galleria';
+import { Button } from '@mui/material';
 
 export const StyledModalBox = styled.div<({ $isMobile: boolean }) >`
   position: absolute;
@@ -39,9 +40,8 @@ top: 15px;
 right: 15px;
 `;
 
-export const CloseButton = styled(IoMdClose)`
-cursor: pointer;
-font-size: 30px;
+export const CloseButton = styled(Button)`
+
 `;
 
 export const ImageGalleria = styled(Galleria)`

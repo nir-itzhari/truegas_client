@@ -1,12 +1,13 @@
 import { FC, useState } from 'react';
 import Modal from '@mui/material/Modal';
-import { CircularProgress } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import { ImagesModel } from '../../../../Models/ImagesModel';
 import config from '../../../../Utils/Config';
 import { useMobile } from '../../../hooks/useMobileHook';
 import { IoIosImages } from 'react-icons/io';
 import * as styled from './AssignmentPopupMobile.style'
 import Badge from '@mui/material/Badge';
+import { IoMdClose } from 'react-icons/io';
 
 interface Props {
     images: ImagesModel[]
@@ -32,10 +33,10 @@ export const AssignmentImagesPopup: FC<Props> = ({ images }) => {
     return (
         <>
             <Badge color="warning" badgeContent={images.length} max={3}>
-                <IoIosImages onClick={handleOpen} fontSize={30} cursor='pointer' />
+                <IoIosImages onClick={handleOpen} fontSize={30} cursor='pointer' color={images.length === 0 && 'gray'}/>
             </Badge>
             <Modal
-                open={open}
+                open={open && images.length > 0}
                 onClose={handleClose}
                 keepMounted={true}
             >
@@ -43,7 +44,7 @@ export const AssignmentImagesPopup: FC<Props> = ({ images }) => {
                 <>
                     <styled.GalleryWrapper $isMobile={isMobile}>
                         <styled.CloseButtonWrapper>
-                            <styled.CloseButton cursor='pointer' fontSize={30} onClick={handleClose} />
+                            <styled.CloseButton variant="text" onClick={handleClose}><IoMdClose fontSize={30} /></styled.CloseButton>
                         </styled.CloseButtonWrapper>
                         <styled.ImageGalleryTitle>תמונות</styled.ImageGalleryTitle>
 
