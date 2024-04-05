@@ -69,22 +69,23 @@ class ValidateForms {
 
         title:
             string()
-                .required("Subject is required")
-                .min(6, "Subject should be minimum 6 characters")
-                .max(30, "Subject should be maximum 30 characters")
+                .required("*שדה חובה")
+                .min(2, "סוג עבודה חייב להכיל מינימום 2 אותיות")
+                .max(50, "סוג עבודה חייב להכיל מקסימום 50 אותיות")
                 .trim(),
 
         description:
             string()
-                .required("Message is required")
-                .max(255, "Message can contain 255 characters")
+                .required("*שדה חובה")
+                .min(2, "פירוט חייב להכיל מינימום 2 אותיות")
+                .max(255, "פירוט חייב להכיל מקסימום 255 אותיות")
                 .trim(),
 
         price:
             number()
-                .typeError('Price is required')
-                .min(0, 'Price can\'t be negative')
-                .max(10000, 'Price can\'t exceed 10000'),
+                .typeError('*שדה חובה - ערך חייב להיות מספרים בלבד')
+                .required('*שדה חובה')
+                .min(0, 'מחיר לא יכול להיות שלילי'),
     })
 
 

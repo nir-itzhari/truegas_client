@@ -27,7 +27,7 @@ export const backButtonText = styled.span`
 
 export const FormContainer = styled.div`
   direction: rtl;
-  padding: 40px;
+  padding: 30px;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
@@ -61,8 +61,8 @@ export const DateWrapper = styled.div`
   text-align: center;
   display: flex;
   flex-direction: row;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
 `
 export const DateLabel = styled.span`
@@ -90,11 +90,11 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: calc(100% - 20px); /* Adjusted width to accommodate padding */
-  padding: 10px; /* Reduced padding */
+  width: calc(100% - 20px); 
+  padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 8px; /* Reduced border-radius */
+  border-radius: 8px; 
   background-color: #ccc;
 
   #file-upload-button {
@@ -102,11 +102,11 @@ export const Input = styled.input`
   }
 `;
 export const TextAreaTitle = styled(TextField)`
-  width: calc(100% - 20px); /* Adjusted width to accommodate padding */
-  padding: 10px; /* Reduced padding */
+  width: calc(100% - 20px); 
+  padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 8px; /* Reduced border-radius */
+  border-radius: 8px; 
   resize: vertical;
 
   .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
@@ -137,11 +137,11 @@ export const TextAreaTitle = styled(TextField)`
 `;
 
 export const TextArea = styled(TextField)`
-  width: calc(100% - 20px); /* Adjusted width to accommodate padding */
+  width: calc(100% - 20px); 
   padding: 10px; /* Reduced padding */
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 8px; /* Reduced border-radius */
+  border-radius: 8px; 
   resize: vertical;
 
   .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
@@ -171,12 +171,34 @@ export const TextArea = styled(TextField)`
    
 `;
 
+
+export const priceText = styled(TextField)`
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  padding: 0;
+  position: relative;
+  display: block;
+  transform-origin: top left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 133%;
+  position: absolute;
+  left: 90% !important;
+  top: 0;
+  }
+`;
+
+
 export const Select = styled.select`
-  width: 100%; /* Adjusted width to accommodate padding */
-  padding: 20px; /* Reduced padding */
+  width: 100%;
+  padding: 20px; 
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 8px; /* Reduced border-radius */
+  border-radius: 8px;
   background-color: #fff;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 

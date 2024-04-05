@@ -79,7 +79,7 @@ const AssignmentsTableRow: React.FC<Props> = ({ row, isLoading }) => {
                   <AiOutlineCloseCircle style={{ fontSize: '30px', color: 'red' }} />
                 }</TableCell>
                 <TableCell align="right"><AssignmentImagesPopup images={row.images} /></TableCell>
-                <TableCell align="right"><div style={{ display: 'flex', alignItems: 'center' }}><TbCurrencyShekel />{row.price.toFixed(2)}</div></TableCell>
+                <TableCell align="right"><div style={{ display: 'flex', alignItems: 'center' }}><TbCurrencyShekel />{row.price === 0 ? 0 : row.price.toFixed(2)}</div></TableCell>
                 <TableCell align="right">
                   <styled.actionButtons>
                     <styled.buttonWrapper>

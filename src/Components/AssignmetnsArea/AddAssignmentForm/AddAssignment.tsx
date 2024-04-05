@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import * as styled from './addAssignment.styled';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { FormControl, FormHelperText, InputAdornment, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ClientModel } from '../../../Models/ClientModel';
 import AssignmentModel from '../../../Models/AssignmentModel';
 import CustomizedCheckbox from './isDoneCheckbox';
@@ -13,10 +13,10 @@ import UserModel from '../../../Models/UserModel';
 import { Nullable } from 'primereact/ts-helpers';
 import { IoMdArrowRoundForward } from "react-icons/io";
 import { useMobile } from '../../hooks/useMobileHook';
-import { InputNumber } from "primereact/inputnumber";
 import HeDatePicker from '../../SharedArea/HeDatePicker';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validateForms from '../../../Utils/formsValidations';
+import assignmentService from '../../../Services/AssignmentServices';
 
 
 
@@ -43,15 +43,13 @@ export const AddAssignment = (): JSX.Element => {
     const onSubmit: SubmitHandler<FieldValues> = async (data: any) => {
         try {
             setLoading(!loading)
-            // data.client_id = client;  // CHECK IF SELECT CHOSEN WITH Register Function FROM HOOK FORM !
             data.user_id = user._id
             data.date = chosenDate ?? new Date()
             data.isDone = chosenIsDone
-            data.price = price
-            // const addedAssignment = await assignmentService.addNewAssignment(data);
+            const addedAssignment = await assignmentService.addNewAssignment(data);
 
             navigate("..", { relative: 'path' })
-            console.log("Added assignment:", data);
+            // console.log("Added assignment:", data);
         } catch (error) {
             setLoading(!loading)
             console.error("Error adding assignment:", error);
@@ -97,30 +95,30 @@ export const AddAssignment = (): JSX.Element => {
                     </styled.FormGroup>
 
                     <styled.FormGroup>
-                        <styled.TextAreaTitle error={errors.title?.message ? true : false} dir={'rtl'} fullWidth={true} id="standard-basic" label="סוג עבודה" variant="standard" {...register('title')} required />
-
-                        <span className="ErrorMessage">{errors.title?.message}</span>
+                        <styled.TextAreaTitle
+                            helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.title?.message}</FormHelperText>}
+                            error={errors.title?.message ? true : false}
+                            dir={'rtl'}
+                            fullWidth
+                            label="סוג עבודה"
+                            variant="standard" {...register('title')} />
                     </styled.FormGroup>
 
                     <styled.FormGroupDescription>
                         <styled.TextArea
+                            helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.description?.message}</FormHelperText>}
                             error={errors.description?.message ? true : false}
-                            fullWidth={true}
-                            id="outlined-multiline-static"
+                            fullWidth
                             label="פירוט"
                             multiline
                             rows={4}
                             {...register('description')}
                         />
-
-                        <span className="ErrorMessage">{errors.description?.message}</span>
                     </styled.FormGroupDescription>
 
                     <styled.FormGroup>
                         <Select
-                            fullWidth={true}
-                            labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
+                            fullWidth
                             value={client}
                             {...register('client_id')}
                             onChange={handleClientChange}>
@@ -136,23 +134,22 @@ export const AddAssignment = (): JSX.Element => {
                         <CustomizedCheckbox setIsDone={setIsDone} />
                     </styled.FormGroupCheckBox>
                     <styled.FormGroupFile>
-                        <styled.Input type="file" name="imageFile" {...register('imageFile')} required />
+                        <styled.Input type="file" accept="image/gif, image/jpeg, image/png" name="imageFile" {...register('imageFile')} required/>
                     </styled.FormGroupFile>
 
                     <styled.FormGroup>
-                        <input type='number' {...register('price')} required />
-
-                        {/* <styled.TextAreaTitle
-                            type='number'
-                            dir={'rtl'}
-                            fullWidth={true}
-                            id="standard-basic"
-                            label="מחיר"
-                            variant="standard"
-                            {...register('price')} inputMode="numeric"
-                            min="0"
-                            step="0.01"
-                            required /> */}
+                        <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+                            <styled.priceText
+                                label='מחיר'
+                                error={errors.price?.message ? true : false}
+                                helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.price?.message}</FormHelperText>}
+                                InputProps={{
+                                    startAdornment: <InputAdornment position="start">₪</InputAdornment>,
+                                }}
+                                {...register('price')}
+                                variant="standard"
+                            />
+                        </FormControl>
                     </styled.FormGroup>
 
 

@@ -50,6 +50,8 @@ class AssignmentService {
         formData.append('description', assignments.description);
         formData.append('user_id', assignments.user_id);
         formData.append('client_id', assignments.client_id);
+        formData.append('isDone', assignments.isDone.toString());
+        formData.append('price', assignments.price.toString());
         formData.append('imageFile', assignments.imageFile.item(0));
 
         const response = await axios.post<AssignmentModel>(config.assignmentsUrl, formData);
