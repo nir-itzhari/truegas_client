@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import { Resolver, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { Tooltip } from '@mui/material';
+import { FormHelperText, Tooltip } from '@mui/material';
 import * as Styled from './SignIn.styled'
 import notify from '../../../../Services/NotifyService';
 import authService from '../../../../Services/AuthServices';
@@ -108,6 +108,8 @@ const SignInSide = () => {
                             </Typography>
                             <Box component="form" noValidate onSubmit={handleSubmit(submit)} sx={{ mt: 1, width: '80%' }}>
                                 <Styled.inputWrapper
+                                    helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.email?.message}</FormHelperText>}
+                                    error={errors.email?.message ? true : false}
                                     margin="normal"
                                     required
                                     fullWidth
@@ -118,12 +120,11 @@ const SignInSide = () => {
                                     {...register('email')}
                                     autoFocus
                                 />
-                                <Box sx={{ height: 20 }}> {/* Reserve space for error message */}
-                                    <span style={{ color: 'red', fontSize: 13, fontWeight: 500 }}>{errors.email?.message}</span>
-                                </Box>
+
                                 <Styled.inputWrapper
                                     margin="normal"
-                                    required
+                                    helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.password?.message}</FormHelperText>}
+                                    error={errors.password?.message ? true : false}
                                     fullWidth
                                     name="password"
                                     label="סיסמה"
@@ -132,9 +133,7 @@ const SignInSide = () => {
                                     aria-label='password'
                                     {...register('password')}
                                 />
-                                <Box sx={{ height: 20 }}> {/* Reserve space for error message */}
-                                    <span style={{ color: 'red', fontSize: 13, fontWeight: 500 }}>{errors.password?.message}</span>
-                                </Box>
+
                                 <Tooltip title="כניסה" placement="bottom">
                                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                                         כניסה
