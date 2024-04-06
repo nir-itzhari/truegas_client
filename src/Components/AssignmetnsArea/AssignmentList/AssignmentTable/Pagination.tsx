@@ -5,9 +5,10 @@ import { updateInputFirst, updateInputRows } from "../../../../Redux/SearchInput
 
 interface Props {
     total: number;
+    onPageChange: (page: number, rows: number) => void
 }
 
-const TablePagination: React.FC<Props> = ({ total }: Props) => {
+const TablePagination: React.FC<Props> = ({ total, onPageChange }: Props) => {
     const [first, setFirst] = useState<number>(store.getState().searchInputState.first);
     const [rows, setRows] = useState<number>(store.getState().searchInputState.rows);
 
@@ -16,6 +17,7 @@ const TablePagination: React.FC<Props> = ({ total }: Props) => {
             const { first, rows } = store.getState().searchInputState;
             setFirst(first);
             setRows(rows);
+            onPageChange(first, rows)
         });
 
         return () => unsubscribe();

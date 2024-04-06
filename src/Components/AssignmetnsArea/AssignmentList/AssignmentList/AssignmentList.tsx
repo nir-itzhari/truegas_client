@@ -15,9 +15,14 @@ import FilterBar from '../../FilterBar/FilterBar';
 const AssignmentList: FC = (): JSX.Element => {
   const [assignmentList, setAssignmentList] = useState<AssignmentModel[]>([]);
   const [totalAssignments, setTotalAssignments] = useState<number>(0);
-
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const isMobile = useMobile();
-
+  
+  const handlePageChange = (page: number, rows: number) => {
+    setCurrentPage(page);
+    setItemsPerPage(rows)
+  };
   const fetchAssignments = async () => {
     try {
       const user_id = store.getState().authState.user._id;
@@ -40,10 +45,7 @@ const AssignmentList: FC = (): JSX.Element => {
     });
 
     return () => unSubscribeMe();
-  }, [assignmentList]);
-
-
-
+  }, [currentPage, itemsPerPage]);
 
   return (
     <>
@@ -59,7 +61,8 @@ const AssignmentList: FC = (): JSX.Element => {
             <div style={{ marginTop: 10 }}>
               <FilterBar />
               <AssignmentsTable assignmentList={assignmentList} />
-              <TablePagination total={totalAssignments} />
+              <TablePagination total={totalAssignments}
+                onPageChange={handlePageChange} />
             </div>
             <div>
               <Divider align="center" type="solid">
