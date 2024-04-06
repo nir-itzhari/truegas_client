@@ -1,4 +1,6 @@
 import * as styled from './AddClientForm.styled';
+import * as Styled from '../../AssignmetnsArea/AddAssignmentForm/addAssignment.styled';
+
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { israel_cities } from '../../../Utils/data';
@@ -50,7 +52,7 @@ export const AddClientFrom = () => {
                 <styled.FormTitle>הוספת לקוח</styled.FormTitle>
                 <styled.Form onSubmit={handleSubmit(onSubmit)}>
                     <styled.FormGroup>
-                        <TextField dir={'rtl'} fullWidth={true} id="standard-basic" label="שם מלא" variant="standard" {...register('fullName')} autoComplete='off' required />
+                        <Styled.TextArea dir={'rtl'} fullWidth={true} id="standard-basic" label="שם מלא" variant="standard" {...register('fullName')} autoComplete='off' required />
                     </styled.FormGroup>
                     <styled.FormGroup>
                         <Autocomplete {...defaultProps}
@@ -66,19 +68,19 @@ export const AddClientFrom = () => {
                         />
                     </styled.FormGroup>
                     <styled.FormGroup>
-                        <TextField dir={'rtl'} fullWidth={true} id="standard-basic" label="רחוב" variant="standard" {...register('street')} autoComplete='off' required />
+                        <Styled.TextArea dir={'rtl'} fullWidth={true} id="standard-basic" label="רחוב" variant="standard" {...register('street')} autoComplete='off' required />
                     </styled.FormGroup>
                     <styled.FormGroup>
-                        <TextField dir={'rtl'} fullWidth={true} id="standard-basic" label="מספר בית" variant="standard" {...register('buildingNumber')} autoComplete='off' required />
+                        <Styled.TextArea dir={'rtl'} fullWidth={true} id="standard-basic" label="מספר בית" variant="standard" {...register('buildingNumber')} autoComplete='off' required />
                     </styled.FormGroup>
                     <styled.FormGroup>
-                        <TextField dir={'rtl'} fullWidth={true} id="standard-basic" label="מספר דירה" variant="standard" {...register('apartmentNumber')} autoComplete='off' required />
+                        <Styled.TextArea dir={'rtl'} fullWidth={true} id="standard-basic" label="מספר דירה" variant="standard" {...register('apartmentNumber')} autoComplete='off' required />
                     </styled.FormGroup>
                     <styled.FormGroup>
-                        <TextField dir={'rtl'} fullWidth={true} id="standard-basic" label="קומה" variant="standard" {...register('floor')} autoComplete='off' required />
+                        <Styled.TextArea dir={'rtl'} fullWidth={true} id="standard-basic" label="קומה" variant="standard" {...register('floor')} autoComplete='off' required />
                     </styled.FormGroup>
                     <styled.FormGroup>
-                        <TextField dir={'rtl'} fullWidth={true} id="standard-basic" label="נייד" variant="standard" {...register('phoneNumber')} autoComplete='off' required />
+                        <Styled.TextArea dir={'rtl'} fullWidth={true} id="standard-basic" label="נייד" variant="standard" {...register('phoneNumber')} autoComplete='off' required />
                     </styled.FormGroup>
                     <div style={{ width: '100%', textAlign: 'center' }}>
                         <styled.SubmitButton dir='ltr' type="submit" variant="contained" endIcon={<IoMdSend />}>הוסף</styled.SubmitButton>

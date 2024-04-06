@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import Autocomplete from '@mui/material/Autocomplete';
 import styled from "styled-components";
 
 export const FormWrapper = styled.div`
@@ -16,6 +17,23 @@ export const FormContainer = styled.div`
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 `;
+
+export const CitySelect = styled(Autocomplete)`
+.css-p1olib-MuiAutocomplete-endAdornment {
+  left: 0 !important;
+}
+
+.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+  right: 0 !important;
+  transform-origin: top right !important;
+
+}
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLable-root {
+  ransform-origin: top right !important;
+  right: 0 !important;
+}
+`
 
 export const FormTitle = styled.h2`
   font-size: 24px;
