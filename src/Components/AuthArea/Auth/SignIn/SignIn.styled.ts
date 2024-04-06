@@ -21,7 +21,9 @@ export const inputWrapper = styled(TextField)`
     right: 30px !important;
     transform-origin: top right !important;
 }
-
+.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+    border-radius: 25px !important;
+}
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
     direction: rtl;
 }

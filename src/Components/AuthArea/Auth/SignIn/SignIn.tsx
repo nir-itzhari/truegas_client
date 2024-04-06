@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,13 +11,14 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import { Resolver, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { FormHelperText, Tooltip } from '@mui/material';
+import { FormHelperText, IconButton, InputAdornment, Tooltip } from '@mui/material';
 import * as Styled from './SignIn.styled'
 import notify from '../../../../Services/NotifyService';
 import authService from '../../../../Services/AuthServices';
 import CredentialsModel from '../../../../Models/CredentialsModel';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validateForms from '../../../../Utils/formsValidations';
+import { VisibilityOff, Visibility } from '@mui/icons-material';
 
 const backgroundImageUrl = 'https://source.unsplash.com/random?wallpapers';
 
@@ -29,6 +30,10 @@ const BackgroundImage = styled.div`
 `;
 
 const SignInSide = () => {
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+
     const { register, handleSubmit, formState: { errors, isValid } } = useForm<CredentialsModel>({
         resolver: yupResolver(validateForms.validateSigninSchema) as Resolver<CredentialsModel>,
         mode: "onChange"
@@ -128,9 +133,19 @@ const SignInSide = () => {
                                     fullWidth
                                     name="password"
                                     label="סיסמה"
-                                    type="password"
-                                    id="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     aria-label='password'
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    onClick={handleClickShowPassword}
+                                                >
+                                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}
                                     {...register('password')}
                                 />
 
