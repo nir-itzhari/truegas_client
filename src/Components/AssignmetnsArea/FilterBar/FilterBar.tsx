@@ -1,7 +1,7 @@
 import * as styled from './FilterBar.styled'
 import { Button } from 'primereact/button';
 import HeDateRangePicker from '../../SharedArea/HeDateRangePicker ';
-import { useMobile } from '../../hooks/useMobileHook';
+import { useMobile } from '../../../Hooks/useMobileHook';
 import { TbFilterSearch } from "react-icons/tb";
 import { AddAssignmentButton } from '../AddAssignmentButton/AddAssignmentButton';
 import { Chip, Divider } from '@mui/material';

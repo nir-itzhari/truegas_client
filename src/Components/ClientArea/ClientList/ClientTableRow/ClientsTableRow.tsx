@@ -15,7 +15,7 @@ import { FiEdit } from 'react-icons/fi';
 import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import assignmentService from '../../../../Services/AssignmentServices';
-import { useMobile } from '../../../hooks/useMobileHook';
+import { useMobile } from '../../../../Hooks/useMobileHook';
 import { AssignmentImagesPopup } from '../../../AssignmetnsArea/AssignmentList/AssignmnetPopup/AssignmentImagesPopup';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";

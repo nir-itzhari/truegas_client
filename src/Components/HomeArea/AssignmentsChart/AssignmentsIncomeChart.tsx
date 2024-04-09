@@ -3,7 +3,7 @@ import { Card } from 'primereact/card';
 import config from '../../../Utils/Config';
 import store from '../../../Redux/Store';
 import axios from 'axios';
-import { useMobile } from '../../hooks/useMobileHook';
+import { useMobile } from '../../../Hooks/useMobileHook';
 import { Fragment, useEffect, useState } from 'react';
 
 

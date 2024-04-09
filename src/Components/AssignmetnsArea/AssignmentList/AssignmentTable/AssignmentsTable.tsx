@@ -9,7 +9,7 @@ import TableBody from '@mui/material/TableBody';
 import AssignmentModel from '../../../../Models/AssignmentModel';
 import AssignmentsTableRow from '../AssignmentTableRow/AssignmentsTableRow';
 import { CircularProgress } from '@mui/material';
-import { useMobile } from '../../../hooks/useMobileHook';
+import { useMobile } from '../../../../Hooks/useMobileHook';
 import ExportCSVButton from '../ExportToXLSX/ExportToXLSXButton';
 
 interface Props {

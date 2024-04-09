@@ -6,7 +6,7 @@ import { AssignmentImagesPopup } from './AssignmentImagesPopup';
 import AssignmentModel from '../../../../Models/AssignmentModel';
 import { Card } from '@mui/material';
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
-import { useMobile } from '../../../hooks/useMobileHook';
+import { useMobile } from '../../../../Hooks/useMobileHook';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { ClientModel } from '../../../../Models/ClientModel';
 

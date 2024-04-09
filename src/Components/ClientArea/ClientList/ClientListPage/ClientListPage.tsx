@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react';
 import store from '../../../../Redux/Store';
 import TablePagination from '../ClientTable/Pagination';
-import { useMobile } from '../../../hooks/useMobileHook';
+import { useMobile } from '../../../../Hooks/useMobileHook';
 import { ScrollTop } from 'primereact/scrolltop';
 import ClientsTable from '../ClientTable/ClientTable';
 import * as styled from './ClientListPage.styled';

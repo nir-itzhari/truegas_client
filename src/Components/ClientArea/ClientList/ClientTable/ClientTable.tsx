@@ -8,7 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import ClientsTableRow from '../ClientTableRow/ClientsTableRow';
 import { CircularProgress } from '@mui/material';
-import { useMobile } from '../../../hooks/useMobileHook';
+import { useMobile } from '../../../../Hooks/useMobileHook';
 import { ClientModel } from '../../../../Models/ClientModel';
 
 interface Props {

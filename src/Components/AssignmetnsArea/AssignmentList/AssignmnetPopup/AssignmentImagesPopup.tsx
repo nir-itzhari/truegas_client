@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import { Button, CircularProgress } from '@mui/material';
 import { ImagesModel } from '../../../../Models/ImagesModel';
 import config from '../../../../Utils/Config';
-import { useMobile } from '../../../hooks/useMobileHook';
+import { useMobile } from '../../../../Hooks/useMobileHook';
 import { IoIosImages } from 'react-icons/io';
 import * as styled from './AssignmentPopupMobile.style'
 import Badge from '@mui/material/Badge';

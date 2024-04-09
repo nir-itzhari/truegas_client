@@ -1,6 +1,6 @@
 import * as styled from './ImageTitle.styled'
 import imgDashboardSVG from '../../../assets/Dashboard.svg'
-import { useMobile } from '../../hooks/useMobileHook';
+import { useMobile } from '../../../Hooks/useMobileHook';
 
 function ImageTitle(): JSX.Element {
     const isMobile = useMobile()

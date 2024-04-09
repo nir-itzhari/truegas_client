@@ -5,7 +5,7 @@ import assignmentService from '../../../../Services/AssignmentServices';
 import { AssignmentAmountCard } from '../AssignmentAmountCard/AssignmentAmountCard';
 import TablePagination from '../AssignmentTable/Pagination';
 import { AddAssignmentButton } from '../../AddAssignmentButton/AddAssignmentButton';
-import { useMobile } from '../../../hooks/useMobileHook';
+import { useMobile } from '../../../../Hooks/useMobileHook';
 import { Divider } from "primereact/divider";
 import { ScrollTop } from 'primereact/scrolltop';
 import AssignmentsTable from '../AssignmentTable/AssignmentsTable';

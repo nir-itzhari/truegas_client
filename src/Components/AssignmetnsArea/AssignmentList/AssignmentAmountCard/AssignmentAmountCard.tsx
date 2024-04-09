@@ -4,7 +4,7 @@ import * as styled from './AssignmentAmountCard.styled'
 import store from '../../../../Redux/Store';
 import assignmentService from '../../../../Services/AssignmentServices';
 import { AmountCardModel } from '../../../../Models/AmountCardModel';
-import { useMobile } from './../../../hooks/useMobileHook';
+import { useMobile } from '../../../../Hooks/useMobileHook';
 
 export const AssignmentAmountCard = () => {
     const [amountCard, setAmountCard] = useState<AmountCardModel>()

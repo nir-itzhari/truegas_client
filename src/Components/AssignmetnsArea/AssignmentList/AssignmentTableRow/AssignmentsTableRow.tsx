@@ -17,7 +17,7 @@ import { FiEdit } from 'react-icons/fi';
 import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import assignmentService from '../../../../Services/AssignmentServices';
-import { useMobile } from '../../../hooks/useMobileHook';
+import { useMobile } from '../../../../Hooks/useMobileHook';
 import AssignmentPopupMobile from '../AssignmnetPopup/AssignmentPopupMobile';
 import { AssignmentImagesPopup } from '../AssignmnetPopup/AssignmentImagesPopup';
 import { TbCurrencyShekel } from "react-icons/tb";
