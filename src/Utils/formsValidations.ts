@@ -24,44 +24,48 @@ class ValidateForms {
     public validateRegisterSchema = object({
         firstName:
             string()
-                .required("First Name is required")
-                .matches(/^[A-Za-z _]*$/, "Numbers and Special characters are not allowed")
-                .min(2, "First Name should be minimum 2 characters")
-                .max(30, "First Name should be maximum 30 characters")
+                .required("*שדה חובה")
+                .matches(/^[\u0590-\u05FF A-Za-z]*$/, "*לא ניתן להכניס מספרים וסימנים מיוחדים")
+                .min(2, "*שם פרטי חייב להכיל לפחות 2 תווים")
+                .max(30, "*שם פרטי יכול להכיל עד 30 תווים")
                 .trim(),
 
         lastName:
             string()
-                .required("Last Name is required")
-                .matches(/^[A-Za-z _]*$/, "Numbers and Special characters are not allowed")
-                .min(2, "Last Name should be minimum 2 characters")
-                .max(30, "Last Name should be maximum 30 characters")
+                .required("*שדה חובה")
+                .matches(/^[\u0590-\u05FF A-Za-z]*$/, "*לא ניתן להכניס מספרים וסימנים מיוחדים")
+                .min(2, "*שם משפחה חייב להכיל לפחות 2 תווים")
+                .max(30, "*שם משפחה יכול להכיל עד 30 תווים")
                 .trim(),
-
-        username: string()
-            .required("Username is required")
-            .matches(/^[A-Za-z0-9][Aa-z-Z0-9 _]*$/, "Special characters are not allowed")
-            .min(6, "Username should be minimum 6 characters")
-            .max(30, "Username should be maximum 30 characters")
-            .trim(),
-
+        email:
+            string()
+                .required("*שדה חובה")
+                .email("*נא להקליד אימייל חוקי")
+                .max(255)
+                .trim(),
+        // username: string()
+        //     .required("*שדה חובה")
+        //     .matches(/^[A-Za-z0-9][Aa-z-Z0-9 _]*$/, "Special characters are not allowed")
+        //     .min(6, "Username should be minimum 6 characters")
+        //     .max(30, "Username should be maximum 30 characters")
+        //     .trim(),
         password: string()
-            .required("Password is required")
-            .matches(/^\S*$/, "White spaces are not allowed")
-            .matches(/\d+/, "Password must contain minimum one number")
-            .min(8, "Password should be minimum 8 characters")
-            .max(15, "Password should be maximum 30 characters")
+            .required("*שדה חובה")
+            .matches(/^\S*$/, "*ללא רווחים")
+            .matches(/\d+/, "*סיסמה חייבת להכיל לפחות סיפרה אחת")
+            .min(6, "*סיסמה חייבת להכיל לפחות 6 תווים")
+            .max(15, "*סיסמה יכולה להכיל מקסימום 15 תווים")
             .trim(),
 
         confirmPassword:
             string()
-                .required("Confirm Password is required")
-                .oneOf([Yup.ref('password')], 'Password must be same!')
-                .matches(/^\S*$/, "White spaces are not allowed")
-                .matches(/\d+/, "Password must contain minimum one number")
-                .min(8, "Password should be minimum 8 characters")
-                .max(15, "Password should be maximum 30 characters")
-                .trim()
+                .required("*שדה חובה")
+                .oneOf([Yup.ref('password')], 'סיסמאות חייבות להיות זהות')
+                .matches(/^\S*$/, "*ללא רווחים")
+                .matches(/\d+/, "*סיסמה חייבת להכיל לפחות סיפרה אחת")
+                .min(6, "*סיסמה חייבת להכיל לפחות 6 תווים")
+                .max(15, "*סיסמה יכולה להכיל מקסימום 15 תווים")
+                .trim(),
     })
 
 

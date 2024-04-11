@@ -8,10 +8,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { Resolver, useForm } from 'react-hook-form';
 import * as styled from './../SignIn/SignIn.styled'
 import UserModel from '../../../../Models/UserModel';
-import { Tooltip } from '@mui/material';
+import { FormHelperText, Tooltip } from '@mui/material';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validateForms from '../../../../Utils/formsValidations';
 
 
 
@@ -29,7 +31,10 @@ function Copyright(props: any) {
 }
 
 export default function SignUp() {
-    const { register, handleSubmit } = useForm<UserModel>()
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm<UserModel>({
+        resolver: yupResolver(validateForms.validateRegisterSchema),
+        mode: "onChange"
+    });
     const navigate = useNavigate()
 
 
@@ -59,9 +64,9 @@ export default function SignUp() {
                         <Grid container spacing={2} dir='rtl'>
                             <Grid item xs={12} sm={6} >
                                 <styled.InputWrapper
-                                    autoComplete="given-name"
+                                    helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.firstName?.message}</FormHelperText>}
+                                    error={errors.firstName?.message ? true : false}
                                     name="firstName"
-                                    required
                                     fullWidth
                                     id="firstName"
                                     label="שם פרטי"
@@ -72,7 +77,8 @@ export default function SignUp() {
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <styled.InputWrapper
-                                    required
+                                    helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.lastName?.message}</FormHelperText>}
+                                    error={errors.lastName?.message ? true : false}
                                     fullWidth
                                     id="lastName"
                                     label="שם משפחה"
@@ -83,7 +89,8 @@ export default function SignUp() {
                             </Grid>
                             <Grid item xs={12}>
                                 <styled.InputWrapper
-                                    required
+                                    helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.email?.message}</FormHelperText>}
+                                    error={errors.email?.message ? true : false}
                                     fullWidth
                                     id="email"
                                     label="אימייל"
@@ -94,7 +101,8 @@ export default function SignUp() {
                             </Grid>
                             <Grid item xs={12}>
                                 <styled.InputWrapper
-                                    required
+                                    helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.password?.message}</FormHelperText>}
+                                    error={errors.password?.message ? true : false}
                                     fullWidth
                                     name="password"
                                     label="סיסמה"
@@ -104,9 +112,22 @@ export default function SignUp() {
                                     {...register('password')}
                                 />
                             </Grid>
+                            <Grid item xs={12}>
+                                <styled.InputWrapper
+                                    helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.confirmPassword?.message}</FormHelperText>}
+                                    error={errors.confirmPassword?.message ? true : false}
+                                    fullWidth
+                                    name="confirmPassword"
+                                    label="אימות סיסמה"
+                                    type="password"
+                                    id="confirmPassword"
+                                    aria-label='confirmPassword'
+                                    {...register('confirmPassword')}
+                                />
+                            </Grid>
                         </Grid>
                         <Tooltip title="שליחה" placement="bottom">
-                            <Button type='submit' fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                            <Button type='submit' fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={!isValid}>
                                 שליחה
                             </Button>
                         </Tooltip>

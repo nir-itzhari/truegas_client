@@ -33,8 +33,8 @@ const SignInSide = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-    const { register, handleSubmit, formState: { errors } } = useForm<CredentialsModel>({
-        resolver: yupResolver(validateForms.validateSigninSchema) as Resolver<CredentialsModel>,
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm<CredentialsModel>({
+        resolver: yupResolver(validateForms.validateSigninSchema),
         mode: "onChange"
     });
     const navigate = useNavigate();
@@ -149,7 +149,7 @@ const SignInSide = () => {
                                 />
 
                                 <Tooltip title="כניסה" placement="bottom">
-                                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={!isValid}>
                                         כניסה
                                     </Button>
                                 </Tooltip>
