@@ -41,8 +41,8 @@ export const SearchFilter = ({ searchResults }: Props) => {
 
     useEffect(() => {
         onSubmit();
-    }, [fullName, city, street, onSubmit]);
-    
+        // eslint-disable-next-line
+    }, [fullName, city, street]);
 
     return (
         <div>

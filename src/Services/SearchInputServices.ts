@@ -21,7 +21,7 @@ class SearchInputService {
             const street = store.getState().searchInputState.street || '0'
             const first = store.getState().searchInputState.first
             const rows = store.getState().searchInputState.rows
-            const response = await axios.get<ClientModel[]>(`${config.clientsSearchUrl}/${userId}/${fullName}/${city}/${street}/${first}/${rows}`);
+            const response = await axios.get<ClientModel[]>(`${config.clientsSearchUrl}${userId}/${fullName}/${city}/${street}/${first}/${rows}`);
             const clients = response.data;
             store.dispatch(fetchClientsAction(clients))
         }
