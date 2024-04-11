@@ -38,7 +38,7 @@ export default function SignUp() {
     };
 
     return (
-        <styled.formGroupWrapper>
+        <styled.FormGroupWrapper>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -58,7 +58,7 @@ export default function SignUp() {
                     <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
                         <Grid container spacing={2} dir='rtl'>
                             <Grid item xs={12} sm={6} >
-                                <styled.inputWrapper
+                                <styled.InputWrapper
                                     autoComplete="given-name"
                                     name="firstName"
                                     required
@@ -71,7 +71,7 @@ export default function SignUp() {
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <styled.inputWrapper
+                                <styled.InputWrapper
                                     required
                                     fullWidth
                                     id="lastName"
@@ -82,7 +82,7 @@ export default function SignUp() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <styled.inputWrapper
+                                <styled.InputWrapper
                                     required
                                     fullWidth
                                     id="email"
@@ -93,7 +93,7 @@ export default function SignUp() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <styled.inputWrapper
+                                <styled.InputWrapper
                                     required
                                     fullWidth
                                     name="password"
@@ -121,6 +121,6 @@ export default function SignUp() {
                 </Box>
                 <Copyright sx={{ mt: 5 }} />
             </Container>
-        </styled.formGroupWrapper>
+        </styled.FormGroupWrapper>
     );
 }

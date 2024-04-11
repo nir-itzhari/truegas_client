@@ -36,7 +36,7 @@ export default function ForgotPassword() {
     };
 
     return (
-        <styled.formGroupWrapper>
+        <styled.FormGroupWrapper>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -60,7 +60,7 @@ export default function ForgotPassword() {
                     <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
                         <Grid container spacing={2} dir='rtl'>
                             <Grid item xs={12}>
-                                <styled.inputWrapper
+                                <styled.InputWrapper
                                     required
                                     fullWidth
                                     id="email"
@@ -90,6 +90,6 @@ export default function ForgotPassword() {
                 </Box>
                 <Copyright sx={{ mt: 5 }} />
             </Container>
-        </styled.formGroupWrapper>
+        </styled.FormGroupWrapper>
     );
 }

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { IoMdClose } from 'react-icons/io';
 import { Galleria } from 'primereact/galleria';
 import { Button } from '@mui/material';
 

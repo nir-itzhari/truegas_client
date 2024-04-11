@@ -21,7 +21,7 @@ const TablePagination: React.FC<Props> = ({ total, onPageChange }: Props) => {
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [onPageChange]);
 
     const onPageChangeInternal = (event: PaginatorPageChangeEvent) => {
         store.dispatch(updateInputFirst(event.first));

@@ -1,4 +1,3 @@
-import router from "../Routing/Routing";
 import * as styled from "./PageNotFound.styled";
 
 function PageNotFound(): JSX.Element {

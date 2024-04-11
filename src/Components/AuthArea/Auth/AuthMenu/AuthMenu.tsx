@@ -1,27 +1,13 @@
 import "./AuthMenu.css";
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import store from "../../../../Redux/Store";
 import UserModel from "../../../../Models/UserModel";
 import { Tooltip as MaterialToolTip } from "@mui/material";
-import authService from "../../../../Services/AuthServices";
-import notify from "../../../../Services/NotifyService";
 import * as styled from './AuthMenu.styled'
-
-interface AuthMenuProps {
-    handleCloseNavBar: () => void
-}
-
 
 function AuthMenu(): JSX.Element {
     const [user, setUser] = useState<UserModel>(null);
-    const navigate = useNavigate()
-
-    const handleLogOut = () => {
-        authService.logout();
-        notify.success("Logout Success");
-        navigate("/home", { replace: true });
-    }
 
 
     useEffect(() => {

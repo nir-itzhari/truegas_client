@@ -28,23 +28,25 @@ export const UpdateClientFrom = () => {
     };
 
 
-    const fetchData = async () => {
-        try {
-            const clientToUpdate = await clientService.getOneClient(clientId)
-            if (clientToUpdate) {
-                Object.entries(clientToUpdate).map(([key, value]) => (
-                    setValue(`${key}`, value)
-                ))
-                setCurrentCityValue(clientToUpdate.city)
-            }
-        } catch (error: any) {
-            console.log(error.message)
-        }
-    }
-
     useEffect(() => {
-        fetchData()
-    }, [clientId])
+        const fetchData = async () => {
+            try {
+                const clientToUpdate = await clientService.getOneClient(clientId)
+                if (clientToUpdate) {
+                    Object.entries(clientToUpdate).map(([key, value]) => (
+                        setValue(`${key}`, value)
+                    ))
+                    setCurrentCityValue(clientToUpdate.city)
+                }
+            } catch (error: any) {
+                console.log(error.message)
+            }
+        };
+
+        fetchData();
+    }, [clientId, setValue]);
+
+
 
 
     const defaultProps = {

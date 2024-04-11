@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import styled from "styled-components";
 
 
-export const formGroupWrapper = styled.div`
+export const FormGroupWrapper = styled.div`
     height: 100%;
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
     border-radius: 25px !important;
@@ -15,7 +15,7 @@ export const formGroupWrapper = styled.div`
 
 
 
-export const inputWrapper = styled(TextField)`
+export const InputWrapper = styled(TextField)`
 .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
     direction: rtl !important;
     right: 30px !important;

@@ -31,8 +31,8 @@ class ClientService {
         const secondParam = '' || '2'
         const thirdParam = '' || '3'
         const forthParam = '' || '4'
-        const response = await axios.get<string[]>(config.clientsSearchUrl + `${fullName}` + `/${secondParam}` + `/${thirdParam}` + `/${forthParam}`);
-        let clients: string[] = response.data;
+        const response = await axios.get<string[]>(`${config.clientsSearchUrl}/${fullName}/${secondParam}/${thirdParam}/${forthParam}`);
+        let clients: string[] = response.data;     
         // }
         return clients;
     }

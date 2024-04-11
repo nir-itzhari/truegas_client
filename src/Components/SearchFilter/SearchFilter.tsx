@@ -41,7 +41,8 @@ export const SearchFilter = ({ searchResults }: Props) => {
 
     useEffect(() => {
         onSubmit();
-    }, [fullName, city, street]);
+    }, [fullName, city, street, onSubmit]);
+    
 
     return (
         <div>

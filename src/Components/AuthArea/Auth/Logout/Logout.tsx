@@ -1,4 +1,3 @@
-import * as styled from './Logout.styled'
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../../Services/AuthServices";
@@ -15,7 +14,7 @@ function Logout(): JSX.Element {
             navigate("/signin", { replace: true });
             
         }
-    }, [])
+    }, [navigate])
 
     return null
 }

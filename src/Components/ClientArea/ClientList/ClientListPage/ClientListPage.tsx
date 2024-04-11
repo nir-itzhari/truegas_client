@@ -5,7 +5,6 @@ import { useMobile } from '../../../../Hooks/useMobileHook';
 import { ScrollTop } from 'primereact/scrolltop';
 import ClientsTable from '../ClientTable/ClientTable';
 import * as styled from './ClientListPage.styled';
-import { PaginatorPageChangeEvent } from 'primereact/paginator';
 import { AddClientButton } from '../../AddClientButton/AddClientButton';
 import { ClientModel } from '../../../../Models/ClientModel';
 import { SearchFilter } from '../../../SearchFilter/SearchFilter';

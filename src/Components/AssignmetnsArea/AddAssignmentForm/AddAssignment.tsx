@@ -23,7 +23,7 @@ import assignmentService from '../../../Services/AssignmentServices';
 
 export const AddAssignment = (): JSX.Element => {
     const data = useLoaderData() as ClientModel[]
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<AssignmentModel>({
+    const { register, handleSubmit, formState: { errors } } = useForm<AssignmentModel>({
         resolver: yupResolver(validateForms.addAssignmentFormSchema), mode: "onChange"
     });
     const [clients] = useState<ClientModel[]>(data);
@@ -31,7 +31,6 @@ export const AddAssignment = (): JSX.Element => {
     const [client, setClient] = useState<string>('בחר לקוח')
     const [chosenDate, setChosenDate] = useState<Nullable<Dayjs>>()
     const [chosenIsDone, setChosenIsDone] = useState<Nullable<boolean>>()
-    const [price, setPrice] = useState<Nullable<number>>(0)
 
     const [user, setUser] = useState<UserModel>(null);
     const navigate = useNavigate()
@@ -46,7 +45,7 @@ export const AddAssignment = (): JSX.Element => {
             data.user_id = user._id
             data.date = chosenDate ?? new Date()
             data.isDone = chosenIsDone
-            const addedAssignment = await assignmentService.addNewAssignment(data);
+            await assignmentService.addNewAssignment(data);
 
             navigate("..", { relative: 'path' })
             // console.log("Added assignment:", data);

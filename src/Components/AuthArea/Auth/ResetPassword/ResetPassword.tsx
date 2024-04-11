@@ -39,7 +39,7 @@ export const ResetPassword = () => {
     };
 
     return (
-        <styled.formGroupWrapper>
+        <styled.FormGroupWrapper>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -60,7 +60,7 @@ export const ResetPassword = () => {
                         <Grid container spacing={5} dir='rtl'>
                             <Grid item xs={12} sm={12} >
                                 <Grid item xs={12}>
-                                    <styled.inputWrapper
+                                    <styled.InputWrapper
                                         required
                                         fullWidth
                                         name="password"
@@ -77,7 +77,7 @@ export const ResetPassword = () => {
                                     <span className="ErrorMessage" style={{ color: 'red' }}>{errors.password?.message}</span>
                                 </Grid>
                                 <Grid item xs={12} sm={12} marginTop={1}>
-                                    <styled.inputWrapper
+                                    <styled.InputWrapper
                                         required
                                         fullWidth
                                         name="confirmPassword"
@@ -105,6 +105,6 @@ export const ResetPassword = () => {
                     </Box>
                 </Box>
             </Container>
-        </styled.formGroupWrapper>
+        </styled.FormGroupWrapper>
     );
 };

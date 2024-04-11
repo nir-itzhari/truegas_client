@@ -9,7 +9,7 @@ import clientService from '../../../Services/ClientService';
 import Autocomplete from '@mui/material/Autocomplete';
 import { IoMdSend } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
-import { useMobile } from '../../../Hooks/useMobileHook';
+// import { useMobile } from '../../../Hooks/useMobileHook';
 import notify from '../../../Services/NotifyService';
 
 
@@ -19,7 +19,7 @@ export const AddClientFrom = () => {
     const [cities] = useState<string[]>(israel_cities)
     const [newCityValue, setNewCityValue] = useState<string>(null)
     const navigate = useNavigate()
-    const isMobile = useMobile()
+    // const isMobile = useMobile()
 
     const onSubmit = async (client: any) => {
         if (client) {

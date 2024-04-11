@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { Resolver, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { FormHelperText, IconButton, InputAdornment, Tooltip } from '@mui/material';
-import * as Styled from './SignIn.styled'
+import * as Styled from './SignIn.styled'; // Assuming formGroupWrapper and inputWrapper are styled components
 import notify from '../../../../Services/NotifyService';
 import authService from '../../../../Services/AuthServices';
 import CredentialsModel from '../../../../Models/CredentialsModel';
@@ -33,8 +33,7 @@ const SignInSide = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<CredentialsModel>({
+    const { register, handleSubmit, formState: { errors } } = useForm<CredentialsModel>({
         resolver: yupResolver(validateForms.validateSigninSchema) as Resolver<CredentialsModel>,
         mode: "onChange"
     });
@@ -77,7 +76,7 @@ const SignInSide = () => {
     };
 
     return (
-        <Styled.formGroupWrapper>
+        <Styled.FormGroupWrapper>
             <Box component="main" sx={{ height: '100%' }}>
                 <CssBaseline />
                 <Grid container>
@@ -112,7 +111,7 @@ const SignInSide = () => {
                                 כניסה
                             </Typography>
                             <Box component="form" noValidate onSubmit={handleSubmit(submit)} sx={{ mt: 1, width: '80%' }}>
-                                <Styled.inputWrapper
+                                <Styled.InputWrapper
                                     helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.email?.message}</FormHelperText>}
                                     error={errors.email?.message ? true : false}
                                     margin="normal"
@@ -126,7 +125,7 @@ const SignInSide = () => {
                                     autoFocus
                                 />
 
-                                <Styled.inputWrapper
+                                <Styled.InputWrapper
                                     margin="normal"
                                     helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.password?.message}</FormHelperText>}
                                     error={errors.password?.message ? true : false}
@@ -181,7 +180,7 @@ const SignInSide = () => {
                     </Grid>
                 </Grid>
             </Box>
-        </Styled.formGroupWrapper>
+        </Styled.FormGroupWrapper>
     );
 };
 

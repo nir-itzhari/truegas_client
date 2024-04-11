@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import Modal from '@mui/material/Modal';
-import { Button, CircularProgress } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import { ImagesModel } from '../../../../Models/ImagesModel';
 import config from '../../../../Utils/Config';
 import { useMobile } from '../../../../Hooks/useMobileHook';

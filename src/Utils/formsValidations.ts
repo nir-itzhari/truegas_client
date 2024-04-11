@@ -1,4 +1,4 @@
-import { object, string, number, mixed } from "yup"
+import { object, string, number } from "yup"
 import * as Yup from "yup"
 
 class ValidateForms {

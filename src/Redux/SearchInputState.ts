@@ -1,6 +1,3 @@
-import SearchInputModel from "../Models/SearchInputModel";
-
-
 export class SearchInputState {
     public fullName: string = null
     public city: string = null

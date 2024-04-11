@@ -32,7 +32,6 @@ class ProductionConfig extends Config {
     public resetPasswordUrl = "http://51.16.52.2:80/api/auth/reset-password/";
     // public socketUrl = "http://localhost:3000";
 }
-console.log(process.env.NODE_ENV)
 const config = process.env.NODE_ENV === "development" ? new DevelopmentConfig() : new ProductionConfig();
 
 
