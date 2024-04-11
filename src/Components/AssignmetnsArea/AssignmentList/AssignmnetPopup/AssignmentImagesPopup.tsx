@@ -5,7 +5,7 @@ import { ImagesModel } from '../../../../Models/ImagesModel';
 import config from '../../../../Utils/Config';
 import { useMobile } from '../../../../Hooks/useMobileHook';
 import { IoIosImages } from 'react-icons/io';
-import * as styled from './AssignmentPopupMobile.style'
+import * as styled from './AssignmentPopupMobile.styled'
 import Badge from '@mui/material/Badge';
 import { IoMdClose } from 'react-icons/io';
 

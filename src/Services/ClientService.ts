@@ -43,9 +43,9 @@ class ClientService {
         formData.append('fullName', client.fullName);
         formData.append('city', client.city);
         formData.append('street', client.street);
-        formData.append('buildingNumber', client.buildingNumber);
-        formData.append('apartmentNumber', client.apartmentNumber);
-        formData.append('floor', client.floor);
+        formData.append('buildingNumber', client.buildingNumber.toString());
+        formData.append('apartmentNumber', client.apartmentNumber.toString());
+        formData.append('floor', client.floor.toString());
         formData.append('phoneNumber', client.phoneNumber);
         const response = await axios.post<ClientModel>(config.clientsUrl, formData);
         const addedClient = response.data;
@@ -60,9 +60,9 @@ class ClientService {
         formData.append('fullName', client.fullName);
         formData.append('city', client.city);
         formData.append('street', client.street);
-        formData.append('buildingNumber', client.buildingNumber);
-        formData.append('apartmentNumber', client.apartmentNumber);
-        formData.append('floor', client.floor);
+        formData.append('buildingNumber', client.buildingNumber.toString());
+        formData.append('apartmentNumber', client.apartmentNumber.toString());
+        formData.append('floor', client.floor.toString());
         const response = await axios.post<ClientModel>(config.clientsUrl, formData);
         const updatedClient = response.data;
         store.dispatch(updateClientAction(updatedClient));

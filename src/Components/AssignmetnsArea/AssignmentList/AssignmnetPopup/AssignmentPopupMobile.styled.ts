@@ -15,6 +15,9 @@ export const StyledModalBox = styled.div<({ $isMobile: boolean }) >`
   width: 100%;
 `;
 
+export const DetailsButton = styled(Button)`
+  justify-content: flex-start !important;
+`
 
 export const GalleryWrapper = styled.div<({ $isMobile: boolean }) >`
 position: absolute;

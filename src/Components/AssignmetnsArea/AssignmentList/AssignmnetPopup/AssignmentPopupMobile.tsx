@@ -1,7 +1,5 @@
 import { FC, useState } from 'react';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
-import { StyledModalBox } from './AssignmentPopupMobile.style';
 import { AssignmentImagesPopup } from './AssignmentImagesPopup';
 import AssignmentModel from '../../../../Models/AssignmentModel';
 import { Card } from '@mui/material';
@@ -9,6 +7,7 @@ import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { useMobile } from '../../../../Hooks/useMobileHook';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { ClientModel } from '../../../../Models/ClientModel';
+import * as styled from './AssignmentPopupMobile.styled'
 
 interface Props {
     assignment?: AssignmentModel;
@@ -28,11 +27,11 @@ const AssignmentPopupMobile: FC<Props> = ({ assignment, client }) => {
 
     return (
         <div>
-            <Button onClick={handleOpen}>לפרטים</Button>
+            <styled.DetailsButton onClick={handleOpen}>לפרטים</styled.DetailsButton>
             <Modal
                 open={open}
                 onClose={handleClose}>
-                <StyledModalBox $isMobile={isMobile}>
+                <styled.StyledModalBox $isMobile={isMobile}>
                     <Card style={{ padding: 10, width: '100%' }}>
 
                         <>
@@ -72,7 +71,7 @@ const AssignmentPopupMobile: FC<Props> = ({ assignment, client }) => {
                             }
                         </>
                     </Card>
-                </StyledModalBox>
+                </styled.StyledModalBox>
             </Modal>
         </div>
     );

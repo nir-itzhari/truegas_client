@@ -6,9 +6,9 @@ export class ClientModel {
     public fullName: string;
     public city: string;
     public street: string;
-    public floor: string;
-    public buildingNumber: string;
-    public apartmentNumber: string;
+    public floor: number;
+    public buildingNumber: number;
+    public apartmentNumber: number;
     public phoneNumber: string;
     public phoneNumberTwo?: string;
     public assignment_id: string[];

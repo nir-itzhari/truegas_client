@@ -4,18 +4,19 @@ import * as Styled from '../../AssignmetnsArea/AddAssignmentForm/addAssignment.s
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { israel_cities } from '../../../Utils/data';
-import { TextField } from '@mui/material';
+import { FormHelperText, TextField } from '@mui/material';
 import clientService from '../../../Services/ClientService';
 import Autocomplete from '@mui/material/Autocomplete';
 import { IoMdSend } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 // import { useMobile } from '../../../Hooks/useMobileHook';
 import notify from '../../../Services/NotifyService';
+import { ClientModel } from '../../../Models/ClientModel';
 
 
 
 export const AddClientFrom = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<ClientModel>();
     const [cities] = useState<string[]>(israel_cities)
     const [newCityValue, setNewCityValue] = useState<string>(null)
     const navigate = useNavigate()
@@ -77,7 +78,7 @@ export const AddClientFrom = () => {
                         <Styled.TextArea dir={'rtl'} fullWidth={true} id="standard-basic" label="מספר דירה" variant="standard" {...register('apartmentNumber')} autoComplete='off' required />
                     </styled.FormGroup>
                     <styled.FormGroup>
-                        <Styled.TextArea dir={'rtl'} fullWidth={true} id="standard-basic" label="קומה" variant="standard" {...register('floor')} autoComplete='off' required />
+                        <Styled.TextArea helperText={<FormHelperText sx={{ textAlign: 'right' }}>{errors.floor?.message}</FormHelperText>} dir={'rtl'} fullWidth={true} id="standard-basic" label="קומה" variant="standard" {...register('floor')} autoComplete='off' required />
                     </styled.FormGroup>
                     <styled.FormGroup>
                         <Styled.TextArea dir={'rtl'} fullWidth={true} id="standard-basic" label="נייד" variant="standard" {...register('phoneNumber')} autoComplete='off' required />
