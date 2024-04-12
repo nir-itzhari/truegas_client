@@ -49,12 +49,12 @@ const BpCheckedIcon = styled(BpIcon)({
 });
 
 interface Props {
-    setIsDone: (isDone: Nullable<boolean>) => void
+    setIsDone: (isDone: boolean) => void
 }
 
 export default function CustomizedCheckbox(parentProps: Props) {
-    const [notDoneChecked, setNotDoneChecked] = useState<boolean>(true);
-    const [doneChecked, setDoneChecked] = useState<boolean>(false);
+    const [notDoneChecked, setNotDoneChecked] = useState<boolean>(false);
+    const [doneChecked, setDoneChecked] = useState<boolean>(true);
 
     function BpCheckbox(props: CheckboxProps) {
         return (
@@ -68,15 +68,18 @@ export default function CustomizedCheckbox(parentProps: Props) {
                 checkedIcon={<BpCheckedIcon />}
                 icon={<BpIcon />}
                 onChange={(e) => {
-                    // Toggle the checked state based on the current state
                     if (props.name === 'notDone') {
-                        setNotDoneChecked(e.target.checked);
-                        setDoneChecked(false);
-                        parentProps.setIsDone(e.target.checked)
+                        if (!notDoneChecked) {
+                            setNotDoneChecked(true);
+                            setDoneChecked(false);
+                            parentProps.setIsDone(false);
+                        }
                     } else if (props.name === 'done') {
-                        setDoneChecked(e.target.checked);
-                        setNotDoneChecked(false);
-                        parentProps.setIsDone(e.target.checked)
+                        if (!doneChecked) {
+                            setDoneChecked(true);
+                            setNotDoneChecked(false);
+                            parentProps.setIsDone(true);
+                        }
                     }
                 }}
                 inputProps={{ 'aria-label': 'Checkbox demo' }}
