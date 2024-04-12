@@ -17,7 +17,11 @@
 
 @media (max-width: 767px) {
     .css-11b3ww9-MuiPaper-root-MuiAppBar-root {
-        position: fixed !important;
+        /* position: fixed !important; */
+    }
+
+    .css-k008qs {
+        height: auto !important;
     }
 }
 
