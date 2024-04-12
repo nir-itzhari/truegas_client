@@ -1,5 +1,6 @@
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import styled from "styled-components";
+import { Button } from 'primereact/button';
 
 
 export const FormWrapper = styled.div`
@@ -31,6 +32,10 @@ export const FormContainer = styled.div`
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const FormTitle = styled.h2`
@@ -43,6 +48,7 @@ export const Form = styled.form`
 display: grid;
 grid-template-columns: repeat(2, 2fr);
 align-items: center;
+grid-gap: 10px;
 
 @media (max-width: 768px) {
   display: flex;
@@ -99,7 +105,13 @@ export const Input = styled.input`
 
   #file-upload-button {
     border-radius: 25px;
+    content: בחר קובץ;
   }
+
+  #file-upload-button::before {
+  
+  }
+  
 `;
 export const TextAreaTitle = styled(TextField)`
   width: calc(100% - 20px); 
@@ -227,13 +239,11 @@ gap: 5px;
 export const SubmitButtonWrapper = styled.div`
   width: 100%;
   text-align: center;
+  grid-column: span 2
 `
 
 export const SubmitButton = styled(Button)`
   width: 80%;
-  font-size: 20px;
-  background-color: #007bff;
-  color: #fff;
   border-radius: 12px;
   cursor: pointer;
 `;

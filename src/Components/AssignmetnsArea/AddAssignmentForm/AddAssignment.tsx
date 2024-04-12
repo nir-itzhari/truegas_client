@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import * as styled from './addAssignment.styled';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { FormControl, FormHelperText, InputAdornment, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { FormControl, FormHelperText, InputAdornment, MenuItem, Select, SelectChangeEvent, Button as MuButton } from '@mui/material';
 import { ClientModel } from '../../../Models/ClientModel';
 import AssignmentModel from '../../../Models/AssignmentModel';
 import CustomizedCheckbox from './isDoneCheckbox';
 import { Dayjs } from 'dayjs';
-import { Button } from 'primereact/button';
 import store from '../../../Redux/Store';
 import UserModel from '../../../Models/UserModel';
 import { Nullable } from 'primereact/ts-helpers';
@@ -17,15 +16,25 @@ import HeDatePicker from '../../SharedArea/HeDatePicker';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validateForms from '../../../Utils/formsValidations';
 import assignmentService from '../../../Services/AssignmentServices';
+import { FiUpload } from "react-icons/fi";
 
 
 
 
 export const AddAssignment = (): JSX.Element => {
     const data = useLoaderData() as ClientModel[]
-    const { register, handleSubmit, formState: { errors } } = useForm<AssignmentModel>({
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<AssignmentModel>({
         resolver: yupResolver(validateForms.addAssignmentFormSchema), mode: "onChange"
     });
+    const hiddenFileInput = useRef<HTMLInputElement>(null);
+
+    const handleClick = () => {
+        hiddenFileInput.current.click()
+
+    };
+
+
+
     const [clients] = useState<ClientModel[]>(data);
     const [loading, setLoading] = useState<boolean>(false)
     const [client, setClient] = useState<string>('בחר לקוח')
@@ -36,7 +45,7 @@ export const AddAssignment = (): JSX.Element => {
     const navigate = useNavigate()
     const isMobile = useMobile()
 
-    const setIsDone = (isDone: Nullable<boolean>) => setChosenIsDone(isDone)
+    const setIsDone = (isDone: boolean) => setChosenIsDone(isDone)
     const setDate = (date: Nullable<Dayjs>) => setChosenDate(date)
 
     const onSubmit: SubmitHandler<FieldValues> = async (data: any) => {
@@ -45,10 +54,10 @@ export const AddAssignment = (): JSX.Element => {
             data.user_id = user._id
             data.date = chosenDate ?? new Date()
             data.isDone = chosenIsDone
-            await assignmentService.addNewAssignment(data);
+            // await assignmentService.addNewAssignment(data);
 
-            navigate("..", { relative: 'path' })
-            // console.log("Added assignment:", data);
+            // navigate("..", { relative: 'path' })
+            console.log("Added assignment:", data);
         } catch (error) {
             setLoading(!loading)
             console.error("Error adding assignment:", error);
@@ -61,7 +70,7 @@ export const AddAssignment = (): JSX.Element => {
 
 
     useEffect(() => {
-
+        window.scrollTo(0, 0);
         setUser(store.getState().authState.user);
 
         const unSubscribeMe = store.subscribe(() => {
@@ -133,7 +142,23 @@ export const AddAssignment = (): JSX.Element => {
                         <CustomizedCheckbox setIsDone={setIsDone} />
                     </styled.FormGroupCheckBox>
                     <styled.FormGroupFile>
-                        <styled.Input type="file" accept="image/gif, image/jpeg, image/png" name="imageFile" {...register('imageFile')} required/>
+                        {/*Hidden Input */}
+                        <styled.Input
+                            style={{ display: 'none' }}
+                            ref={hiddenFileInput}
+                            type="file"
+                            accept="image/gif, image/jpeg, image/png"
+                            name="imageFile"
+                            onChange={(e) => setValue('imageFile', e.target.files)} />
+                        {/*Button using the hiddenFileInput */}
+                        <MuButton variant="outlined" className="button-upload" onClick={e => {
+                            e.preventDefault();
+                            handleClick();
+                        }}>
+                            <span>
+                                הוספת תמונה <FiUpload />
+                            </span>
+                        </MuButton>
                     </styled.FormGroupFile>
 
                     <styled.FormGroup>
@@ -153,7 +178,7 @@ export const AddAssignment = (): JSX.Element => {
 
 
                     <styled.SubmitButtonWrapper>
-                        <Button dir='rtl' label="שלח" icon="pi pi-check" loading={loading} />
+                        <styled.SubmitButton dir='rtl' label="שלח" icon="pi pi-check" loading={loading} />
                     </styled.SubmitButtonWrapper>
                 </styled.Form>
             </styled.FormContainer>
